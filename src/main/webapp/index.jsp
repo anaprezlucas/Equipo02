@@ -2,11 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>EQUIPO02</title>
-</head>
-<body>
-
-</body>
+    <body>
+        <h2>Hello EQUIPO02!</h2>
+    </body>
 </html>
