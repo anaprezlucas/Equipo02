@@ -8,6 +8,7 @@
 </head>
 <body>
 
-<jsp:forward page="/WEB-INF/views/fichajes.jsp">
+<jsp:forward page="/WEB-INF/views/fichajes.jsp"/>
+
 </body>
 </html>
