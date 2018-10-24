@@ -28,8 +28,8 @@
 <body>
 
 	<div class="container">
-		<h1>Equipo02 Bootstrap Pagina</h1>
-		<form action="/views/fichajes.jsp">
+		<h1>Equipo02 Bootstrap Página</h1>
+		<form action="../views/fichajes.jsp">
 			<input type="submit" value="Fichajes">
 		</form>
 		<p>Pablo Moraga Navas.</p>
