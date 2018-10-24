@@ -7,7 +7,7 @@
 <!-- Adaptabilidad Moviles -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Bootstrap Equipo02</title>
+<title>Equipo02 - InTime</title>
 
 
 <!--Llamada al archivo CSS a traves del DN-->
@@ -20,11 +20,20 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
+
+
+
+<!-- <jsp:forward page="usuario"/> -->
+
 <body>
 
 	<div class="container">
 		<h1>Equipo02 Bootstrap Pagina</h1>
+		<form action="/views/fichajes.jsp">
+			<input type="submit" value="Fichajes">
+		</form>
 		<p>Pablo Moraga Navas.</p>
+
 	</div>
 
 </body>
