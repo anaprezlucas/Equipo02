@@ -46,7 +46,7 @@
   <div class="row">
     <h2><span class=" glyphicon glyphicon-pencil"></span> Login </h2>
 
-      <div class="login-form center-div col-md-10">
+      <div class="login-form center-div col-md-4">
         <form>
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Usuario *" value="" />
