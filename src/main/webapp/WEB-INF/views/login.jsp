@@ -59,7 +59,7 @@
         </form>
       </div>
       <br/>
-    		<img src="http://i65.tinypic.com/s5ybty.png" style="width:%;"> 
+    		<img src="http://i65.tinypic.com/s5ybty.png" style="width:300; height:300;"> 
    	  <br/>
 </div>
       
