@@ -21,10 +21,7 @@
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
     
 }
-.login-form h3{
-    text-align: left;
-    color: #333;
-}
+
 .login-container h2{
     text-align: left;
     background-color: #337ab7;
@@ -35,16 +32,10 @@
 
 </head>
 <body>
-
-<center>
-   <br/>
-    <img src="http://i65.tinypic.com/s5ybty.png" style="width:%;" align=right> 
-   <br/>
-</center>
    
 <div class="container login-container ">
   <div class="row">
-    <h2><span class=" glyphicon glyphicon-pencil col-md-4"></span> Login </h2>
+    <h2><span class=" glyphicon glyphicon-pencil "></span> Login </h2>
 
       <div class="login-form center-div col-md-4">
         <form>
@@ -67,6 +58,9 @@
             </div>
         </form>
       </div>
+      <br/>
+    		<img src="http://i65.tinypic.com/s5ybty.png" style="width:%;"> 
+   	  <br/>
 </div>
       
 </div>
