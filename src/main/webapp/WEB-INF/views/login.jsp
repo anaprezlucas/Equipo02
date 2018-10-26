@@ -15,9 +15,22 @@
 <title>Login InTime</title>
 
 <style>
-.login-container{
-    margin-bottom: 10%;
+
+.login-form{
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    
 }
+.login-form h3{
+    text-align: left;
+    color: #333;
+}
+.login-container h2{
+    text-align: left;
+    background-color: #337ab7;
+    color: #333;
+}
+
 </style>
 
 </head>
@@ -33,13 +46,13 @@
   <div class="row">
     <h2><span class=" glyphicon glyphicon-pencil"></span> Login </h2>
 
-      <div class="gestion-form center-div col-md-10">
+      <div class="login-form center-div col-md-10">
         <form>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Tu Usuario *" value="" />
+                <input type="text" class="form-control" placeholder="Usuario *" value="" />
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="Tu contraseña *" value="" />
+                <input type="password" class="form-control" placeholder="Contraseña *" value="" />
             </div>
           <div class="form-inline text-center" style="margin:auto;">
             <div class="form-group">
