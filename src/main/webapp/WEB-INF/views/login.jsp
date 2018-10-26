@@ -44,7 +44,7 @@
    
 <div class="container login-container ">
   <div class="row">
-    <h2><span class=" glyphicon glyphicon-pencil"></span> Login </h2>
+    <h2><span class=" glyphicon glyphicon-pencil col-md-4"></span> Login </h2>
 
       <div class="login-form center-div col-md-4">
         <form>
