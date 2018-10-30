@@ -41,7 +41,7 @@
 
 
 
-				<form action="login" method="post" id="formlogin">
+				<form action="/login" method="post" id="formlogin">
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="Usuario *" value="" />
 					</div>
