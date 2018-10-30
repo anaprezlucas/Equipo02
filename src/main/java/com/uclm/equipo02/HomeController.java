@@ -85,7 +85,7 @@ public class HomeController {
 	public String iniciarSesion(HttpServletRequest request, Model model) throws Exception {
 		String cadenaUrl = usuarioServ;
 		String nombre = request.getParameter("txtUsuarioNombre");
-		String password = request.getParameter("txtUsuarioClave");
+		String password = request.getParameter("txtUsuarioPassword");
 		if (nombre.equals("") || password.equals("")) {
 			model.addAttribute(alert, "Por favor rellene los campos");
 			return cadenaUrl += "login";
