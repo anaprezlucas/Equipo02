@@ -23,16 +23,17 @@ public class UsuarioDaoImplement implements UsuarioDao{
 	}
 	//Inserta un nuevo usuario en la BBDD
 	public void insert(Usuario usuario) throws Exception {
-		if(!selectNombre(usuario)) {
-			BsonDocument bso = new BsonDocument();
-			bso.append(name, new BsonString(usuario.getNombre()));
-			bso.append(password, new BsonString(usuario.getPassword()));
-			bso.append(email, new BsonString(usuario.getEmail()));
-			bso.append(rol, new BsonString(usuario.getRol()));
-			MongoCollection <BsonDocument> usuarios = obtenerUsuarios();
+		BsonDocument bso = new BsonDocument();
+		bso.append(name, new BsonString(usuario.getNombre()));
+		bso.append(password, new BsonString(usuario.getPassword()));
+		bso.append(email, new BsonString(usuario.getEmail()));
+		
+		MongoCollection<BsonDocument> usuarios = obtenerUsuarios();
+		FindIterable<BsonDocument> resultado=usuarios.find(bso);
+		BsonDocument usuarioBso = resultado.first();
+		if (usuarioBso==null) {
 			usuarios.insertOne(bso);
-		}else
-			throw new Exception("Cuenta existente");
+		}
 	}
 	//Devuelve un true si existe y false si no existe
 	private boolean selectNombre(Usuario usuario) {

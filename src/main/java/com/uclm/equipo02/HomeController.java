@@ -10,6 +10,7 @@ import org.bson.BsonDocument;
 import org.bson.BsonString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +31,7 @@ import com.uclm.equipo02.persistencia.UsuarioDaoImplement;
 
 public class HomeController {
 	
-	UsuarioDaoImplement usuarioDao;
+	
 
 	private final String usuarioServ = "usuario/";
 	private final String usuario_login = "usuario/login";
@@ -73,18 +74,17 @@ public class HomeController {
 	public void iniciarSesion(HttpServletRequest request, Model model) throws Exception {
 		String cadenaUrl = usuarioServ;
 		System.out.println("He pasado por el método del iniciarSesion");
-		
+		UsuarioDaoImplement userDao=  new UsuarioDaoImplement();
 		Usuario user = new Usuario();
 		user.setNombre("Rodrigo");
 		user.setPassword("1234");
 		user.setEmail("rodrigo@gmail.com");
 		user.setRol("empleado");
 		
-		
-		
 		try {
-			usuarioDao.insert(user);
+			userDao.insert(user);
 		} catch (Exception e) {
+			System.out.println("estoy dentro de la excepción");
 			System.out.println(e.toString());
 		}
 		//return cadenaUrl += "login";
