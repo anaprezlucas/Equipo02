@@ -60,7 +60,7 @@ public class HomeController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public void iniciarSesion(HttpServletRequest request, Model model) throws Exception {
 		String cadenaUrl = usuarioServ;
-		UsuarioDao userDao=  new UsuarioDaoImplement();
+		UsuarioDao userDao = null;
 		Usuario user = new Usuario();
 		user.setNombre("Rodrigo");
 		user.setPassword("1234");
