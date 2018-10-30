@@ -80,29 +80,13 @@ public class HomeController {
 		user.setEmail("rodrigo@gmail.com");
 		user.setRol("empleado");
 		
-		uri= new MongoClientURI("mongodb://equipo02:equipo02gps@ds115740.mlab.com:15740/fichajes");
-		mongoClient= new MongoClient(uri);
-		db=mongoClient.getDatabase(uri.getDatabase());
 		
 		
-		BsonDocument bso = new BsonDocument();
-		bso.append(name, new BsonString("Rodrigo"));
-		bso.append(password, new BsonString("1234"));
-		bso.append(email, new BsonString("rodrigodhv@gmail.com"));
-		bso.append(rol, new BsonString("empleado"));
-		//MongoCollection <BsonDocument> usuarios = obtenerUsuarios();
-		
-		MongoCollection <BsonDocument> result=db.getCollection("Usuarios", BsonDocument.class);
-		result.insertOne(bso);
-		
-		/*
 		try {
 			usuarioDao.insert(user);
 		} catch (Exception e) {
-			
+			System.out.println(e.toString());
 		}
 		//return cadenaUrl += "login";
-		 * 
-		 */
 	}
 }
