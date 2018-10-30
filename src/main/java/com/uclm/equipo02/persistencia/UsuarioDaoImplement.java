@@ -46,6 +46,7 @@ public class UsuarioDaoImplement implements UsuarioDao{
 		}
 		return true;
 	}
+	
 	//Obtener todos los usuarios
 	private MongoCollection<BsonDocument> obtenerUsuarios() {
 		MongoBroker broker = MongoBroker.get();
