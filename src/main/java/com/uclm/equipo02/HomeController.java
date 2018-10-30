@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.uclm.equipo02.modelo.Usuario;
-import com.uclm.equipo02.persistencia.UsuarioDao;
+import com.uclm.equipo02.persistencia.UsuarioDaoImplement;
 
 
 
@@ -60,7 +60,7 @@ public class HomeController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public void iniciarSesion(HttpServletRequest request, Model model) throws Exception {
 		String cadenaUrl = usuarioServ;
-		UsuarioDao userDao = null;
+		UsuarioDaoImplement userDao = new UsuarioDaoImplement();
 		Usuario user = new Usuario();
 		user.setNombre("Rodrigo");
 		user.setPassword("1234");
