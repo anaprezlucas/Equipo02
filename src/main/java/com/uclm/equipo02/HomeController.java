@@ -13,18 +13,27 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-/**
- * Handles requests for the application home page.
- */
+import com.uclm.equipo02.modelo.Usuario;
+import com.uclm.equipo02.persistencia.UsuarioDaoImplement;
+
+
 @Controller
+@RequestMapping({"usuario/", "/"})
+
+
 public class HomeController {
-	private final String usuarioServ = "/";
+	
+	UsuarioDaoImplement usuarioDao;
+
+	private final String usuarioServ = "usuario/";
+	private final String usuario_login = "usuario/login";
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
@@ -35,7 +44,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return usuario_login;
 	}
 	
 	/***
@@ -47,6 +56,18 @@ public class HomeController {
 	public String iniciarSesion(HttpServletRequest request, Model model) throws Exception {
 		String cadenaUrl = usuarioServ;
 		System.out.println("He pasado por el método del iniciarSesion");
+		
+		Usuario user = new Usuario();
+		user.setNombre("Rodrigo");
+		user.setPassword("1234");
+		user.setEmail("rodrigo@gmail.com");
+		user.setRol("empleado");
+		
+		try {
+			usuarioDao.insert(user);
+		} catch (Exception e) {
+			
+		}
 		return cadenaUrl += "login";
 	}
 }
