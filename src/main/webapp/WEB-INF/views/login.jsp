@@ -38,7 +38,7 @@
     <h2><span class=" glyphicon glyphicon-pencil "></span> Login </h2>
 
       <div class="login-form center-div col-md-4">
-        <form>
+        <form action="login" method="post" id="formlogin">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Usuario *" value="" />
             </div>
