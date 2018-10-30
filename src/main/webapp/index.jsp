@@ -5,5 +5,7 @@
 <html>
     <body>
         <h2>Hello EQUIPO02!</h2>
+        
+        <jsp:forward page="/WEB-INF/views/login.jsp"/>
     </body>
 </html>
