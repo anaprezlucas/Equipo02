@@ -46,7 +46,7 @@ public class UsuarioDaoImplement implements UsuarioDao{
 		}
 		return true;
 	}
-	
+
 	//Obtener todos los usuarios
 	private MongoCollection<BsonDocument> obtenerUsuarios() {
 		MongoBroker broker = MongoBroker.get();
@@ -106,15 +106,15 @@ public class UsuarioDaoImplement implements UsuarioDao{
 		FindIterable<BsonDocument> resultado;
 		BsonDocument usuario;
 		BsonDocument actualizacion = null;
-		
+
 		while(it.hasNext()) {
 			aux=it.next();
 			criterio.append(name, new BsonString(aux.getNombre()));
 			resultado=usuarios.find(criterio);
 			usuario = resultado.first();
 			usuarios.findOneAndUpdate(usuario, actualizacion);
-				}
-		
+		}
+
 		usuarios = obtenerUsuarios();
 		criterio = new BsonDocument();
 		criterio.append(name, nombreAnt);
@@ -126,7 +126,20 @@ public class UsuarioDaoImplement implements UsuarioDao{
 	@Override
 	public void update(String nombre, String pwdAntigua, String pwdNueva) {
 		// TODO Auto-generated method stub
-		
+
+	}
+	public boolean login(Usuario usuario) {
+
+		MongoCollection<BsonDocument> usuarios = obtenerUsuarios();
+		BsonDocument criterio = new BsonDocument();
+		criterio.append(name, new BsonString(usuario.getNombre()));
+		criterio.append(password, new BsonString(usuario.getPassword()));
+		FindIterable<BsonDocument> resultado=usuarios.find(criterio);
+		BsonDocument usuarioBson = resultado.first();
+		if (usuarioBson==null) {
+			return false;
+		}
+		return true;
 	}
 
 

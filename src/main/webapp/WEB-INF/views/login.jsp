@@ -43,10 +43,10 @@
 
 				<form action="login" method="post" id="formlogin">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Usuario *" value="" />
+						<input name="txtUsuarioNombre" type="text" class="form-control" placeholder="Usuario *" value="" />
 					</div>
 					<div class="form-group">
-						<input type="password" class="form-control" placeholder="Contraseña *" value="" />
+						<input name="txtUsuarioPassword" type="password" class="form-control" placeholder="Contraseña *" value="" />
 					</div>
 					<div class="form-inline text-center" style="margin: auto;">
 						<div class="form-group">
