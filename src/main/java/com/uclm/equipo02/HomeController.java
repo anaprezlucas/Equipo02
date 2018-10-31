@@ -89,7 +89,7 @@ public class HomeController {
 		String nombre = request.getParameter("txtUsuarioNombre");
 		String password = request.getParameter("txtUsuarioPassword");
 		if (nombre.equals("") || password.equals("")) {
-			model.addAttribute(alert, "Por favor rellene los campos");
+			model.addAttribute("alerta", "Por favor rellene los campos");
 			return "login";
 		}
 		Usuario usuario = new Usuario();
