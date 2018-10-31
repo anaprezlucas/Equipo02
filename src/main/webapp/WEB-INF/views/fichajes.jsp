@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Administrador</title>
+<title>Fichajes</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -13,7 +13,7 @@
 <script
   src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
   
 <style>
@@ -21,6 +21,7 @@
 .fichaje-container{
     margin-top: 5%;
     margin-bottom: 5%;
+    
 }
 
 .historial-container{
@@ -45,6 +46,10 @@
 }
 .historial-form h3{
     text-align: center;
+    color: #fff;
+}
+
+.historial-form h4{
     color: #fff;
 }
   
@@ -79,21 +84,16 @@
   
 
 
-<div class="container fichaje-container ">
+<div class="container fichaje-container col-md-6 col-md-offset-3 ">
   <div class="row">
     <h2><span class=" glyphicon glyphicon-sort"></span> Fichajes </h2>
    
       
   
-      <div class="gestion-form center-div col-md-10">
+      <div class="gestion-form center-div">
         <h3>Gestión y Validación de Fichajes</h3>
         <form>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Tu Usuario *" value="" />
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control" placeholder="Tu contraseña *" value="" />
-            </div>
+            
           <div class="form-inline text-center" style="margin:auto;">
             <div class="form-group">
                 <input type="submit" class="btnSubmit" value="Fichar" />
@@ -102,9 +102,6 @@
                 <input type="submit" class="btnSubmit" value="Cerrar Fichaje" />
             </div>
             </div>
-            <div class="form-group">
-                <a href="#" class="ForgetPwd">¿Has olvidado tu contraseña?</a>
-            </div>
         </form>
       </div>
       
@@ -112,12 +109,81 @@
 
 
 <div class= "container historial-container">
-    <div class="historial-form col-md-10">
-    
-            <h3>Historial de Fichajes</h3>
-            <div class="panel-body">Usuario: </div>
-            <div class="panel-body">Hora actual:  </div>
-    </div>
+
+  <div class="row">
+      <div class="historial-form">
+      
+              <h3>Historial de Fichajes</h3>
+            <form action=" "class="form-inline">
+              <h4>Usuario:</h4>
+                  <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="Usuario">
+            
+              <h4 >Hora Actual:</h4>
+                  <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="HH:MM:SS">
+                  
+                  
+                  
+            
+                  
+            </form>
+            <!--DatePicker-->
+            
+            <h4 >Elige Fecha Actual:</h4>
+            <div class="container">
+              <div class="row">
+                  <div class='col-sm-6'>
+                      <div class="form-group">
+                          <div class='input-group date' id='datetimepicker3'>
+                              <input type='text' class="form-control" />
+                              <span class="input-group-addon">
+                                  <span class="glyphicon glyphicon-calendar"></span>
+                              </span>
+                          </div>
+                      </div>
+                  </div>
+                  <script type="text/javascript">
+                      $(function () {
+                          $('#datetimepicker3').datetimepicker({
+                              format: 'LT'
+                          });
+                      });
+                  </script>
+              </div>
+          </div>
+         
+        </div>
+         
+  <table class="table table-bordered  table-dark ">
+  <thead class="thead">
+    <tr>
+      <th scope="col">Fichajes</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">Hora Fichaje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Entrada</td>
+      <td>8:45</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Rodrigo</td>
+      <td>8:30</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Salida</td>
+      <td>15:30</td>
+    </tr>
+  </tbody>
+</table>
+   
+            
+      
+      
+  </div>
       
 </div>
  
