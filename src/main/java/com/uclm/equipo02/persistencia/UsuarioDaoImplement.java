@@ -11,7 +11,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.uclm.equipo02.modelo.Usuario;
 
-public class UsuarioDaoImplement implements UsuarioDao{
+public class UsuarioDaoImplement{
 
 	private final String name = "nombre";
 	private final String password = "pwd";
@@ -54,7 +54,7 @@ public class UsuarioDaoImplement implements UsuarioDao{
 		return usuarios;
 	}
 
-	@Override
+	
 	//Devuelve los usuarios que no son administradores
 	public List<Usuario> list() {
 		MongoCollection<BsonDocument> usuarios = obtenerUsuarios();
@@ -122,11 +122,6 @@ public class UsuarioDaoImplement implements UsuarioDao{
 		usuario = resultado.first();
 		actualizacion= new BsonDocument("$set", new BsonDocument(name, nombreNue));
 		usuarios.findOneAndUpdate(usuario, actualizacion);
-	}
-	@Override
-	public void update(String nombre, String pwdAntigua, String pwdNueva) {
-		// TODO Auto-generated method stub
-
 	}
 	public boolean login(Usuario usuario) {
 
