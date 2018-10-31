@@ -83,12 +83,12 @@ public class HomeController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String iniciarSesion(HttpServletRequest request, Model model) throws Exception {
-		String cadenaUrl = usuarioServ;
+		//String cadenaUrl = usuarioServ;
 		String nombre = request.getParameter("txtUsuarioNombre");
 		String password = request.getParameter("txtUsuarioPassword");
 		if (nombre.equals("") || password.equals("")) {
 			model.addAttribute(alert, "Por favor rellene los campos");
-			return cadenaUrl += "login";
+			return "login";
 		}
 		Usuario usuario = new Usuario();
 		usuario.setNombre(nombre);
@@ -96,12 +96,12 @@ public class HomeController {
 		
 		if (userDao.login(usuario) && request.getSession().getAttribute(usuario_conect) == null) {
 			request.getSession().setAttribute(usuario_conect, usuario);
-			return cadenaUrl += welcome;
-		}
+			return welcome;
+		}else {
 
 		model.addAttribute("alerta", "Usuario y/o clave incorrectos");
-		return cadenaUrl += "login";
-
+		return "login";
+		}
 	}
 	
 	
