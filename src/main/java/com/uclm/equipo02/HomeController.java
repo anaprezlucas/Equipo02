@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -26,14 +28,14 @@ public class HomeController {
 	
 	
 
-	private final String usuarioServ = "usuario/";
-	private final String usuario_login = "usuario/login";
+	private final String usuarioServ = "usuario";
+	private final String usuario_login = "login";
 	private final String usuario_conect = "usuarioConectado";
 	private final String name = "nombre";
 	private final String password = "pwd";
 	private final String email = "email";
 	private final String rol = "rol";
-	private final String welcome = "bienvenido";
+	private final String welcome = "welcome";
 	private final String alert = "alerta";
 	
 	UsuarioDaoImplement userDao = new UsuarioDaoImplement();
@@ -89,8 +91,8 @@ public class HomeController {
 		String nombre = request.getParameter("txtUsuarioNombre");
 		String password = request.getParameter("txtUsuarioPassword");
 		if (nombre.equals("") || password.equals("")) {
-			model.addAttribute("alerta", "Por favor rellene los campos");
-			return "login";
+			model.addAttribute(alert, "Por favor rellene los campos");
+			return usuario_login;
 		}
 		Usuario usuario = new Usuario();
 		usuario.setNombre(nombre);
@@ -98,16 +100,27 @@ public class HomeController {
 		
 		if (userDao.login(usuario) && request.getSession().getAttribute(usuario_conect) == null) {
 			request.getSession().setAttribute(usuario_conect, usuario);
-			return "welcome";
+			return welcome;
 		}else {
 
-		model.addAttribute("alerta", "Usuario y/o clave incorrectos");
-		return "login";
+		model.addAttribute(alert, "Usuario y/o clave incorrectos");
+		return usuario_login;
 		}
 	}
 	public ModelAndView cambiarVista(String nombreVista) {
 		ModelAndView vista = new ModelAndView(nombreVista);
 		return vista;
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public ModelAndView cerrarSesion(HttpServletRequest request) throws Exception {
+		HttpSession sesion = request.getSession();
+
+		System.out.println("Sesion antes de invalidar: " + sesion);
+		sesion.invalidate();
+		System.out.println("Invalidamos la sesion: " + sesion);
+
+		return cambiarVista(usuario_login);
 	}
 	
 	
