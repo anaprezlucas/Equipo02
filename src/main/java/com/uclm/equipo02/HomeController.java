@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.uclm.equipo02.modelo.Usuario;
 import com.uclm.equipo02.persistencia.UsuarioDaoImplement;
 
@@ -96,12 +98,16 @@ public class HomeController {
 		
 		if (userDao.login(usuario) && request.getSession().getAttribute(usuario_conect) == null) {
 			request.getSession().setAttribute(usuario_conect, usuario);
-			return welcome;
+			return "welcome";
 		}else {
 
 		model.addAttribute("alerta", "Usuario y/o clave incorrectos");
 		return "login";
 		}
+	}
+	public ModelAndView cambiarVista(String nombreVista) {
+		ModelAndView vista = new ModelAndView(nombreVista);
+		return vista;
 	}
 	
 	
