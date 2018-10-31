@@ -100,7 +100,7 @@ public class HomeController {
 		
 		if (userDao.login(usuario) && request.getSession().getAttribute(usuario_conect) == null) {
 			request.getSession().setAttribute(usuario_conect, usuario);
-			return fichajes;
+			return "fichajes";
 		}else {
 
 		model.addAttribute(alert, "Usuario y/o clave incorrectos");
