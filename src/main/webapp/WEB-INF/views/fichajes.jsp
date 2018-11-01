@@ -97,7 +97,7 @@
 
 
 
-	<div class="container fichaje-container col-md-6 col-md-offset-3 ">
+	<div class="container fichaje-container col-md-4 col-md-offset-4 ">
 		<div class="row">
 			<h2>
 				<span class=" glyphicon glyphicon-sort"></span> Fichajes
@@ -130,7 +130,7 @@
 
 	</div>
 
-	<div class="container historial-container col-md-8 col-md-offset-2">
+	<div class="container historial-container col-md-6 col-md-offset-3">
 
 		<div class="row">
 			<div class="historial-form">
