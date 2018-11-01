@@ -52,6 +52,20 @@
 .historial-form h4 {
 	color: #fff;
 }
+
+.btnfichaje {
+	width: 50%;
+	border-radius: 2rem;
+	padding: 0%;
+	border: solid;
+	cursor: pointer;
+}
+
+.gestion-form .btnfichaje {
+	font-weight: 600;
+	color: #fff;
+	background-color: #0062cc;
+}
 </style>
 
 
@@ -96,103 +110,110 @@
 				<form>
 
 					<div class="form-inline text-center" style="margin: auto;">
-						<div class="form-group">
-							<input type="submit" class="btnSubmit" value="Fichar" />
-						</div>
-						<div class="form-group">
-							<input type="submit" class="btnSubmit" value="Cerrar Fichaje" />
-						</div>
+
+
+						<form action="abrirFichaje" method="post">
+							<input type="submit" class="btnfichaje input-lg"
+								name="abrirFichaje" value="Abrir Fichaje" />
+						</form>
+
+						<form action="cerrarFichaje" method="post">
+							<input type="submit" class="btnfichaje input-lg"
+								name="cerrarFichaje" value="Cerrar Fichaje" />
+						</form>
+
 					</div>
 				</form>
 			</div>
 
 		</div>
-		
-		</div>
 
+	</div>
 
-		<div class="container historial-container">
+	<div class="container historial-container col-md-8 col-md-offset-2">
 
-			<div class="row">
-				<div class="historial-form">
+		<div class="row">
+			<div class="historial-form">
 
-					<h3>Historial de Fichajes</h3>
-					<form action=" " class="form-inline">
-						<h4>Usuario:</h4>
-						<input type="text" readonly class="form-control-plaintext"
-							id="staticEmail" value="Usuario">
+				<h3>Historial de Fichajes</h3>
+				<form action=" " class="form-inline">
+					<h4>Usuario:</h4>
+					<input type="text" readonly class="form-control-plaintext"
+						id="staticEmail" value="Usuario">
 
-						<h4>Hora Actual:</h4>
-						<input type="text" readonly class="form-control-plaintext"
-							id="staticEmail" value="HH:MM:SS">
-
-
+					<h4>Hora Actual:</h4>
+					<input type="text" readonly class="form-control-plaintext"
+						id="staticEmail" value="HH:MM:SS">
 
 
 
-					</form>
-					<!--DatePicker-->
 
-					<h4>Elige Fecha Actual:</h4>
-					<div class="container">
-						<div class="row">
-							<div class='col-sm-6'>
-								<div class="form-group">
-									<div class='input-group date' id='datetimepicker3'>
-										<input type='text' class="form-control" /> <span
-											class="input-group-addon"> <span
-											class="glyphicon glyphicon-calendar"></span>
-										</span>
-									</div>
+
+				</form>
+				<!--DatePicker-->
+
+				<h4>Elige Fecha Actual:</h4>
+				<div class="container">
+					<div class="row">
+						<div class='col-sm-6'>
+							<div class="form-group">
+								<div class='input-group date' id='datetimepicker3'>
+									<input type='text' class="form-control" /> <span
+										class="input-group-addon"> <span
+										class="glyphicon glyphicon-calendar"></span>
+									</span>
 								</div>
 							</div>
-							<script type="text/javascript">
+						</div>
+						<script type="text/javascript">
                       $(function () {
                           $('#datetimepicker3').datetimepicker({
                               format: 'LT'
                           });
                       });
                   </script>
-						</div>
 					</div>
-
 				</div>
-
-				<table class="table table-bordered  table-dark ">
-					<thead class="thead">
-						<tr>
-							<th scope="col">Fichajes</th>
-							<th scope="col">Tipo</th>
-							<th scope="col">Hora Fichaje</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<th scope="row">1</th>
-							<td>Entrada</td>
-							<td>8:45</td>
-						</tr>
-						<tr>
-							<th scope="row">2</th>
-							<td>Rodrigo</td>
-							<td>8:30</td>
-						</tr>
-						<tr>
-							<th scope="row">3</th>
-							<td>Salida</td>
-							<td>15:30</td>
-						</tr>
-					</tbody>
-				</table>
-
-
-
 
 			</div>
 
+			<table class="table table-bordered  table-dark ">
+				<thead class="thead">
+					<tr>
+						<th scope="col">Fichajes</th>
+						<th scope="col">Tipo</th>
+						<th scope="col">Hora Fichaje</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">1</th>
+						<td>Entrada</td>
+						<td>8:45</td>
+					</tr>
+					<tr>
+						<th scope="row">2</th>
+						<td>Rodrigo</td>
+						<td>8:30</td>
+					</tr>
+					<tr>
+						<th scope="row">3</th>
+						<td>Salida</td>
+						<td>15:30</td>
+					</tr>
+				</tbody>
+			</table>
+
+
+
+
 		</div>
 
-		<div class="col-md-6" style="position: fixed; bottom: 0;">
-			<div class="panel-footer">&copy; Copyright 2018 InTime -
-				Equipo02. Todos los derechos reservados.</div>
-		</div>
+	</div>
+
+	<div class="col-md-6" style="position: fixed; bottom: 0;">
+		<div class="panel-footer">&copy; Copyright 2018 InTime -
+			Equipo02. Todos los derechos reservados.</div>
+	</div>
+</body>
+</html>
