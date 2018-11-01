@@ -46,7 +46,7 @@
 						<input name="txtUsuarioNombre" type="text" class="form-control" placeholder="Usuario *" value="" />
 					</div>
 					<div class="form-group">
-						<input name="txtUsuarioPassword" type="password" class="form-control" placeholder="Contraseña *" value="" />
+						<input name="txtUsuarioPassword" type="password" class="form-control" placeholder="Contrase&ntilde;a *" value="" />
 					</div>
 					<div class="form-inline text-center" style="margin: auto;">
 						<div class="form-group">
@@ -58,7 +58,7 @@
 						<label><input type="checkbox">Recordar usuario</label>
 					</div>
 					<div class="form-group">
-						<a href="#" class="ForgetPwd">Recuperar contraseña</a>
+						<a href="#" class="ForgetPwd">Recuperar Contrase&ntilde;a</a>
 					</div>
 				</form>
 			</div>
