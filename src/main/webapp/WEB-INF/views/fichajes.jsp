@@ -187,7 +187,7 @@
       
 </div>
  
-  <div class="col-md-12" style="position: fixed; bottom: 0;">
+  <div class="col-md-6" style="position: fixed; bottom: 0;">
   <div class="panel-footer">
    &copy; Copyright 2018 InTime - Equipo02. Todos los derechos reservados.
   </div>
