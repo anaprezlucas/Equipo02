@@ -20,15 +20,13 @@
 .fichaje-container {
     margin-left: 5%;
 	margin-bottom: 5%;
-	box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
+	box-shadow: 5px 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
 		rgba(0, 0, 0, 0.19);
 }
 
 
 .gestion-form {
-	padding: 5%;
-	box-shadow: 5px 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
-		rgba(0, 0, 0, 0.19);
+	
 }
 
 .gestion-form h3 {
