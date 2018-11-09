@@ -24,9 +24,11 @@
 		rgba(0, 0, 0, 0.19);
 }
 
-
+.fichaje-container h2{
+	padding: 0% 0% 0% 5%;
+}
 .gestion-form {
-	
+	padding: 0% 0% 0% 5%;
 }
 
 .gestion-form h3 {
@@ -43,7 +45,7 @@
 
 .gestion-form h3 {
 	text-align: left;
-	font-size: 20px;
+	font-size: 17px;
 }
 
 .botones-form {
@@ -86,7 +88,7 @@
 				<span class=" glyphicon glyphicon-plus"></span> Crear usuario
 			</h2>
 
-			<div class="gestion-form left-div">
+			<div class="gestion-form left-div col-md-6">
 				<form>
 
 					<div class="form-inline text-left" style="margin: auto;">
