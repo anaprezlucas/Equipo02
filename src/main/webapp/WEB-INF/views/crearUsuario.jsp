@@ -28,7 +28,7 @@
 	padding: 0% 0% 0% 5%;
 }
 .gestion-form {
-	padding: 0% 5% 0% 5%;
+	padding: 0% 0% 0% 5%;
 }
 
 .gestion-form h3 {
@@ -39,7 +39,7 @@
 }
 
 .botones-form {
-	padding: 5% 0% 0% 0%;
+	padding: 5% 0% 5% 0%;
 }
 
 .gestion-form .btnUsuario {
@@ -61,7 +61,7 @@
 			</div>
 			<ul class="nav navbar-nav">
 				<li style="color: white; font-size: 15px;"><a href="#">Inicio</a></li>
-				<li class="active" style="color: red; font-size: 15px;"><a
+				<li style="color: red; font-size: 15px;"><a
 					href="#">Fichajes</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -75,7 +75,7 @@
 	<div class="container fichaje-container col-md-8">
 		<div class="row">
 			<h2>
-				<span class=" glyphicon glyphicon-plus"></span> Crear usuario
+				<span class="glyphicon glyphicon-plus"></span> Crear usuario
 			</h2>
 
 			<div class="gestion-form left-div col-md-6">
