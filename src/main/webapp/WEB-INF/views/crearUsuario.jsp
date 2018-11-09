@@ -28,7 +28,7 @@
 	padding: 0% 0% 0% 5%;
 }
 .gestion-form {
-	padding: 0% 0% 5% 5%;
+	padding: 0% 0% 0% 5%;
 }
 
 .gestion-form h3 {
@@ -61,7 +61,7 @@
 			</div>
 			<ul class="nav navbar-nav">
 				<li style="color: white; font-size: 15px;"><a href="#">Inicio</a></li>
-				<li style="color: red; font-size: 15px;"><a
+				<li style="color: white; font-size: 15px;"><a
 					href="#">Fichajes</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -80,21 +80,23 @@
 
 			<div class="gestion-form left-div col-md-6">
 				<form>
-
+					<div class="form-group">
 							<h3>E-mail del usuario</h3>
 							<input name="txtUsuarioEmail" type="text" class="form-control" 
 							placeholder="usuario@ejemplo.com" value="" />	
-											
+					</div>				
+					<div class="form-group">
 							<h3>Nombre del usuario</h3>
 							<input name="txtUsuarioNombre" type="text" class="form-control" 
 							placeholder="Nombre y apellidos" value="" />
-						  
+				 	</div>
+				 	<div class="form-group">
 						    <h3>Rol del usuario</h3>
 						    <select name = "listaRoles">
 						    	<option value = "empleado"> Empleado </option>
 						    	<option value = "gestor"> Gestor de incidencias </option>
 						    </select>
-						    
+					</div>
 						    <div class="botones-form text-left" style="margin: auto;">
 						    	<input type="submit" class="btnUsuario input-lg"
 									name="Aceptar" value="Aceptar" />
