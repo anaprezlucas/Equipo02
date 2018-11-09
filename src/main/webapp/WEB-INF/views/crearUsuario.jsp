@@ -18,7 +18,7 @@
 
 <style>
 .fichaje-container {
-	margin-top: 5%;
+    margin-left: 5%;
 	margin-bottom: 5%;
 	box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
 		rgba(0, 0, 0, 0.19);
@@ -26,7 +26,8 @@
 
 
 .gestion-form {
-	box-shadow: 5 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
+	padding: 5%;
+	box-shadow: 5px 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
 		rgba(0, 0, 0, 0.19);
 }
 
@@ -45,10 +46,6 @@
 .gestion-form h3 {
 	text-align: left;
 	font-size: 20px;
-}
-
-.historial-form h4 {
-	color: #fff;
 }
 
 .botones-form {
@@ -85,13 +82,11 @@
 	</nav>
 
 
-	<div class="container fichaje-container col-md-8 ">
+	<div class="container fichaje-container col-md-8">
 		<div class="row">
 			<h2>
 				<span class=" glyphicon glyphicon-plus"></span> Crear usuario
 			</h2>
-
-
 
 			<div class="gestion-form left-div">
 				<form>
