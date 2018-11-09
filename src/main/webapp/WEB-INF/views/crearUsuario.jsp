@@ -72,7 +72,7 @@
 	</nav>
 
 
-	<div class="container fichaje-container col-md-8">
+	<div class="container fichaje-container col-md-6">
 		<div class="row">
 			<h2>
 				<span class="glyphicon glyphicon-plus"></span> Crear usuario
