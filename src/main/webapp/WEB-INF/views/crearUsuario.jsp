@@ -39,7 +39,7 @@
 }
 
 .botones-form {
-	padding: 5%;
+	padding: 5% 0% 5% 0%;
 }
 
 .gestion-form .btnUsuario {
