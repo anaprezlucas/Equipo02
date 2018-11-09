@@ -39,7 +39,7 @@
 }
 
 .botones-form {
-	padding: 5% 5% 5% 0%;
+	padding: 5% 0% 5% 0%;
 }
 
 .botones-form .btnUsuario {
