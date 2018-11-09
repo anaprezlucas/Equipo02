@@ -28,7 +28,7 @@
 	padding: 0% 0% 0% 5%;
 }
 .gestion-form {
-	padding: 0% 0% 0% 5%;
+	padding: 0% 0% 5% 5%;
 }
 
 .gestion-form h3 {
@@ -39,7 +39,7 @@
 }
 
 .botones-form {
-	padding: 5% 0% 5% 0%;
+	padding: 5%;
 }
 
 .gestion-form .btnUsuario {
