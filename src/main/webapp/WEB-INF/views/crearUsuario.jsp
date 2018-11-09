@@ -17,14 +17,14 @@
 
 
 <style>
-.fichaje-container {
+.creacion-container {
     margin-left: 5%;
 	margin-bottom: 5%;
 	box-shadow: 5px 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
 		rgba(0, 0, 0, 0.19);
 }
 
-.fichaje-container h2{
+.creacion-container h2{
 	padding: 0% 0% 0% 5%;
 }
 .gestion-form {
@@ -42,7 +42,7 @@
 	padding: 5% 0% 5% 0%;
 }
 
-.gestion-form .btnUsuario {
+.botones-form .btnUsuario {
 	font-weight: 600;
 	color: #fff;
 	background-color: #0062cc;
@@ -72,13 +72,13 @@
 	</nav>
 
 
-	<div class="container fichaje-container col-md-6">
+	<div class="container creacion-container col-md-6">
 		<div class="row">
 			<h2>
 				<span class="glyphicon glyphicon-plus"></span> Crear usuario
 			</h2>
 
-			<div class="gestion-form left-div col-md-6">
+			<div class="gestion-form left-div">
 				<form>
 					<div class="form-group">
 							<h3>E-mail del usuario</h3>
@@ -97,7 +97,7 @@
 						    	<option value = "gestor"> Gestor de incidencias </option>
 						    </select>
 					</div>
-						    <div class="botones-form text-left" style="margin: auto;">
+						    <div class="botones-form text-right" style="margin: auto;">
 						    	<input type="submit" class="btnUsuario input-lg"
 									name="Aceptar" value="Aceptar" />
 								
