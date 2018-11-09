@@ -26,8 +26,7 @@
 
 
 .gestion-form {
-	padding: 5%;
-	box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
+	box-shadow: 5 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
 		rgba(0, 0, 0, 0.19);
 }
 
@@ -86,7 +85,7 @@
 	</nav>
 
 
-	<div class="container fichaje-container col-md-4 col-md-offset-4 ">
+	<div class="container fichaje-container col-md-8 ">
 		<div class="row">
 			<h2>
 				<span class=" glyphicon glyphicon-plus"></span> Crear usuario
