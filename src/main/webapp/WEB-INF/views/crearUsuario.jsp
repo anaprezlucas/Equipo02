@@ -28,22 +28,12 @@
 	padding: 0% 0% 0% 5%;
 }
 .gestion-form {
-	padding: 0% 0% 0% 5%;
+	padding: 0% 5% 0% 5%;
 }
 
 .gestion-form h3 {
 	text-align: left;
 	color: #333;
-}
-
-.historial-form {
-	padding: 5%;
-	background: #0062cc;
-	box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
-		rgba(0, 0, 0, 0.19);
-}
-
-.gestion-form h3 {
 	text-align: left;
 	font-size: 17px;
 }
@@ -91,7 +81,6 @@
 			<div class="gestion-form left-div col-md-6">
 				<form>
 
-					<div class="form-inline text-left" style="margin: auto;">
 							<h3>E-mail del usuario</h3>
 							<input name="txtUsuarioEmail" type="text" class="form-control" 
 							placeholder="usuario@ejemplo.com" value="" />	
@@ -113,7 +102,7 @@
 						    	<input type="submit" class="btnUsuario input-lg"
 									name="Cancelar" value="Cancelar" />
 							</div>
-					</div>
+					
 				</form>
 			</div>
 
