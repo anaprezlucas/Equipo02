@@ -31,7 +31,7 @@
 </head>
 <body>
 	<center>
-<img src="http://i65.tinypic.com/s5ybty.png" style="width:%;">
+<img src="https://i.imgur.com/bwlSMSI.png" style="width:%;">
    <br/>
   	</div>
   </center>
