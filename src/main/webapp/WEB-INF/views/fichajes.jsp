@@ -85,13 +85,13 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
-						Cerrar Sesión</a></li>
+						Cerrar SesiÃ³n</a></li>
 			</ul>
 		</div>
 	</nav>
 
 	<center>
-		<br /> <img src="http://i65.tinypic.com/s5ybty.png" style="width: %;">
+		<br /> <img src="https://i.imgur.com/bwlSMSI.png" style="width: %;">
 		<br />
 	</center>
 
@@ -106,7 +106,7 @@
 
 
 			<div class="gestion-form center-div">
-				<h3>Gestión y Validación de Fichajes</h3>
+				<h3>GestiÃ³n y ValidaciÃ³n de Fichajes</h3>
 				<form>
 
 					<div class="form-inline text-center" style="margin: auto;">
