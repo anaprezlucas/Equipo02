@@ -154,7 +154,7 @@ public class HomeController {
 	    String asunto = "Contraseña por defecto";
 	    String cuerpo = "Hola " + nombre + "! \nLa contraseña por defecto es la siguiente:\n" + pass;
 
-	    MailSender mailSender = null;
+	    MailSender mailSender = new MailSender();
 	    mailSender.enviarConGMail(mail, asunto, cuerpo);
 
 		return usuario_login;

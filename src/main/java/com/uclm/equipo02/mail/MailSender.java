@@ -42,7 +42,7 @@ public class MailSender {
 	        message.setSubject(asunto);
 	        message.setText(cuerpo);
 	        Transport transport = session.getTransport("smtp");
-	        //transport.connect("smtp.gmail.com", remitente, clave);
+	        transport.connect("smtp.gmail.com", remitente, "E2correo");
 	        transport.sendMessage(message, message.getAllRecipients());
 	        transport.close();
 	    }
