@@ -152,7 +152,8 @@ public class HomeController {
 		
 		String destinatario =  "alguien@servidor.com"; //A quien le quieres escribir.
 	    String asunto = "Contraseña por defecto";
-	    String cuerpo = "Hola " + nombre + "! \nLa contraseña por defecto es la siguiente:\n" + pass;
+	    String cuerpo = "Hola " + nombre + "! \nLa contraseña por defecto es la siguiente:\n" + pass
+	    		+"\nUn Saludo+\nInTime Corporation";
 
 	    MailSender mailSender = new MailSender();
 	    mailSender.enviarConGMail(mail, asunto, cuerpo);
