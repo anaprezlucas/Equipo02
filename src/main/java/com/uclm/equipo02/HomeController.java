@@ -67,8 +67,9 @@ public class HomeController {
 		Usuario usuario = new Usuario();
 		usuario.setNombre(nombre);
 		usuario.setPassword(password);
-
-		if(nombre.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
+		usuario.setRol(userDao.devolverRol(usuario));
+		
+		if(usuario.getRol().equalsIgnoreCase("administrador")) {
 			request.getSession().setAttribute(usuario_conect, usuario);
 			return "admin";
 		}else if (userDao.login(usuario) && request.getSession().getAttribute(usuario_conect) == null) {

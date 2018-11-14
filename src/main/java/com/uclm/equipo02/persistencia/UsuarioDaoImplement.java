@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.bson.BsonDocument;
 import org.bson.BsonString;
+import org.bson.BsonValue;
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -47,6 +48,24 @@ public class UsuarioDaoImplement{
 		return true;
 	}
 
+	public String devolverRol(Usuario usuario) {
+		MongoCollection<BsonDocument> usuarios = obtenerUsuarios();
+		BsonDocument criterio = new BsonDocument();
+		criterio.append(name, new BsonString(usuario.getNombre()));
+		FindIterable<BsonDocument> resultado=usuarios.find(criterio);
+		BsonDocument usuariobso = resultado.first();
+		if (usuario==null){
+			return null;
+		}else {
+			BsonValue nombre=usuariobso.get(rol);
+			BsonString name=nombre.asString();
+			String rol=name.getValue();
+						
+			usuario.setRol(rol);
+		}
+		return usuario.getRol();
+	}
+
 	//Obtener todos los usuarios
 	private MongoCollection<BsonDocument> obtenerUsuarios() {
 		MongoBroker broker = MongoBroker.get();
@@ -54,7 +73,7 @@ public class UsuarioDaoImplement{
 		return usuarios;
 	}
 
-	
+
 	//Devuelve los usuarios que no son administradores
 	public List<Usuario> list() {
 		MongoCollection<BsonDocument> usuarios = obtenerUsuarios();
