@@ -67,13 +67,8 @@ public class HomeController {
 		Usuario usuario = new Usuario();
 		usuario.setEmail(email);
 		usuario.setPassword(password);
-		//usuario.setNombre(userDao.devolverUser(usuario));
-		//usuario.setRol(userDao.devolverRol(usuario));
-		/*
-		if(usuario.getRol().equalsIgnoreCase("administrador") && userDao.login(usuario) && request.getSession().getAttribute(usuario_conect) == null) {
-			request.getSession().setAttribute(usuario_conect, usuario);
-			return "admin";
-		}else*/ if (userDao.login(usuario) && request.getSession().getAttribute(usuario_conect) == null){
+		
+		if (userDao.login(usuario) && request.getSession().getAttribute(usuario_conect) == null){
 			usuario.setRol(userDao.devolverRol(usuario));
 
 			if(usuario.getRol().equalsIgnoreCase("empleado")) {
