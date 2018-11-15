@@ -12,7 +12,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<title>Login InTime</title>
+<title>Login | InTime</title>
 
 <style>
 .login-form {
@@ -22,7 +22,7 @@
 }
 
 .login-container h2 {
-	text-align: left;
+	
 	background-color: #337ab7;
 	color: #333;
 }
@@ -31,21 +31,22 @@
 </head>
 <body>
 	<center>
-<img src="https://i.imgur.com/bwlSMSI.png" style="width:%;">
+<img src="http://i65.tinypic.com/s5ybty.png" style="width:%;">
    <br/>
   	</div>
   </center>
 
-	<div class="container login-container ">
+	<div class="container login-container col-md-4 col-md-offset-4 ">
 		<div class="row">
 			<h2>
 				<span class=" glyphicon glyphicon-pencil "></span> Login
 			</h2>
 
-			<div class="login-form center-div col-md-4">
+			<div class="login-form">
 
 
 
+				
 				<form action="login" method="post" id="formlogin">
 					<div class="form-group">
 						<input name="txtUsuarioEmail" type="text" class="form-control" placeholder="E-mail *" value="" />
@@ -74,4 +75,3 @@
 
 </body>
 </html>
-
