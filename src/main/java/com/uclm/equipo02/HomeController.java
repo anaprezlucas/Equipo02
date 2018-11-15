@@ -16,21 +16,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.uclm.equipo02.modelo.Usuario;
-import com.uclm.equipo02.mail.MailSender;
 import com.uclm.equipo02.persistencia.UsuarioDaoImplement;
 
 @Controller
 
 public class HomeController {
 
-	private final String usuarioServ = "usuario";
+	
 	private final String usuario_login = "login";
 	private final String usuario_conect = "usuarioConectado";
-	private final String name = "nombre";
-	private final String password = "pwd";
-	private final String email = "email";
-	private final String rol = "rol";
-	private final String welcome = "welcome";
 	private final String alert = "alerta";
 
 	UsuarioDaoImplement userDao = new UsuarioDaoImplement();
@@ -76,7 +70,7 @@ public class HomeController {
 				return "fichajes";
 			}else if (usuario.getRol().equalsIgnoreCase("administrador")){
 				request.getSession().setAttribute(usuario_conect, usuario);
-				return "admin";
+				return "interfazAdministrador";
 			}
 
 		}else{

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.uclm.equipo02.mail.MailSender;
 import com.uclm.equipo02.modelo.Usuario;
@@ -51,7 +52,7 @@ public class AdminController {
 	    MailSender mailSender = new MailSender();
 	    mailSender.enviarConGMail(mail, asunto, cuerpo);
 
-		return usuario_login;
+		return "interfazAdministrador";
 	}
 
 	public String passRandom() {
@@ -67,5 +68,10 @@ public class AdminController {
 			conjunto[i] = (char)elementos[el];
 		}
 		return pass = new String(conjunto);
+	}
+	
+	@RequestMapping(value = "/interfazCrearUsuario", method = RequestMethod.GET)
+	public ModelAndView interfazCrearUsuario() {
+		return new ModelAndView("interfazCrearUsuario");
 	}
 }
