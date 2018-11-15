@@ -27,7 +27,7 @@ public class MongoBroker {
 
 	public MongoCollection<Document> getCollection (String collection){
 		MongoCollection <Document> result=db.getCollection(collection, Document.class);
-	
+
 		if(result==null){
 			db.createCollection(collection);
 			result=db.getCollection(collection,Document.class);
@@ -35,4 +35,16 @@ public class MongoBroker {
 
 		return result;
 	}
+
+	public void insertDoc(MongoCollection<Document> collection, Document documento) {
+		collection.insertOne(documento);
+	}
+
+	public void updateDoc(MongoCollection<Document> collection, Document filtro, Document documento) {
+		collection.updateOne(filtro, documento);
+	}
+
+
+
+
 }

@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<title>Fichajes</title>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" http-equiv="Content-Type"
+	content="text/html,width=device-width, initial-scale=1, shrink-to-fit=no ">
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
@@ -16,60 +18,101 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
+
+<title>Gestión y Validación de Fichajes</title>
+</head>
+
 <style>
-.fichaje-container {
-	margin-top: 5%;
-	margin-bottom: 5%;
+
+.btn-xl {
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 10px;
 }
 
-.historial-container {
-	margin-top: 10%;
+
+.btn-space {
+    margin-right: 5px;
+}
+.btn-verticalspace{
+	margin-bottom:30px;
 }
 
-.gestion-form {
-	padding: 5%;
-	box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
-		rgba(0, 0, 0, 0.19);
+.centerdiv {
+  display: flex;
+  justify-content: center;
 }
 
-.gestion-form h3 {
-	text-align: center;
-	color: #333;
+.historial{
+padding: 15px;
 }
 
-.historial-form {
-	padding: 5%;
-	background: #0062cc;
-	box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
-		rgba(0, 0, 0, 0.19);
+.inlinediv{
+float: left;
 }
 
-.historial-form h3 {
-	text-align: center;
-	color: #fff;
+.h1div{
+display: flex;
+  justify-content: center;
+  margin-bottom:30px;
+
 }
 
-.historial-form h4 {
-	color: #fff;
+.btnAbrir{
+ padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 10px;
+margin-bottom:30px;
+margin-right: 10px;
+
 }
 
-.btnfichaje {
-	width: 50%;
-	border-radius: 2rem;
-	padding: 0%;
-	border: solid;
-	cursor: pointer;
+.btnCerrar{
+
+ padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 10px;
+margin-bottom:30px;
 }
 
-.gestion-form .btnfichaje {
-	font-weight: 600;
-	color: #fff;
-	background-color: #0062cc;
+.btnListar{
+ padding: 15px 15px;
+    font-size: 15px;
+    border-radius: 15px;
+margin-bottom:10px;	
 }
+
+.logo{
+
+width:180px;
+height:180px
+}
+
+
 </style>
 
 
-</head>
+
+
+<script>
+	
+function switchState() {
+
+    if(document.getElementById( 'tdState' ).innerHTML = "true"){
+    	
+    	return document.getElementById('tdState').innerHTML = "Abierto";
+    	
+    }else if(document.getElementById( 'tdState' ).innerHTML = "false"){
+    	
+    	return document.getElementById('tdState').innerHTML = "Cerrado";
+    }     
+}	
+	
+	
+</script>
+
+
+
 
 <body>
 
@@ -78,142 +121,102 @@
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#"></a>
 			</div>
-			<ul class="nav navbar-nav">
-				<li style="color: white; font-size: 15px;"><a href="#">Inicio</a></li>
-				<li class="active" style="color: red; font-size: 15px;"><a
-					href="#">Fichajes</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
-						Cerrar SesiÃ³n</a></li>
-			</ul>
+			<div class="nav-item pull-left fixed-top"
+				style="position: relative; top: 8px">
+				<form action="inicio" method="GET">
+					<button class="btn btn-space" type="submit">
+						<strong><span class="glyphicon glyphicon-sort"></span>
+							Fichajes</strong>
+					</button>
+				</form>
+			</div>
+			<div class="nav-item pull-left  fixed-top"
+				style="position: relative; top: 8px">
+				<form action="fichajes" method="GET">
+					<button class="btn btn-space " type="submit">
+						<strong><span class="glyphicon glyphicon-copy"></span>
+							Gestionar Incidencias</strong>
+					</button>
+				</form>
+			</div>
+			<div class="nav-item pull-left fixed-top"
+				style="position: relative; top: 8px">
+				<form action="Incidencias" method="GET">
+					<button class="btn btn-space" type="submit">
+						<strong><span class="glyphicon glyphicon-cog"></span>
+							Gestionar Contraseña</strong>
+					</button>
+				</form>
+			</div>
+			<div class="nav-item pull-right fixed-top"
+				style="position: relative; top: 8px">
+				<form action="logout" method="GET">
+					<button class="btn btn-danger" type="submit">
+						<strong><span class="glyphicon glyphicon-log-out"></span>Salir</strong>
+					</button>
+				</form>
+			</div>
 		</div>
 	</nav>
-
+	
 	<center>
-		<br /> <img src="https://i.imgur.com/bwlSMSI.png" style="width: %;">
-		<br />
+	<img src="https://i.imgur.com/bwlSMSI.png" class="logo">
 	</center>
+	<div class = "page-header h1div">
+	
+   <h1>
+      Gestión y Validación de Fichajes
+   </h1>
+   
+</div>
 
-
-
-	<div class="container fichaje-container col-md-4 col-md-offset-4 ">
-		<div class="row">
-			<h2>
-				<span class=" glyphicon glyphicon-sort"></span> Fichajes
-			</h2>
-
-
-
-			<div class="gestion-form center-div">
-				<h3>GestiÃ³n y ValidaciÃ³n de Fichajes</h3>
-				<form>
-
-					<div class="form-inline text-center" style="margin: auto;">
-
-
-						<form action="abrirFichaje" method="post">
-							<input type="submit" class="btnfichaje input-lg"
-								name="abrirFichaje" value="Abrir Fichaje" />
-						</form>
-
-						<form action="cerrarFichaje" method="post">
-							<input type="submit" class="btnfichaje input-lg"
-								name="cerrarFichaje" value="Cerrar Fichaje" />
-						</form>
-
-					</div>
+	<div class="container centerdiv">
+		
+			<div class="inlinediv">
+				<form action="abrirFichaje" method="post">
+					<button type="submit" id="btnAbrir" class="btn btn-primary btnAbrir" value="Abrir Fichaje" >Abrir Fichaje</button>
 				</form>
 			</div>
-
-		</div>
-
-	</div>
-
-	<div class="container historial-container col-md-6 col-md-offset-3">
-
-		<div class="row">
-			<div class="historial-form">
-
-				<h3>Historial de Fichajes</h3>
-				<form action=" " class="form-inline">
-					<h4>Usuario:</h4>
-					<input type="text" readonly class="form-control-plaintext"
-						id="staticEmail" value="Usuario">
-
-					<h4>Hora Actual:</h4>
-					<input type="text" readonly class="form-control-plaintext"
-						id="staticEmail" value="HH:MM:SS">
-
-
-
-
-
+			
+			<div class="inlinediv ">
+				<form action="cerrarFichaje" method="post">
+					<button type="submit" id="btnCerrar" class="btn btn-primary btnCerrar"value="Cerrar Fichaje" >Cerrar Fichaje</button>
 				</form>
-				<!--DatePicker-->
-
-				<h4>Elige Fecha Actual:</h4>
-				<div class="container">
-					<div class="row">
-						<div class='col-sm-6'>
-							<div class="form-group">
-								<div class='input-group date' id='datetimepicker3'>
-									<input type='text' class="form-control" /> <span
-										class="input-group-addon"> <span
-										class="glyphicon glyphicon-calendar"></span>
-									</span>
-								</div>
-							</div>
-						</div>
-						<script type="text/javascript">
-                      $(function () {
-                          $('#datetimepicker3').datetimepicker({
-                              format: 'LT'
-                          });
-                      });
-                  </script>
-					</div>
-				</div>
-
 			</div>
+	
+	</div>
 
-			<table class="table table-bordered  table-dark ">
-				<thead class="thead">
+
+
+	<div class="historial collapse.in col-md-8 col-md-offset-2" id="panelFichajes">
+	
+	<form id="formListar" action="listarFichajesEmpleado" method="get">
+				<button id="btnListar"  class="btn btn-primary btnListar  " type="submit" data-toggle="collapse.in" data-target="#panelFichajes" aria-expanded="false" aria-controls="panelFichajes">ListarFichajes</button>
+			</form>
+			
+		<table class="table table-bordered">
+			<thead class="thead">
+				<tr>
+					<th scope="col">Fecha</th>
+					<th scope="col">Entrada</th>
+					<th scope="col">Salida</th>
+					<th scope="col">Estado</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${listafichajes}" var="fichaje">
 					<tr>
-						<th scope="col">Fichajes</th>
-						<th scope="col">Tipo</th>
-						<th scope="col">Hora Fichaje</th>
+						<td>${fichaje.fechaFichaje}</td>
+						<td>${fichaje.horaEntrada}</td>
+						<td>${fichaje.horaSalida}</td>
+						<td onload="switchState();" id="tdState">${fichaje.estado}</td>
 					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td>Entrada</td>
-						<td>8:45</td>
-					</tr>
-					<tr>
-						<th scope="row">2</th>
-						<td>Rodrigo</td>
-						<td>8:30</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td>Salida</td>
-						<td>15:30</td>
-					</tr>
-				</tbody>
-			</table>
-
-
-
-
-		</div>
+				</c:forEach>
+			</tbody>
+		</table>
 
 	</div>
 
-	<div class="col-md-6" style="position: fixed; bottom: 0;">
-		<div class="panel-footer">&copy; Copyright 2018 InTime -
-			Equipo02. Todos los derechos reservados.</div>
-	</div>
 </body>
 </html>
