@@ -58,29 +58,39 @@ public class HomeController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String iniciarSesion(HttpServletRequest request, Model model) throws Exception {
 		//String cadenaUrl = usuarioServ;
-		String nombre = request.getParameter("txtUsuarioNombre");
+		String email = request.getParameter("txtUsuarioEmail");
 		String password = request.getParameter("txtUsuarioPassword");
-		if (nombre.equals("") || password.equals("")) {
+		if (email.equals("") || password.equals("")) {
 			model.addAttribute(alert, "Por favor rellene los campos");
 			return usuario_login;
 		}
 		Usuario usuario = new Usuario();
-		usuario.setNombre(nombre);
+		usuario.setEmail(email);
 		usuario.setPassword(password);
-		usuario.setRol(userDao.devolverRol(usuario));
-		
-		if(usuario.getRol().equalsIgnoreCase("administrador")) {
+		//usuario.setNombre(userDao.devolverUser(usuario));
+		//usuario.setRol(userDao.devolverRol(usuario));
+		/*
+		if(usuario.getRol().equalsIgnoreCase("administrador") && userDao.login(usuario) && request.getSession().getAttribute(usuario_conect) == null) {
 			request.getSession().setAttribute(usuario_conect, usuario);
 			return "admin";
-		}else if (userDao.login(usuario) && request.getSession().getAttribute(usuario_conect) == null) {
-			request.getSession().setAttribute(usuario_conect, usuario);
-			return "fichajes";
-		}else {
+		}else*/ if (userDao.login(usuario) && request.getSession().getAttribute(usuario_conect) == null){
+			usuario.setRol(userDao.devolverRol(usuario));
 
+			if(usuario.getRol().equalsIgnoreCase("empleado")) {
+				request.getSession().setAttribute(usuario_conect, usuario);
+				return "fichajes";
+			}else if (usuario.getRol().equalsIgnoreCase("administrador")){
+				request.getSession().setAttribute(usuario_conect, usuario);
+				return "admin";
+			}
+
+		}else{
 			model.addAttribute(alert, "Usuario y/o clave incorrectos");
 			return usuario_login;
 		}
+		return usuario_login;
 	}
+
 	public ModelAndView cambiarVista(String nombreVista) {
 		ModelAndView vista = new ModelAndView(nombreVista);
 		return vista;

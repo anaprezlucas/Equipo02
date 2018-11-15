@@ -51,19 +51,36 @@ public class UsuarioDaoImplement{
 	public String devolverRol(Usuario usuario) {
 		MongoCollection<BsonDocument> usuarios = obtenerUsuarios();
 		BsonDocument criterio = new BsonDocument();
-		criterio.append(name, new BsonString(usuario.getNombre()));
+		criterio.append(email, new BsonString(usuario.getEmail()));
 		FindIterable<BsonDocument> resultado=usuarios.find(criterio);
 		BsonDocument usuariobso = resultado.first();
 		if (usuario==null){
 			return null;
 		}else {
 			BsonValue nombre=usuariobso.get(rol);
-			BsonString name=nombre.asString();
-			String rol=name.getValue();
+			BsonString rolbso=nombre.asString();
+			String rolFinal=rolbso.getValue();
 						
-			usuario.setRol(rol);
+			usuario.setRol(rolFinal);
 		}
 		return usuario.getRol();
+	}
+	public String devolverUser(Usuario usuario) {
+		MongoCollection<BsonDocument> usuarios = obtenerUsuarios();
+		BsonDocument criterio = new BsonDocument();
+		criterio.append(email, new BsonString(usuario.getEmail()));
+		FindIterable<BsonDocument> resultado=usuarios.find(criterio);
+		BsonDocument usuariobso = resultado.first();
+		if (usuario==null || usuariobso ==null){
+			return null;
+		}else {
+			BsonValue nombre=usuariobso.get(name);
+			BsonString namebso=nombre.asString();
+			String nombreFinal=namebso.getValue();
+						
+			usuario.setNombre(nombreFinal);
+		}
+		return usuario.getNombre();
 	}
 
 	//Obtener todos los usuarios
@@ -146,7 +163,7 @@ public class UsuarioDaoImplement{
 
 		MongoCollection<BsonDocument> usuarios = obtenerUsuarios();
 		BsonDocument criterio = new BsonDocument();
-		criterio.append(name, new BsonString(usuario.getNombre()));
+		criterio.append(email, new BsonString(usuario.getEmail()));
 		criterio.append(password, new BsonString(usuario.getPassword()));
 		FindIterable<BsonDocument> resultado=usuarios.find(criterio);
 		BsonDocument usuarioBson = resultado.first();
