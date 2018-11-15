@@ -1,6 +1,6 @@
 package com.uclm.equipo02.persistencia;
 
-import org.bson.BsonDocument;
+import org.bson.Document;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
@@ -25,12 +25,12 @@ public class MongoBroker {
 		return yo;
 	}
 
-	public MongoCollection<BsonDocument> getCollection (String collection){
-		MongoCollection <BsonDocument> result=db.getCollection(collection, BsonDocument.class);
+	public MongoCollection<Document> getCollection (String collection){
+		MongoCollection <Document> result=db.getCollection(collection, Document.class);
 	
 		if(result==null){
 			db.createCollection(collection);
-			result=db.getCollection(collection,BsonDocument.class);
+			result=db.getCollection(collection,Document.class);
 		}
 
 		return result;
