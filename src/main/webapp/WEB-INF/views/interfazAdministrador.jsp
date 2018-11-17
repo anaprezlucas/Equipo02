@@ -213,13 +213,13 @@ height:180px
 						<div class="container centerdiv">
 					
 								<div class="inlinediv">
-									<form action="abrirFichaje" method="post">
+									<form action="abrirFichajeAdmin" method="post">
 										<button type="submit" id="btnAbrir" class="btn btn-primary btnAbrir" value="Abrir Fichaje" >Abrir Fichaje</button>
 									</form>
 								</div>
 								
 								<div class="inlinediv ">
-									<form action="cerrarFichaje" method="post">
+									<form action="cerrarFichajeAdmin" method="post">
 										<button type="submit" id="btnCerrar" class="btn btn-primary btnCerrar"value="Cerrar Fichaje" >Cerrar Fichaje</button>
 									</form>
 								</div>
@@ -230,7 +230,7 @@ height:180px
 
 				<div class="historial collapse.in col-md-8 col-md-offset-2" id="panelFichajes">
 				
-				<form id="formListar" action="listarFichajesEmpleado" method="get">
+				<form id="formListar" action="listarFichajesAdmin" method="get">
 							<button id="btnListar" class="btn btn-primary btnListar  " type="submit" data-toggle="collapse.in" data-target="#panelFichajes" aria-expanded="false" aria-controls="panelFichajes">ListarFichajes</button>
 						</form>
 						
