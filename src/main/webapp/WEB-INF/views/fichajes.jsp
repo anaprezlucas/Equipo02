@@ -153,7 +153,7 @@ function switchState() {
 				<form action="Incidencias" method="GET">
 					<button class="btn btn-space" type="submit">
 						<strong><span class="glyphicon glyphicon-cog"></span>
-							Gestionar Contraseña</strong>
+							Gestionar Contrase&ntilde;a</strong>
 					</button>
 				</form>
 			</div>
@@ -174,7 +174,7 @@ function switchState() {
 	<div class = "page-header h1div">
 	
    <h1>
-      Gestión y Validación de Fichajes
+      Gesti&oacute;n y Validaci&oacute;n de Fichajes
    </h1>
    
 </div>
