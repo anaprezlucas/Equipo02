@@ -223,7 +223,7 @@ height:180px
 	</div>
 
 
-	<div class="collapse.in col-md-8 col-md-offset-2" id="panelFichajes">
+	<div class="collapse.in" id="panelFichajes">
 	
 	<form id="formListar" action="listarFichajesAdmin" method="get">
 				<button id="btnListar"  class="btn btn-primary btnListar btnFichajes" type="submit" data-toggle="collapse.in" data-target="#panelFichajes" aria-expanded="false" aria-controls="panelFichajes">Listar Fichajes</button>
