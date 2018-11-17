@@ -217,41 +217,41 @@ height:180px
 
 			</div>
 
+<div class="centerdiv">
+	<span style="color:red"><em>${errorMessageCerrar}</em></span>
+		<span style="color:red"><em>${errorMessageAbrir}</em></span>
+	</div>
 
 
-			<div class="historial collapse.in col-md-8 col-md-offset-2"
-				id="panelFichajes">
+			<div class="historial collapse.in col-md-8 col-md-offset-2" id="panelFichajes">
+	
+	<form id="formListar" action="listarFichajesAdmin" method="get">
+				<button id="btnListar"  class="btn btn-primary btnListar btnFichajes" type="submit" data-toggle="collapse.in" data-target="#panelFichajes" aria-expanded="false" aria-controls="panelFichajes">Listar Fichajes</button>
+			</form>
+			
+		<table class="table table-bordered">
+			<thead class="thead">
+				<tr>
+					<th scope="col">Fecha</th>
+					<th scope="col">Entrada</th>
+					<th scope="col">Salida</th>
+					<th scope="col">Estado</th>
 
-				<form id="formListar" action="listarFichajesAdmin" method="get">
-					<button id="btnListar" class="btn btn-primary btnListar btnFichajes"
-						type="submit" data-toggle="collapse.in"
-						data-target="#panelFichajes" aria-expanded="false"
-						aria-controls="panelFichajes">ListarFichajes</button>
-				</form>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${listafichajes}" var="fichaje">
+					<tr>
+						<td>${fichaje.fechaFichaje}</td>
+						<td>${fichaje.horaEntrada}</td>
+						<td>${fichaje.horaSalida}</td>
+						<td onload="switchState();" id="tdState">${fichaje.estado}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 
-				<table class="table table-bordered">
-					<thead class="thead">
-						<tr>
-							<th scope="col">Fecha</th>
-							<th scope="col">Entrada</th>
-							<th scope="col">Salida</th>
-							<th scope="col">Estado</th>
-
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${listafichajes}" var="fichaje">
-							<tr>
-								<td>${fichaje.fechaFichaje}</td>
-								<td>${fichaje.horaEntrada}</td>
-								<td>${fichaje.horaSalida}</td>
-								<td>${fichaje.estado}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-
-			</div>
+	</div>
 
 		</div>
 
