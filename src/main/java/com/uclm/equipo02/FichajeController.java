@@ -128,7 +128,16 @@ public class FichajeController {
 	
 	
 	
-	/*****ADMIN FICHAJES***/
+	/*
+	 * 
+	 * 
+	 * 
+	 * ****ADMIN FICHAJES**
+	 * 
+	 * 
+	 * */
+	
+	
 	@RequestMapping(value = "abrirFichajeAdmin", method = RequestMethod.POST)
 	public String abrirFichajeAdmin(HttpServletRequest request, Model model) throws Exception {
 		String hora;
@@ -196,18 +205,20 @@ public class FichajeController {
 		usuario = (Usuario) request.getSession().getAttribute(usuario_conect); 
 		String emailEmpleado = usuario.getEmail();
 
+		
+		List<Document> listaFichAd = new ArrayList<Document>();
 
-		List<Document> listaFich = new ArrayList<Document>();
-
-		listaFich = usuario.getFichajesEmpleado(emailEmpleado);
-
-
-		model.addAttribute("listafichajes", listaFich);
+		listaFichAd = usuario.getFichajesEmpleado(emailEmpleado);
+		
+		model.addAttribute("listafichajesAd", listaFichAd);
 
 		return interfazAdministrador;
 		} 
 	 
 
+	/**for (int i = 0; i < listaFichAd.size(); i++) {
+			System.out.println(listaFichAd.get(i).toString());
+		}**/
 
 
 
