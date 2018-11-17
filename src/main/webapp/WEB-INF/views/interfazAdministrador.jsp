@@ -196,14 +196,10 @@ height:180px
 		<br />
 	</center>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-6">
-            
-			
-			
-			
-			<div class="row">
+
+
+	<div class="container fichaje-container col-md-4">
+		<div class="row">
 
 			<div class="container centerdiv">
 
@@ -227,7 +223,7 @@ height:180px
 	</div>
 
 
-	<div class="col-md-8 col-md-offset-2" id="panelFichajes">
+	<div class="collapse.in" id="panelFichajes">
 	
 	<form id="formListar" action="listarFichajesAdmin" method="get">
 				<button id="btnListar"  class="btn btn-primary btnListar btnFichajes" type="submit" data-toggle="collapse.in" data-target="#panelFichajes" aria-expanded="false" aria-controls="panelFichajes">Listar Fichajes</button>
@@ -246,10 +242,10 @@ height:180px
 			<tbody>
 				<c:forEach items="${listafichajesAd}" var="fichaje">
 					<tr>
-						<td class="col-md-2">${fichaje.fechaFichaje}</td>
-						<td class="col-md-2">${fichaje.horaEntrada}</td>
-						<td class="col-md-2">${fichaje.horaSalida}</td>
-						<td class="col-md-2" onload="switchState();" id="tdState">${fichaje.estado}</td>
+						<td>${fichaje.fechaFichaje}</td>
+						<td>${fichaje.horaEntrada}</td>
+						<td>${fichaje.horaSalida}</td>
+						<td onload="switchState();" id="tdState">${fichaje.estado}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -258,19 +254,15 @@ height:180px
 	</div>
 
 		</div>
-			
-			
-			
-			
-			
-        </div>
-        <div class="col-lg-6">
-            
-			
-			
-			
-			
-			<div class="row">
+
+	</div>
+
+
+
+
+
+	<div class="container gestion-container col-md-4">
+		<div class="row">
 			<h2>
 				<span class=" glyphicon glyphicon-asterisk"></span> Gestión de usuarios
 			</h2>
@@ -296,21 +288,7 @@ height:180px
 			</div>
 
 		</div>
-			
-			
-			
-			
-			
-			
-        </div>
-    </div>
-</div>
 
-
-
-
-
-
-	
+	</div>
 </body>
 </html>
