@@ -175,18 +175,22 @@ function switchState() {
 			<div class="inlinediv">
 				<form action="abrirFichaje" method="post">
 					<button type="submit" id="btnAbrir" class="btn btn-primary btnAbrir" value="Abrir Fichaje" >Abrir Fichaje</button>
-					<span style="color:red"><em>${errorMessageAbrir}</em></span>
+				
 				</form>
 			</div>
 			
 			<div class="inlinediv ">
 				<form action="cerrarFichaje" method="post">
 					<button type="submit" id="btnCerrar" class="btn btn-primary btnCerrar"value="Cerrar Fichaje" >Cerrar Fichaje</button>
-					<span style="color:red"><em>${errorMessageCerrar}</em></span>
 				</form>
 			</div>
-	
 	</div>
+	
+	<div class="centerdiv">
+	<span style="color:red"><em>${errorMessageCerrar}</em></span>
+		<span style="color:red"><em>${errorMessageAbrir}</em></span>
+	</div>
+	
 
 
 
