@@ -198,7 +198,7 @@ height:180px
 
 
 
-	<div class="container fichaje-container col-md-4">
+	<div class="container fichaje-container col-md-4" >
 		<div class="row">
 
 			<div class="container centerdiv">
@@ -223,10 +223,10 @@ height:180px
 	</div>
 
 
-	<div class="historial collapse.in col-md-8 col-md-offset-2" id="panelFichajes">
+	<div class="col-md-8 col-md-offset-2" id="panelFichajes">
 	
 	<form id="formListar" action="listarFichajesAdmin" method="get">
-				<button id="btnListar"  class="btn btn-primary btnListar btnFichajes" type="submit" data-toggle="collapse.in" data-target="#panelFichajes" aria-expanded="false" aria-controls="panelFichajes">Listar Fichajes</button>
+				<button id="btnListar"  class="btn btn-primary btnListar btnFichajes" type="submit">Listar Fichajes</button>
 			</form>
 			
 		<table class="table table-bordered">
