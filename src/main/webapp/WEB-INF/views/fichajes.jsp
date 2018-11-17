@@ -19,7 +19,7 @@
 
 
 
-<title>Gesti髇 y Validaci髇 de Fichajes</title>
+<title>Gesti贸n y Validaci贸n de Fichajes</title>
 </head>
 
 <style>
@@ -58,6 +58,15 @@ display: flex;
 
 }
 
+.btnUsuario {
+	border-radius: 2rem;
+	border: solid;
+	cursor: pointer;
+	font-weight: 600;
+	color: #fff;
+	background-color: #0062cc;
+}	
+		
 .btnAbrir{
  padding: 10px 20px;
     font-size: 20px;
@@ -144,7 +153,7 @@ function switchState() {
 				<form action="Incidencias" method="GET">
 					<button class="btn btn-space" type="submit">
 						<strong><span class="glyphicon glyphicon-cog"></span>
-							Gestionar Contrase馻</strong>
+							Gestionar Contrase帽a</strong>
 					</button>
 				</form>
 			</div>
@@ -165,7 +174,7 @@ function switchState() {
 	<div class = "page-header h1div">
 	
    <h1>
-      Gesti髇 y Validaci髇 de Fichajes
+      Gesti贸n y Validaci贸n de Fichajes
    </h1>
    
 </div>
@@ -174,13 +183,13 @@ function switchState() {
 		
 			<div class="inlinediv">
 				<form action="abrirFichaje" method="post">
-					<button type="submit" id="btnAbrir" class="btn btn-primary btnAbrir" value="Abrir Fichaje" >Abrir Fichaje</button>
+					<button type="submit" id="btnAbrir" class="btn btn-primary btnAbrir btnUsuario" value="Abrir Fichaje" >Abrir Fichaje</button>
 				</form>
 			</div>
 			
 			<div class="inlinediv ">
 				<form action="cerrarFichaje" method="post">
-					<button type="submit" id="btnCerrar" class="btn btn-primary btnCerrar"value="Cerrar Fichaje" >Cerrar Fichaje</button>
+					<button type="submit" id="btnCerrar" class="btn btn-primary btnCerrar btnUsuario"value="Cerrar Fichaje" >Cerrar Fichaje</button>
 				</form>
 			</div>
 	
@@ -191,7 +200,7 @@ function switchState() {
 	<div class="historial collapse.in col-md-8 col-md-offset-2" id="panelFichajes">
 	
 	<form id="formListar" action="listarFichajesEmpleado" method="get">
-				<button id="btnListar"  class="btn btn-primary btnListar  " type="submit" data-toggle="collapse.in" data-target="#panelFichajes" aria-expanded="false" aria-controls="panelFichajes">ListarFichajes</button>
+				<button id="btnListar"  class="btn btn-primary btnListar btnUsuario" type="submit" data-toggle="collapse.in" data-target="#panelFichajes" aria-expanded="false" aria-controls="panelFichajes">ListarFichajes</button>
 			</form>
 			
 		<table class="table table-bordered">
