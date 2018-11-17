@@ -19,7 +19,7 @@
 
 
 
-<title>Gestión y Validación de Fichajes</title>
+<title>Gesti&oacute;n y Validaci&oacute;n de Fichajes</title>
 </head>
 
 <style>
