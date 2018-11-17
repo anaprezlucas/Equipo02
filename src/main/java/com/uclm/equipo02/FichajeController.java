@@ -29,7 +29,8 @@ public class FichajeController {
 
 
 	private final String usuario_conect = "usuarioConectado";
-	private final String errorMessage = "errorMessage";
+	private final String errorMessageAbrir = "errorMessageAbrir";
+	private final String errorMessageCerrar = "errorMessageCerrar";
 	private final String fichajes = "fichajes";
 	private final String interfazAdministrador="interfazAdministrador";
 
@@ -50,7 +51,7 @@ public class FichajeController {
 		Fichaje fichaje = new Fichaje(usuario.getEmail(), fecha, hora,null,true);
 
 		if(!fichajedao.validezAbierto(fichaje)) {///FUNCIONA PERO NO SALE EL MENSAJE
-			model.addAttribute(errorMessage, "No puedes abrir otro fichaje, necesitas cerrar tu fichaje actual");
+			model.addAttribute(errorMessageAbrir, "No puedes abrir otro fichaje, necesitas cerrar tu fichaje actual");
 
 		}else {
 			fichajedao.abrirFichaje(fichaje);
@@ -97,7 +98,7 @@ public class FichajeController {
 
 		}else {
 
-			model.addAttribute(errorMessage, "No puedes cerrar ningun fichaje, necesitas fichar para cerrar un fichaje");
+			model.addAttribute(errorMessageCerrar, "No puedes cerrar ningun fichaje, necesitas fichar para cerrar un fichaje");
 		}
 		return fichajes;
 
@@ -144,7 +145,7 @@ public class FichajeController {
 		Fichaje fichaje = new Fichaje(usuario.getEmail(), fecha, hora,null,true);
 
 		if(!fichajedao.validezAbierto(fichaje)) {///FUNCIONA PERO NO SALE EL MENSAJE
-			model.addAttribute(errorMessage, "No puedes abrir otro fichaje, necesitas cerrar tu fichaje actual");
+			model.addAttribute(errorMessageAbrir, "No puedes abrir otro fichaje, necesitas cerrar tu fichaje actual");
 
 		}else {
 			fichajedao.abrirFichaje(fichaje);

@@ -57,15 +57,6 @@
 	color: #fff;
 }
 
-.btnfichaje {
-	width: 50%;
-	border-radius: 2rem;
-	padding: 0%;
-	border: solid;
-	cursor: pointer;
-	margin-bottom: 15px;
-}
-
 .btnUsuario {
 	width: 50%;
 	border-radius: 2rem;
@@ -73,15 +64,15 @@
 	border: solid;
 	cursor: pointer;
 	margin-bottom: 5px;
-}
-
-.gestion-form .btnfichaje {
 	font-weight: 600;
 	color: #fff;
 	background-color: #0062cc;
 }
 
-.gestion-form .btnUsuario {
+.btnFichajes {
+	border-radius: 2rem;
+	border: solid;
+	cursor: pointer;
 	font-weight: 600;
 	color: #fff;
 	background-color: #0062cc;
@@ -205,67 +196,71 @@ height:180px
 		<br />
 	</center>
 
-	
-	
+
+
 	<div class="container fichaje-container col-md-4">
 		<div class="row">
 
-						<div class="container centerdiv">
-					
-								<div class="inlinediv">
-									<form action="abrirFichajeAdmin" method="post">
-										<button type="submit" id="btnAbrir" class="btn btn-primary btnAbrir" value="Abrir Fichaje" >Abrir Fichaje</button>
-									</form>
-								</div>
-								
-								<div class="inlinediv ">
-									<form action="cerrarFichajeAdmin" method="post">
-										<button type="submit" id="btnCerrar" class="btn btn-primary btnCerrar"value="Cerrar Fichaje" >Cerrar Fichaje</button>
-									</form>
-								</div>
-				
-						</div>
+			<div class="container centerdiv">
 
-
-
-				<div class="historial collapse.in col-md-8 col-md-offset-2" id="panelFichajes">
-				
-				<form id="formListar" action="listarFichajesAdmin" method="get">
-							<button id="btnListar" class="btn btn-primary btnListar  " type="submit" data-toggle="collapse.in" data-target="#panelFichajes" aria-expanded="false" aria-controls="panelFichajes">ListarFichajes</button>
-						</form>
-						
-					<table class="table table-bordered">
-						<thead class="thead">
-							<tr>
-								<th scope="col">Fecha</th>
-								<th scope="col">Entrada</th>
-								<th scope="col">Salida</th>
-								<th scope="col">Estado</th>
-
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${listafichajes}" var="fichaje">
-								<tr>
-									<td>${fichaje.fechaFichaje}</td>
-									<td>${fichaje.horaEntrada}</td>
-									<td>${fichaje.horaSalida}</td>
-									<td>${fichaje.estado}</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-
+				<div class="inlinediv">
+					<form action="abrirFichajeAdmin" method="post">
+						<button type="submit" id="btnAbrir" class="btn btn-primary btnAbrir btnFichajes" value="Abrir Fichaje">Abrir Fichaje</button>
+					</form>
 				</div>
+
+				<div class="inlinediv ">
+					<form action="cerrarFichajeAdmin" method="post">
+						<button type="submit" id="btnCerrar" class="btn btn-primary btnCerrar btnFichajes" value="Cerrar Fichaje">Cerrar Fichaje</button>
+					</form>
+				</div>
+
+			</div>
+
+
+
+			<div class="historial collapse.in col-md-8 col-md-offset-2"
+				id="panelFichajes">
+
+				<form id="formListar" action="listarFichajesAdmin" method="get">
+					<button id="btnListar" class="btn btn-primary btnListar btnFichajes"
+						type="submit" data-toggle="collapse.in"
+						data-target="#panelFichajes" aria-expanded="false"
+						aria-controls="panelFichajes">ListarFichajes</button>
+				</form>
+
+				<table class="table table-bordered">
+					<thead class="thead">
+						<tr>
+							<th scope="col">Fecha</th>
+							<th scope="col">Entrada</th>
+							<th scope="col">Salida</th>
+							<th scope="col">Estado</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${listafichajes}" var="fichaje">
+							<tr>
+								<td>${fichaje.fechaFichaje}</td>
+								<td>${fichaje.horaEntrada}</td>
+								<td>${fichaje.horaSalida}</td>
+								<td>${fichaje.estado}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+
+			</div>
 
 		</div>
 
 	</div>
-	
-	
-	
-	
-	
+
+
+
+
+
 	<div class="container gestion-container col-md-4">
 		<div class="row">
 			<h2>
