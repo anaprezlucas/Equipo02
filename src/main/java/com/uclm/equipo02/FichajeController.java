@@ -98,7 +98,7 @@ public class FichajeController {
 
 		}else {
 
-			model.addAttribute(errorMessageCerrar, "No puedes cerrar ningun fichaje, necesitas fichar para cerrar un fichaje");
+			model.addAttribute(errorMessageCerrar, "No puedes cerrar ning&uacuten fichaje, necesitas fichar para cerrar un fichaje");
 		}
 		return fichajes;
 
@@ -180,7 +180,7 @@ public class FichajeController {
 
 		}else {
 
-			model.addAttribute(errorMessageCerrar, "No tienes ninún fichaje abierto, necesitas abrir un fichaje para poder cerrarlo");
+			model.addAttribute(errorMessageCerrar, "No tienes ning&uacuten fichaje abierto, necesitas abrir un fichaje para poder cerrarlo");
 		}
 		return interfazAdministrador;
 
