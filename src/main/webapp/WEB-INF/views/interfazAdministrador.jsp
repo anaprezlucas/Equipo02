@@ -242,10 +242,10 @@ height:180px
 			<tbody>
 				<c:forEach items="${listafichajesAd}" var="fichaje">
 					<tr>
-						<td class="col-md-2">${fichaje.fechaFichaje}</td>
-						<td class="col-md-2">${fichaje.horaEntrada}</td>
-						<td class="col-md-2">${fichaje.horaSalida}</td>
-						<td class="col-md-2" onload="switchState();" id="tdState">${fichaje.estado}</td>
+						<td>${fichaje.fechaFichaje}</td>
+						<td>${fichaje.horaEntrada}</td>
+						<td>${fichaje.horaSalida}</td>
+						<td onload="switchState();" id="tdState">${fichaje.estado}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
