@@ -123,8 +123,101 @@ public class FichajeController {
 
 		return "fichajes";
 		} 
+	
+	
+	
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * ****ADMIN FICHAJES**
+	 * 
+	 * 
+	 * */
+	
+	
+	@RequestMapping(value = "abrirFichajeAdmin", method = RequestMethod.POST)
+	public String abrirFichajeAdmin(HttpServletRequest request, Model model) throws Exception {
+		String hora;
+		String fecha;
+
+		Usuario usuario;
+		usuario = (Usuario) request.getSession().getAttribute(usuario_conect);
+
+
+		hora=fichajedao.getCurrentTimeUsingCalendar();
+		fecha=(java.time.LocalDate.now()).toString();
+
+
+		Fichaje fichaje = new Fichaje(usuario.getEmail(), fecha, hora,null,true);
+
+		if(!fichajedao.validezAbierto(fichaje)) {///FUNCIONA PERO NO SALE EL MENSAJE
+			model.addAttribute(errorMessageAbrir, "No puedes abrir otro fichaje, necesitas cerrar tu fichaje actual");
+
+		}else {
+			fichajedao.abrirFichaje(fichaje);
+		}
+		return interfazAdministrador;
+	} 
+	
+	
+	@RequestMapping(value = "cerrarFichajeAdmin", method = RequestMethod.POST)
+	public String cerrarFichajeAdmin(HttpServletRequest request, Model model) throws Exception {
+		Usuario usuario;
+		usuario = (Usuario) request.getSession().getAttribute(usuario_conect);
+		String fecha;
+		fecha=(java.time.LocalDate.now()).toString();
+
+		/**Al no poder trabajar mas de 8 horas los fichajes entre dias quedan descartados, el criterio de busqueda se rige por nombre
+		de empleado y la fecha del dia actual para poder cerrar el fichaje, si los criterios de aception cambian y debemos hacer fichajes entre dias
+		se arreglaria introduciendo un ID al fichaje como criterio de busqueda en la BBD**/
+		String horaentrada;
+		horaentrada=fichajedao.getHoraEntrada(usuario.getEmail(),fecha);
+
+
+		String horaactual;
+		horaactual=fichajedao.getCurrentTimeUsingCalendar();
+		fecha=(java.time.LocalDate.now()).toString();
+
+		Fichaje fichaje = new Fichaje(usuario.getEmail(), fecha,horaentrada,horaactual,false);;
+
+		if(fichajedao.validezCerrado(fichaje)) {///FUNCIONA PERO NO SALE EL MENSAJE
+			fichajedao.cerrarFichaje(usuario, fichaje);
+
+
+		}else {
+
+			model.addAttribute(errorMessageCerrar, "No tienes ning&uacuten fichaje abierto, necesitas abrir un fichaje para poder cerrarlo");
+		}
+		return interfazAdministrador;
+
+	} 
+	
+	
+	
+	
+	@RequestMapping(value = "listarFichajesAdmin", method = RequestMethod.GET) 
+	public String listarFichajesAdmin(HttpServletRequest request, Model model) throws Exception {		
+		Usuario usuario;
+
+		usuario = (Usuario) request.getSession().getAttribute(usuario_conect); 
+		String emailEmpleado = usuario.getEmail();
+
+		
+		List<Document> listaFichAd = new ArrayList<Document>();
+
+		listaFichAd = usuario.getFichajesEmpleado(emailEmpleado);
+		
+		model.addAttribute("listafichajesAd", listaFichAd);
+
+		return interfazAdministrador;
+		} 
 	 
 
+	/**for (int i = 0; i < listaFichAd.size(); i++) {
+			System.out.println(listaFichAd.get(i).toString());
+		}**/
 
 
 

@@ -2,12 +2,13 @@ package com.uclm.equipo02.modelo;
 
 import com.uclm.equipo02.persistencia.DAOFichaje;
 public class Fichaje {
-
+	
 	private String fechaFichaje, horaEntrada, horaSalida, emailEmpleado;
 
 	private boolean estado; //true=abierto false=cerrado
 
 	DAOFichaje daofichaje=new DAOFichaje();
+	
 
 
 	////Fichaj con una sola hora de fichaje  y el metodo cerraFIchaje --> horaEntrada=horaSalida
@@ -62,6 +63,13 @@ public class Fichaje {
 		this.estado = estado;
 	}
 
+	@Override
+	public String toString() {
+		return "Fichaje [fechaFichaje=" + fechaFichaje + ", horaEntrada=" + horaEntrada + ", horaSalida=" + horaSalida
+				+ ", emailEmpleado=" + emailEmpleado + ", estado=" + estado + "]";
+	}
+
+	
 
 
 }
