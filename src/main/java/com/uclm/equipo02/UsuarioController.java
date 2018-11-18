@@ -42,7 +42,9 @@ public class UsuarioController {
 			request.setAttribute("mailUser", usuario.getEmail());
 			return gestionPwd;
 		}
-
+		
+		
+		System.out.println(usuario.toString());
 		usuario.setPassword(pwdNueva);
 		userDao.updatePwd(usuario);
 		HttpSession session = request.getSession();
