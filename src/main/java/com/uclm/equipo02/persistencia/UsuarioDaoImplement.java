@@ -189,50 +189,39 @@ public class UsuarioDaoImplement{
 
 public Usuario selectNombre(String nombreParam) {
 		
-		MongoCollection<BsonDocument> usuarios = obtenerUsuarios();
-		BsonDocument criterio = new BsonDocument();
+		MongoCollection<Document> usuarios = obtenerUsuarios();
+		Document criterio = new Document();
 		criterio.append(name, new BsonString(nombreParam));
-		FindIterable<BsonDocument> resultado=usuarios.find(criterio);
-		BsonDocument usuario = resultado.first();
+		FindIterable<Document> resultado=usuarios.find(criterio);
+		Document usuario = resultado.first();
 		Usuario result;
 		if (usuario==null) {
 			return null;
 		}
 		else {
-			BsonValue nombre=usuario.get(name);
-			BsonString name=nombre.asString();
-			String nombreFinal=name.getValue();
 			
-			BsonValue pwd=usuario.get(password);
-			BsonString password=pwd.asString();
-			String pwdFinal=password.getValue();
-			
-			BsonValue mail=usuario.get(email);
-			BsonString email=mail.asString();
-			String emailFinal=email.getValue();
-			
-			BsonValue respuesta=usuario.get(rol);
-			BsonString answer=respuesta.asString();
-			String rolFinal=answer.getValue();
+			String nombreUser = usuario.getString(name);
+			String pwdUser = usuario.getString(password);
+			String mailUser = usuario.getString(email);
+			String rolUser = usuario.getString(rol);
 						
-			result = new Usuario(nombreFinal, pwdFinal, emailFinal, rolFinal);
+			result = new Usuario(nombreUser, pwdUser, mailUser, rolUser);
 		}
 		return result;
 }
 
 
 public String devolverMail(Usuario usuario) {
-	MongoCollection<BsonDocument> usuarios = obtenerUsuarios();
-	BsonDocument criterio = new BsonDocument();
+	MongoCollection<Document> usuarios = obtenerUsuarios();
+	Document criterio = new Document();
 	criterio.append(name, new BsonString(usuario.getNombre()));
-	FindIterable<BsonDocument> resultado=usuarios.find(criterio);
-	BsonDocument usuariobso = resultado.first();
+	FindIterable<Document> resultado=usuarios.find(criterio);
+	Document usuariobso = resultado.first();
 	if (usuario==null){
 		return null;
 	}else {
-		BsonValue mail=usuariobso.get(email);
-		BsonString mailbson=mail.asString();
-		String mailFinal=mailbson.getValue();
+		
+		String mailFinal=usuariobso.getString(email);
 					
 		usuario.setRol(mailFinal);
 	}
@@ -242,19 +231,19 @@ public String devolverMail(Usuario usuario) {
 
 
 public void updatePwd(Usuario usuario) throws Exception{
-	MongoCollection<BsonDocument> usuarios = obtenerUsuarios();
-	BsonDocument criterio = new BsonDocument();
+	MongoCollection<Document> usuarios = obtenerUsuarios();
+	Document criterio = new Document();
 	criterio.append(name, new BsonString(usuario.getNombre()));
-	FindIterable<BsonDocument> resultado=usuarios.find(criterio);
-	BsonDocument usuarioBso = resultado.first();
+	FindIterable<Document> resultado=usuarios.find(criterio);
+	Document usuarioBso = resultado.first();
 	if (usuarioBso==null)
 		throw new Exception("Fallo la actualizacion de los datos del usuario.");
 
-	BsonDocument actualizacion= new BsonDocument("$set", new BsonDocument(password, new BsonString(usuario.getPassword())));
+	Document actualizacion= new Document("$set", new Document(password, new BsonString(usuario.getPassword())));
 	usuarios.findOneAndUpdate(usuarioBso, actualizacion);
 }
 
-/***Este Metodo creo que está bien arreglado, pero tienes arriba el original**/
+/***Este Metodo creo que esta bien arreglado, pero tienes arriba el original**/
 
 /***
 	public void updatePwd(Usuario usuario) throws Exception{

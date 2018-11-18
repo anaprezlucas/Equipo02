@@ -26,8 +26,9 @@ public class UsuarioController {
 		
 		String pwdNueva = request.getParameter("contrasenaNueva");
 		String pwdNueva2 = request.getParameter("contrasenaNueva2");
+		String nombre = userDao.devolverUser(usuarioLigero);
 		
-		Usuario usuario = userDao.selectNombre(usuarioLigero.getNombre());
+		Usuario usuario = userDao.selectNombre(nombre);
 		if (usuario == null || !(pwdNueva.equals(pwdNueva2))) {
 			request.setAttribute("nombreUser", usuario.getNombre());
 			request.setAttribute("mailUser", usuario.getEmail());
@@ -52,6 +53,14 @@ public class UsuarioController {
 		request.setAttribute("usuarioEmail", usuario.getEmail());
 		session.setAttribute("alertaModificarPerfilUsuario", "Mandando alerta modificar perfil usuario");
 		return "fichajes";
+	}
+	@RequestMapping(value = "/inicio", method = RequestMethod.GET)
+	public ModelAndView irFichajes() {
+		return new ModelAndView("fichajes");
+	}
+	@RequestMapping(value = "/incidencias", method = RequestMethod.GET)
+	public ModelAndView irIncidencias() {
+		return new ModelAndView("fichajes");
 	}
 	
 

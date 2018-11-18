@@ -69,15 +69,21 @@ private final String welcome = "welcome";
 		Usuario usuario = new Usuario();
 		usuario.setEmail(email);
 		usuario.setPassword(password);
+		String nombre =  userDao.devolverUser(usuario);
+		usuario.setNombre(nombre);
 		
 		if (userDao.login(usuario) && request.getSession().getAttribute(usuario_conect) == null){
 			usuario.setRol(userDao.devolverRol(usuario));
 
 			if(usuario.getRol().equalsIgnoreCase("empleado")) {
 				request.getSession().setAttribute(usuario_conect, usuario);
+				request.setAttribute("nombreUser", usuario);
+				request.setAttribute("mailUser", email);
 				return "fichajes";
 			}else if (usuario.getRol().equalsIgnoreCase("administrador")){
 				request.getSession().setAttribute(usuario_conect, usuario);
+				request.setAttribute("nombreUser", usuario.getNombre());
+				request.setAttribute("mailUser", email);
 				return "interfazAdministrador";
 			}
 

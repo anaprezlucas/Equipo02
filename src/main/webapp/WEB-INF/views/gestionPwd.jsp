@@ -80,7 +80,7 @@
 			</div>
 			<div class="nav-item pull-left col-md-1 fixed-top"
 				style="position: relative; top: 8px">
-				<form action="fichajes" method="GET">
+				<form action="incidencias" method="GET">
 					<button class="btn" type="submit">
 						<strong><span class="glyphicon glyphicon-copy"></span>
 							Incidencias</strong>
@@ -89,7 +89,7 @@
 			</div>
 			<div class="nav-item pull-left col-md-1 fixed-top"
 				style="position: relative; top: 8px">
-				<form action="modificarpwd" method="GET">
+				<form action="modificarPwd" method="GET">
 					<button class="btn" type="submit">
 						<strong><span class="glyphicon glyphicon-cog"></span>
 							Perfil de Usuario</strong>
@@ -128,12 +128,12 @@
 					</div>
 					<div class="form-group">
 						<h3>Contraseña Nueva</h3>
-						<input name="contrasenaNueva" type="text" class="form-control"
+						<input name="contrasenaNueva" type="password" class="form-control"
 							placeholder="Contraseña Nueva*" value="" />
 					</div>
 					<div class="form-group">
 						<h3>Confirmar Contraseña</h3>
-						<input name="contrasenaNueva2" type="text" class="form-control"
+						<input name="contrasenaNueva2" type="password" class="form-control"
 							placeholder="Contraseña Nueva*" value="" />
 					</div>
 					<div class="botones-form text-center" style="margin: auto;">
