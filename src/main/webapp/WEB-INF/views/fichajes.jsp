@@ -232,7 +232,7 @@ function switchState() {
 
 	</div>
 	
-	<form action="gestionPwd" method="post">
+	<form action="gestionPwd" method="get">
 					<button type="submit" id="btnCambioPwD" class="btn btn-primary btnCerrar btnUsuario"value="Cambio de contrasena" >Cambiar Contrase&ntilde;a</button>
 	</form>
 	

@@ -52,9 +52,5 @@ public class UsuarioController {
 		return "fichajes";
 	}
 	
-	@RequestMapping(value = "/gestionPwd", method = RequestMethod.GET)
-	public ModelAndView gestionPwd() {
-		return new ModelAndView("gestionPwd");
-	}
 
 }
