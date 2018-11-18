@@ -231,6 +231,11 @@ function switchState() {
 		</table>
 
 	</div>
+	
+	<form action="gestionPwd" method="post">
+					<button type="submit" id="btnCambioPwD" class="btn btn-primary btnCerrar btnUsuario"value="Cambio de contrasena" >Cambiar Contrase&ntilde;a</button>
+	</form>
+	
 
 </body>
 </html>

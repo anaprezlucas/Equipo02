@@ -26,6 +26,14 @@ public class HomeController {
 	private final String usuario_login = "login";
 	private final String usuario_conect = "usuarioConectado";
 	private final String alert = "alerta";
+	private final String usuarioServ = "usuario";
+	private final String name = "nombre";
+	private final String password = "pwd";
+	private final String email = "email";
+	private final String rol = "rol";
+private final String welcome = "welcome";
+	
+	
 
 	UsuarioDaoImplement userDao = new UsuarioDaoImplement();
 
@@ -78,7 +86,7 @@ public class HomeController {
 			return usuario_login;
 		}
 		return usuario_login;
-	}
+}
 
 	public ModelAndView cambiarVista(String nombreVista) {
 		ModelAndView vista = new ModelAndView(nombreVista);
