@@ -233,7 +233,7 @@ height:180px
 				<button id="btnListar"  class="btn btn-primary btnListar btnFichajes" type="submit" data-toggle="collapse.in" data-target="#panelFichajes" aria-expanded="false" aria-controls="panelFichajes">Listar Fichajes</button>
 			</form>
 			
-		<table class="table table-bordered">
+		<table class="table table-bordered col-md-4">
 			<thead class="thead">
 				<tr>
 					<th scope="col">Fecha</th>
