@@ -2,7 +2,12 @@ package com.uclm.equipo02.modelo;
 
 import com.uclm.equipo02.persistencia.DAOFichaje;
 public class Fichaje {
+	
+	private String fechaFichaje, horaEntrada, horaSalida, emailEmpleado;
 
+	private boolean estado; //true=abierto false=cerrado
+
+	DAOFichaje daofichaje=new DAOFichaje();
 	
 
 
@@ -64,11 +69,7 @@ public class Fichaje {
 				+ ", emailEmpleado=" + emailEmpleado + ", estado=" + estado + "]";
 	}
 
-	private String fechaFichaje, horaEntrada, horaSalida, emailEmpleado;
-
-	private boolean estado; //true=abierto false=cerrado
-
-	DAOFichaje daofichaje=new DAOFichaje();
+	
 
 
 }

@@ -19,7 +19,7 @@
 
 
 
-<title>Gestión y Validación de Fichajes</title>
+<title>Gesti&oacute;n y Validaci&oacute;n de Fichajes</title>
 </head>
 
 <style>
@@ -30,14 +30,6 @@
     border-radius: 10px;
 }
 
-.btnUsuario {
-	border-radius: 2rem;
-	border: solid;
-	cursor: pointer;
-	font-weight: 600;
-	color: #fff;
-	background-color: #0062cc;
-}	
 
 .btn-space {
     margin-right: 5px;
@@ -66,6 +58,15 @@ display: flex;
 
 }
 
+.btnUsuario {
+	border-radius: 2rem;
+	border: solid;
+	cursor: pointer;
+	font-weight: 600;
+	color: #fff;
+	background-color: #0062cc;
+}	
+		
 .btnAbrir{
  padding: 10px 20px;
     font-size: 20px;
@@ -152,7 +153,7 @@ function switchState() {
 				<form action="Incidencias" method="GET">
 					<button class="btn btn-space" type="submit">
 						<strong><span class="glyphicon glyphicon-cog"></span>
-							Gestionar Contraseña</strong>
+							Gestionar Contrase&ntilde;a</strong>
 					</button>
 				</form>
 			</div>
@@ -173,7 +174,7 @@ function switchState() {
 	<div class = "page-header h1div">
 	
    <h1>
-      Gestión y Validación de Fichajes
+      Gesti&oacute;n y Validaci&oacute;n de Fichajes
    </h1>
    
 </div>
@@ -183,7 +184,6 @@ function switchState() {
 			<div class="inlinediv">
 				<form action="abrirFichaje" method="post">
 					<button type="submit" id="btnAbrir" class="btn btn-primary btnAbrir btnUsuario" value="Abrir Fichaje" >Abrir Fichaje</button>
-				
 				</form>
 			</div>
 			
@@ -192,13 +192,13 @@ function switchState() {
 					<button type="submit" id="btnCerrar" class="btn btn-primary btnCerrar btnUsuario"value="Cerrar Fichaje" >Cerrar Fichaje</button>
 				</form>
 			</div>
+	
 	</div>
 	
 	<div class="centerdiv">
-	<span style="color:red"><em>${errorMessageCerrar}</em></span>
+		<span style="color:red"><em>${errorMessageCerrar}</em></span>
 		<span style="color:red"><em>${errorMessageAbrir}</em></span>
 	</div>
-	
 
 
 
