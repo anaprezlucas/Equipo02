@@ -15,11 +15,12 @@ import com.uclm.equipo02.persistencia.UsuarioDaoImplement;
 
 @Controller
 public class AdminController {
-	private final String usuario_login = "login";
+	//private final String usuario_login = "login";
 	UsuarioDaoImplement userDao = new UsuarioDaoImplement();
-	
+	private final String alert = "alerta";
+
 	//private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
-	
+
 	@RequestMapping(value = "/crearUsuario", method = RequestMethod.POST)
 	public String crearUsuario(HttpServletRequest request, Model model) throws Exception {
 
@@ -43,14 +44,14 @@ public class AdminController {
 		} catch (Exception e) {
 
 		}
-		
-		String destinatario =  "alguien@servidor.com"; //A quien le quieres escribir.
-	    String asunto = "Contraseña por defecto";
-	    String cuerpo = "Hola " + nombre + "! \nLa contraseña por defecto es la siguiente:\n" + pass
-	    		+"\n\nUn Saludo\nInTime Corporation";
 
-	    MailSender mailSender = new MailSender();
-	    mailSender.enviarConGMail(mail, asunto, cuerpo);
+		String destinatario =  "alguien@servidor.com"; //A quien le quieres escribir.
+		String asunto = "Contraseña por defecto";
+		String cuerpo = "Hola " + nombre + "! \nLa contraseña por defecto es la siguiente:\n" + pass
+				+"\n\nUn Saludo\nInTime Corporation";
+
+		MailSender mailSender = new MailSender();
+		mailSender.enviarConGMail(mail, asunto, cuerpo);
 
 		return "interfazAdministrador";
 	}
@@ -69,9 +70,35 @@ public class AdminController {
 		}
 		return pass = new String(conjunto);
 	}
-	
+
 	@RequestMapping(value = "/interfazCrearUsuario", method = RequestMethod.GET)
 	public ModelAndView interfazCrearUsuario() {
 		return new ModelAndView("interfazCrearUsuario");
+	}
+	@RequestMapping(value = "/interfazEliminarUsuario", method = RequestMethod.GET)
+	public ModelAndView interfazEliminarUsuario() {
+		return new ModelAndView("interfazEliminarUsuario");
+	}
+	@RequestMapping(value = "/eliminarUsuario", method = RequestMethod.POST)
+	public String eliminarUsuario(HttpServletRequest request, Model model) throws Exception {
+
+		String email = request.getParameter("txtUsuarioEmail");
+
+		if (email.equals("")){
+			model.addAttribute(alert, "Por favor rellene los campos");
+			return "interfazEliminarUsuario";
+		}else {
+			Usuario user = new Usuario();
+			user.setEmail(email);
+			try {
+
+				user.setNombre(userDao.devolverUser(user));
+				userDao.delete(user);
+			}catch(Exception e) {
+
+			}
+
+			return "interfazAdministrador";
+		}
 	}
 }
