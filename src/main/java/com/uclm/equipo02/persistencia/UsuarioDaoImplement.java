@@ -197,6 +197,8 @@ public void updatePwd(Usuario usuario) throws Exception{
 	if (usuarioBso==null)
 		throw new Exception("Fallo la actualizacion de los datos del usuario.");
 
+/**usuario.getPassword() hay que desencriptar**/
+	
 	Document actualizacion= new Document("$set", new Document(password, new BsonString(Utilidades.encrypt(usuario.getPassword()))));
 	usuarios.findOneAndUpdate(usuarioBso, actualizacion);
 }

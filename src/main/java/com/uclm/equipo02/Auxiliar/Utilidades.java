@@ -15,53 +15,53 @@ import org.apache.commons.codec.binary.Base64;
 
 
 public class Utilidades {
-	
-	
+
+
 	private static String key = "InTimeQQ12345";
 	private static String initVector = "RandomInitVector";
-	
-	
-	
-    public static String encrypt(String value) {
-        try {
-            IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
-            SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
 
-            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
-            cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
 
-            byte[] encrypted = cipher.doFinal(value.getBytes());
 
-            return Base64.encodeBase64String(encrypted);
-        } catch (Exception ex) {
-            System.out.println(ex.toString());
-        }
-        return null;
-    }
-    
+	public static String encrypt(String value) {
+		try {
+			IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
+			SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
 
-    public static String decrypt(String encrypted) {
-        try {
-            IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
-            SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+			cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
 
-            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
-            cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
+			byte[] encrypted = cipher.doFinal(value.getBytes());
 
-            byte[] original = cipher.doFinal(Base64.decodeBase64(encrypted));
+			return Base64.encodeBase64String(encrypted);
+		} catch (Exception ex) {
+			System.out.println(ex.toString());
+		}
+		return null;
+	}
 
-            return new String(original);
-        } catch (Exception ex) {
-            System.out.println(ex.toString());
-        }
 
-        return null;
-    }
-    
-    public static String encrypt_md5(String password) {
-    	String pass_md5;
-    	byte[] thedigest = null;
-    	
+	public static String decrypt(String encrypted) {
+		try {
+			IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
+			SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
+
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+			cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
+
+			byte[] original = cipher.doFinal(Base64.decodeBase64(encrypted));
+
+			return new String(original);
+		} catch (Exception ex) {
+			System.out.println(ex.toString());
+		}
+
+		return null;
+	}
+
+	public static String encrypt_md5(String password) {
+		String pass_md5;
+		byte[] thedigest = null;
+
 		try {
 			byte[] bytesOfMessage = password.getBytes("UTF-8");
 
@@ -73,12 +73,13 @@ public class Utilidades {
 			return "error";
 		}
 		return pass_md5;
-    }
-    
-    
-    /******Cambiar a return string y poner ese string  en una alerta en el updatePWD del controller y en el jsp de updatePWD******/
-    public static boolean seguridadPassword(String pwd){
-    	
+	}
+
+
+	/******Cambiar a return string y poner ese string  en una alerta en el updatePWD del controller y en el jsp de updatePWD******/
+	public static boolean seguridadPassword(String pwd){
+		
+		boolean bool=true;
 		if (pwd.length() < 8)
 			return false;
 		boolean caracter = false;
@@ -94,14 +95,16 @@ public class Utilidades {
 				caracter = true;
 			}
 		}
-		if (!caracter || !numero)
-			return false;
-		return true;
-}
-    
-    
-    
-    
-    
-    
+		if (!caracter || !numero) {
+			bool=false;
+		}
+			return bool;
+	
+	}
+
+
+
+
+
+
 }
