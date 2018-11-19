@@ -30,7 +30,7 @@ public class UsuarioDaoImplement{
 		MongoCollection<Document> usuarios = obtenerUsuarios();
 		Document criterio = new Document();
 		criterio.append(email, new BsonString(usuario.getEmail()));
-		criterio.append(password, new BsonString(usuario.getPassword()));
+		criterio.append(password, new BsonString(Utilidades.encrypt(usuario.getPassword())));
 		FindIterable<Document> resultado=usuarios.find(criterio);
 		Document usuarioBson = resultado.first();
 		if (usuarioBson==null) {

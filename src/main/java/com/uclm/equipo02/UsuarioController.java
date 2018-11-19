@@ -46,9 +46,9 @@ public class UsuarioController {
 			return gestionPwd;
 		}
 		
-		
 		if(!Utilidades.seguridadPassword(pwdNueva)) {
 			model.addAttribute("alertaPWDinsegura","Password poco segura (minimo 8 caracteres, con numeros y letras)");
+			return gestionPwd;
 		}else {
 			usuario.setPassword(pwdNueva);
 			userDao.updatePwd(usuario);
