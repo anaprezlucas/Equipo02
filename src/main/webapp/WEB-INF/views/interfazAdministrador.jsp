@@ -282,7 +282,7 @@ height:180px
 								name="crearUsuario" value="Crear usuario" formaction = "interfazCrearUsuario" />
 							
 							<input type="submit" class="btnUsuario input-lg"
-								name="modificarUsuario" value="Modificar usuario" formaction = "interfazModificarUsuario"/>
+								name="modificarUsuario" value="Modificar usuario" formaction = "modificarUsuario"/>
 						
 							<input type="submit" class="btnUsuario input-lg"
 								name="eliminarUsuario" value="Eliminar usuario" formaction = "interfazEliminarUsuario"/>

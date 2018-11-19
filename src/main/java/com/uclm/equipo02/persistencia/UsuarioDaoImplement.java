@@ -22,8 +22,8 @@ public class UsuarioDaoImplement{
 	public UsuarioDaoImplement() {
 		super();
 	}
-	
-	
+
+
 	public boolean login(Usuario usuario) {
 
 		MongoCollection<Document> usuarios = obtenerUsuarios();
@@ -37,8 +37,8 @@ public class UsuarioDaoImplement{
 		}
 		return true;
 	}
-	
-	
+
+
 	//Inserta un nuevo usuario en la BBDD
 	public void insert(Usuario usuario) throws Exception {
 		if(!selectNombre(usuario)) {
@@ -64,6 +64,28 @@ public class UsuarioDaoImplement{
 		}
 		return true;
 	}
+public Usuario selectNombre(String nombreParam) {
+		
+		MongoCollection<Document> usuarios = obtenerUsuarios();
+		Document criterio = new Document();
+		criterio.append(name, new BsonString(nombreParam));
+		FindIterable<Document> resultado=usuarios.find(criterio);
+		Document usuario = resultado.first();
+		Usuario result;
+		if (usuario==null) {
+			return null;
+		}
+		else {
+			
+			String nombreUser = usuario.getString(name);
+			String pwdUser = usuario.getString(password);
+			String mailUser = usuario.getString(email);
+			String rolUser = usuario.getString(rol);
+						
+			result = new Usuario(nombreUser, pwdUser, mailUser, rolUser);
+		}
+		return result;
+}
 
 	public String devolverRol(Usuario usuario) {
 		MongoCollection<Document> usuarios = obtenerUsuarios();
@@ -74,11 +96,6 @@ public class UsuarioDaoImplement{
 		if (usuario==null){
 			return null;
 		}else {
-			/*
-			BsonValue nombre=usuariobso.get(rol);
-			BsonString rolbso=nombre.asString();
-			String rolFinal=rolbso.getValue();
-			 */
 			String rolUser = usuariobso.getString(rol);
 			usuario.setRol(rolUser);
 
@@ -94,11 +111,6 @@ public class UsuarioDaoImplement{
 		if (usuario==null || usuariobso ==null){
 			return null;
 		}else {
-			/*
-			BsonValue nombre=usuariobso.get(name);
-			BsonString namebso=nombre.asString();
-			String nombreFinal=namebso.getValue();
-			 */
 			String nombreFinal= usuariobso.getString(name);
 			usuario.setNombre(nombreFinal);
 		}
@@ -137,7 +149,7 @@ public class UsuarioDaoImplement{
 		MongoCollection<Document> usuarios = obtenerUsuarios();
 		usuarios.deleteOne(bso);
 	}
-	
+
 	//Devuelve una lista de todos los usuarios
 	public List<Usuario> selectAll() {
 		MongoCollection<Document> usuarios = obtenerUsuarios();
@@ -153,98 +165,27 @@ public class UsuarioDaoImplement{
 		}
 		return retorno;
 	}
-	//Actualizar nombre de usuario
-	public void updateNombre(String antiguo, String nuevo) {
-		List <Usuario> todos=selectAll();
-		BsonString nombreAnt=new BsonString(antiguo);
-		BsonString nombreNue=new BsonString(nuevo);
-		Iterator <Usuario> it=todos.iterator();
-		Usuario aux;
+
+
+	public String devolverMail(Usuario usuario) {
 		MongoCollection<Document> usuarios = obtenerUsuarios();
 		Document criterio = new Document();
-		FindIterable<Document> resultado;
-		Document usuario;
-		Document actualizacion = null;
-
-		while(it.hasNext()) {
-			aux=it.next();
-			criterio.append(name, new BsonString(aux.getNombre()));
-			resultado=usuarios.find(criterio);
-			usuario = resultado.first();
-			usuarios.findOneAndUpdate(usuario, actualizacion);
-		}
-
-		usuarios = obtenerUsuarios();
-		criterio = new Document();
-		criterio.append(name, nombreAnt);
-		resultado=usuarios.find(criterio);
-		usuario = resultado.first();
-		actualizacion= new Document("$set", new Document(name, nombreNue));
-		usuarios.findOneAndUpdate(usuario, actualizacion);
-	}
-	
-
-
-
-public Usuario selectNombre(String nombreParam) {
-		
-		MongoCollection<Document> usuarios = obtenerUsuarios();
-		Document criterio = new Document();
-		criterio.append(name, new BsonString(nombreParam));
+		criterio.append(name, new BsonString(usuario.getNombre()));
 		FindIterable<Document> resultado=usuarios.find(criterio);
-		Document usuario = resultado.first();
-		Usuario result;
-		if (usuario==null) {
+		Document usuariobso = resultado.first();
+		if (usuario==null){
 			return null;
-		}
-		else {
-			
-			String nombreUser = usuario.getString(name);
-			String pwdUser = usuario.getString(password);
-			String mailUser = usuario.getString(email);
-			String rolUser = usuario.getString(rol);
-						
-			result = new Usuario(nombreUser, pwdUser, mailUser, rolUser);
-		}
-		return result;
-}
+		}else {
 
+			String mailFinal=usuariobso.getString(email);
 
-public String devolverMail(Usuario usuario) {
-	MongoCollection<Document> usuarios = obtenerUsuarios();
-	Document criterio = new Document();
-	criterio.append(name, new BsonString(usuario.getNombre()));
-	FindIterable<Document> resultado=usuarios.find(criterio);
-	Document usuariobso = resultado.first();
-	if (usuario==null){
-		return null;
-	}else {
-		
-		String mailFinal=usuariobso.getString(email);
-					
-		usuario.setRol(mailFinal);
+			usuario.setRol(mailFinal);
+		}
+		return usuario.getRol();
 	}
-	return usuario.getRol();
-}
 
 
 
-public void updatePwd(Usuario usuario) throws Exception{
-	MongoCollection<Document> usuarios = obtenerUsuarios();
-	Document criterio = new Document();
-	criterio.append(name, new BsonString(usuario.getNombre()));
-	FindIterable<Document> resultado=usuarios.find(criterio);
-	Document usuarioBso = resultado.first();
-	if (usuarioBso==null)
-		throw new Exception("Fallo la actualizacion de los datos del usuario.");
-
-	Document actualizacion= new Document("$set", new Document(password, new BsonString(usuario.getPassword())));
-	usuarios.findOneAndUpdate(usuarioBso, actualizacion);
-}
-
-/***Este Metodo creo que esta bien arreglado, pero tienes arriba el original**/
-
-/***
 	public void updatePwd(Usuario usuario) throws Exception{
 		MongoCollection<Document> usuarios = obtenerUsuarios();
 		Document criterio = new Document();
@@ -253,11 +194,34 @@ public void updatePwd(Usuario usuario) throws Exception{
 		Document usuarioBso = resultado.first();
 		if (usuarioBso==null)
 			throw new Exception("Fallo la actualizacion de los datos del usuario.");
-		Document actualizacion= new Document("$set", new Document(password, new String(usuario.getPassword())));
+
+		Document actualizacion= new Document("$set", new Document(password, new BsonString(usuario.getPassword())));
 		usuarios.findOneAndUpdate(usuarioBso, actualizacion);
 	}
-	
-	**/
+	public void updateRol(Usuario usuario, String rolNuevo) throws Exception{
+		MongoCollection<Document> usuarios = obtenerUsuarios();
+		Document criterio = new Document();
+		criterio.append(name, new BsonString(usuario.getNombre()));
+		FindIterable<Document> resultado=usuarios.find(criterio);
+		Document usuarioBso = resultado.first();
+		if (usuarioBso==null)
+			throw new Exception("Fallo la actualizacion de los datos del usuario.");
+
+		Document actualizacion= new Document("$set", new Document(rol, new BsonString(rolNuevo)));
+		usuarios.findOneAndUpdate(usuarioBso, actualizacion);
+	}
+	public void updateNombre(Usuario usuario, String nombreNuevo) throws Exception{
+		MongoCollection<Document> usuarios = obtenerUsuarios();
+		Document criterio = new Document();
+		criterio.append(name, new BsonString(usuario.getNombre()));
+		FindIterable<Document> resultado=usuarios.find(criterio);
+		Document usuarioBso = resultado.first();
+		if (usuarioBso==null)
+			throw new Exception("Fallo la actualizacion de los datos del usuario.");
+
+		Document actualizacion= new Document("$set", new Document(name, new BsonString(nombreNuevo)));
+		usuarios.findOneAndUpdate(usuarioBso, actualizacion);
+	}
 
 
 }
