@@ -17,6 +17,7 @@ import com.uclm.equipo02.persistencia.UsuarioDaoImplement;
 public class AdminController {
 	//private final String usuario_login = "login";
 	UsuarioDaoImplement userDao = new UsuarioDaoImplement();
+	Usuario user = new Usuario();
 	private final String alert = "alerta";
 
 	//private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
@@ -79,6 +80,11 @@ public class AdminController {
 	public ModelAndView interfazEliminarUsuario() {
 		return new ModelAndView("interfazEliminarUsuario");
 	}
+	@RequestMapping(value = "/modificarUsuario", method = RequestMethod.GET)
+	public ModelAndView modificarUsuario() {
+		return new ModelAndView("modificarUsuario");
+	}
+
 	@RequestMapping(value = "/eliminarUsuario", method = RequestMethod.POST)
 	public String eliminarUsuario(HttpServletRequest request, Model model) throws Exception {
 
@@ -100,5 +106,40 @@ public class AdminController {
 
 			return "interfazAdministrador";
 		}
+	}
+
+	@RequestMapping(value = "/buscarUsuarioPorEmail", method = RequestMethod.GET)
+	public String buscarUsuario(HttpServletRequest request, Model model) throws Exception {
+
+		String email = request.getParameter("txtEmail");
+		//Usuario user = new Usuario();
+		user.setEmail(email);
+
+		user.setNombre(userDao.devolverUser(user));
+		user.setRol(userDao.devolverRol(user));
+
+		model.addAttribute("NombreUsuario", user.getNombre());
+		model.addAttribute("RolUsuario", user.getRol());
+
+
+		return "modificarUsuario";
+
+	}
+	@RequestMapping(value = "/modificarUser", method = RequestMethod.GET)
+	public String modificarUser(HttpServletRequest request, Model model) throws Exception {
+
+		String nombre = request.getParameter("txtNombre");
+		String rol = request.getParameter("listaRoles");
+
+		try {
+			//userDao.updateNombre(user.getNombre(), nombre);
+			userDao.updateNombre(user, nombre);
+			userDao.updateRol(user, rol);
+		}catch(Exception e) {
+
+		}
+
+		return "interfazAdministrador";
+
 	}
 }
