@@ -71,6 +71,11 @@ public class AdminController {
 		}
 		return pass = new String(conjunto);
 	}
+	
+	@RequestMapping(value = "/fichajesAdmin", method = RequestMethod.GET)
+	public ModelAndView interfazFichajesAdmin() {
+		return new ModelAndView("interfazAdministrador");
+	}
 
 	@RequestMapping(value = "/interfazCrearUsuario", method = RequestMethod.GET)
 	public ModelAndView interfazCrearUsuario() {
@@ -132,7 +137,7 @@ public class AdminController {
 		String rol = request.getParameter("listaRoles");
 
 		try {
-			//userDao.updateNombre(user.getNombre(), nombre);
+			
 			userDao.updateNombre(user, nombre);
 			userDao.updateRol(user, rol);
 		}catch(Exception e) {

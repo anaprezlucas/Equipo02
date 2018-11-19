@@ -201,7 +201,7 @@ public Usuario selectNombre(String nombreParam) {
 	public void updateRol(Usuario usuario, String rolNuevo) throws Exception{
 		MongoCollection<Document> usuarios = obtenerUsuarios();
 		Document criterio = new Document();
-		criterio.append(name, new BsonString(usuario.getNombre()));
+		criterio.append(email, new BsonString(usuario.getEmail()));
 		FindIterable<Document> resultado=usuarios.find(criterio);
 		Document usuarioBso = resultado.first();
 		if (usuarioBso==null)
@@ -213,7 +213,7 @@ public Usuario selectNombre(String nombreParam) {
 	public void updateNombre(Usuario usuario, String nombreNuevo) throws Exception{
 		MongoCollection<Document> usuarios = obtenerUsuarios();
 		Document criterio = new Document();
-		criterio.append(name, new BsonString(usuario.getNombre()));
+		criterio.append(email, new BsonString(usuario.getEmail()));
 		FindIterable<Document> resultado=usuarios.find(criterio);
 		Document usuarioBso = resultado.first();
 		if (usuarioBso==null)
@@ -221,6 +221,7 @@ public Usuario selectNombre(String nombreParam) {
 
 		Document actualizacion= new Document("$set", new Document(name, new BsonString(nombreNuevo)));
 		usuarios.findOneAndUpdate(usuarioBso, actualizacion);
+		
 	}
 
 
