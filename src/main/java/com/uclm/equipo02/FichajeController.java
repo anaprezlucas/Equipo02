@@ -4,6 +4,7 @@ package com.uclm.equipo02;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -214,6 +215,18 @@ public class FichajeController {
 		return interfazAdministrador;
 		} 
 	 
+	
+	/***Redireccion a gestionPwd***/
+	
+	
+	@RequestMapping(value = "/gestionPwd", method = RequestMethod.GET)
+	public ModelAndView gestionPwd(HttpServletRequest request) {
+		Usuario usuario;
+		usuario = (Usuario) request.getSession().getAttribute(usuario_conect); 
+		request.setAttribute("nombreUser", usuario.getNombre());
+		request.setAttribute("mailUser", usuario.getEmail());
+		return new ModelAndView("gestionPwd");
+	}
 
 	/**for (int i = 0; i < listaFichAd.size(); i++) {
 			System.out.println(listaFichAd.get(i).toString());

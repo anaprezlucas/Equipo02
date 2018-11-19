@@ -150,7 +150,7 @@ function switchState() {
 			</div>
 			<div class="nav-item pull-left fixed-top"
 				style="position: relative; top: 8px">
-				<form action="Incidencias" method="GET">
+				<form action="gestionPwd" method="GET">
 					<button class="btn btn-space" type="submit">
 						<strong><span class="glyphicon glyphicon-cog"></span>
 							Gestionar Contrase&ntilde;a</strong>
@@ -231,6 +231,11 @@ function switchState() {
 		</table>
 
 	</div>
+	
+	<form action="gestionPwd" method="get">
+					<button type="submit" id="btnCambioPwD" class="btn btn-primary btnCerrar btnUsuario"value="Cambio de contrasena" >Cambiar Contrase&ntilde;a</button>
+	</form>
+	
 
 </body>
 </html>

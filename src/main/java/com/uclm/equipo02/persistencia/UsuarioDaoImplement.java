@@ -22,6 +22,23 @@ public class UsuarioDaoImplement{
 	public UsuarioDaoImplement() {
 		super();
 	}
+	
+	
+	public boolean login(Usuario usuario) {
+
+		MongoCollection<Document> usuarios = obtenerUsuarios();
+		Document criterio = new Document();
+		criterio.append(email, new BsonString(usuario.getEmail()));
+		criterio.append(password, new BsonString(usuario.getPassword()));
+		FindIterable<Document> resultado=usuarios.find(criterio);
+		Document usuarioBson = resultado.first();
+		if (usuarioBson==null) {
+			return false;
+		}
+		return true;
+	}
+	
+	
 	//Inserta un nuevo usuario en la BBDD
 	public void insert(Usuario usuario) throws Exception {
 		if(!selectNombre(usuario)) {
@@ -61,10 +78,10 @@ public class UsuarioDaoImplement{
 			BsonValue nombre=usuariobso.get(rol);
 			BsonString rolbso=nombre.asString();
 			String rolFinal=rolbso.getValue();
-			*/
+			 */
 			String rolUser = usuariobso.getString(rol);
 			usuario.setRol(rolUser);
-			
+
 		}
 		return usuario.getRol();
 	}
@@ -81,7 +98,7 @@ public class UsuarioDaoImplement{
 			BsonValue nombre=usuariobso.get(name);
 			BsonString namebso=nombre.asString();
 			String nombreFinal=namebso.getValue();
-			*/
+			 */
 			String nombreFinal= usuariobso.getString(name);
 			usuario.setNombre(nombreFinal);
 		}
@@ -120,6 +137,8 @@ public class UsuarioDaoImplement{
 		MongoCollection<Document> usuarios = obtenerUsuarios();
 		usuarios.deleteOne(bso);
 	}
+	
+	
 	//Devuelve una lista de todos los usuarios
 	public List<Usuario> selectAll() {
 		MongoCollection<Document> usuarios = obtenerUsuarios();
@@ -164,19 +183,82 @@ public class UsuarioDaoImplement{
 		actualizacion= new Document("$set", new Document(name, nombreNue));
 		usuarios.findOneAndUpdate(usuario, actualizacion);
 	}
-	public boolean login(Usuario usuario) {
+	
 
+
+
+public Usuario selectNombre(String nombreParam) {
+		
 		MongoCollection<Document> usuarios = obtenerUsuarios();
 		Document criterio = new Document();
-		criterio.append(email, new BsonString(usuario.getEmail()));
-		criterio.append(password, new BsonString(usuario.getPassword()));
+		criterio.append(name, new BsonString(nombreParam));
 		FindIterable<Document> resultado=usuarios.find(criterio);
-		Document usuarioBson = resultado.first();
-		if (usuarioBson==null) {
-			return false;
+		Document usuario = resultado.first();
+		Usuario result;
+		if (usuario==null) {
+			return null;
 		}
-		return true;
+		else {
+			
+			String nombreUser = usuario.getString(name);
+			String pwdUser = usuario.getString(password);
+			String mailUser = usuario.getString(email);
+			String rolUser = usuario.getString(rol);
+						
+			result = new Usuario(nombreUser, pwdUser, mailUser, rolUser);
+		}
+		return result;
+}
+
+
+public String devolverMail(Usuario usuario) {
+	MongoCollection<Document> usuarios = obtenerUsuarios();
+	Document criterio = new Document();
+	criterio.append(name, new BsonString(usuario.getNombre()));
+	FindIterable<Document> resultado=usuarios.find(criterio);
+	Document usuariobso = resultado.first();
+	if (usuario==null){
+		return null;
+	}else {
+		
+		String mailFinal=usuariobso.getString(email);
+					
+		usuario.setRol(mailFinal);
 	}
+	return usuario.getRol();
+}
+
+
+
+public void updatePwd(Usuario usuario) throws Exception{
+	MongoCollection<Document> usuarios = obtenerUsuarios();
+	Document criterio = new Document();
+	criterio.append(name, new BsonString(usuario.getNombre()));
+	FindIterable<Document> resultado=usuarios.find(criterio);
+	Document usuarioBso = resultado.first();
+	if (usuarioBso==null)
+		throw new Exception("Fallo la actualizacion de los datos del usuario.");
+
+	Document actualizacion= new Document("$set", new Document(password, new BsonString(usuario.getPassword())));
+	usuarios.findOneAndUpdate(usuarioBso, actualizacion);
+}
+
+/***Este Metodo creo que esta bien arreglado, pero tienes arriba el original**/
+
+/***
+	public void updatePwd(Usuario usuario) throws Exception{
+		MongoCollection<Document> usuarios = obtenerUsuarios();
+		Document criterio = new Document();
+		criterio.append(name, new BsonString(usuario.getNombre()));
+		FindIterable<Document> resultado=usuarios.find(criterio);
+		Document usuarioBso = resultado.first();
+		if (usuarioBso==null)
+			throw new Exception("Fallo la actualizacion de los datos del usuario.");
+		Document actualizacion= new Document("$set", new Document(password, new String(usuario.getPassword())));
+		usuarios.findOneAndUpdate(usuarioBso, actualizacion);
+	}
+	
+	**/
 
 
 }

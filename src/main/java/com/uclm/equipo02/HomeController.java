@@ -26,6 +26,14 @@ public class HomeController {
 	private final String usuario_login = "login";
 	private final String usuario_conect = "usuarioConectado";
 	private final String alert = "alerta";
+	private final String usuarioServ = "usuario";
+	private final String name = "nombre";
+	private final String password = "pwd";
+	private final String email = "email";
+	private final String rol = "rol";
+private final String welcome = "welcome";
+	
+	
 
 	UsuarioDaoImplement userDao = new UsuarioDaoImplement();
 
@@ -61,15 +69,21 @@ public class HomeController {
 		Usuario usuario = new Usuario();
 		usuario.setEmail(email);
 		usuario.setPassword(password);
+		String nombre =  userDao.devolverUser(usuario);
+		usuario.setNombre(nombre);
 		
 		if (userDao.login(usuario) && request.getSession().getAttribute(usuario_conect) == null){
 			usuario.setRol(userDao.devolverRol(usuario));
 
 			if(usuario.getRol().equalsIgnoreCase("empleado")) {
 				request.getSession().setAttribute(usuario_conect, usuario);
+				request.setAttribute("nombreUser", usuario);
+				request.setAttribute("mailUser", email);
 				return "fichajes";
 			}else if (usuario.getRol().equalsIgnoreCase("administrador")){
 				request.getSession().setAttribute(usuario_conect, usuario);
+				request.setAttribute("nombreUser", usuario.getNombre());
+				request.setAttribute("mailUser", email);
 				return "interfazAdministrador";
 			}
 
@@ -78,7 +92,7 @@ public class HomeController {
 			return usuario_login;
 		}
 		return usuario_login;
-	}
+}
 
 	public ModelAndView cambiarVista(String nombreVista) {
 		ModelAndView vista = new ModelAndView(nombreVista);
