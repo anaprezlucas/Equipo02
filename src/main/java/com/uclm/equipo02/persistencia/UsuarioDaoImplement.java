@@ -10,6 +10,7 @@ import org.bson.BsonValue;
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.uclm.equipo02.Auxiliar.Utilidades;
 import com.uclm.equipo02.modelo.Usuario;
 
 public class UsuarioDaoImplement{
@@ -29,7 +30,7 @@ public class UsuarioDaoImplement{
 		MongoCollection<Document> usuarios = obtenerUsuarios();
 		Document criterio = new Document();
 		criterio.append(email, new BsonString(usuario.getEmail()));
-		criterio.append(password, new BsonString(usuario.getPassword()));
+		criterio.append(password, new BsonString(Utilidades.encrypt(usuario.getPassword())));
 		FindIterable<Document> resultado=usuarios.find(criterio);
 		Document usuarioBson = resultado.first();
 		if (usuarioBson==null) {
@@ -186,18 +187,22 @@ public Usuario selectNombre(String nombreParam) {
 
 
 
-	public void updatePwd(Usuario usuario) throws Exception{
-		MongoCollection<Document> usuarios = obtenerUsuarios();
-		Document criterio = new Document();
-		criterio.append(name, new BsonString(usuario.getNombre()));
-		FindIterable<Document> resultado=usuarios.find(criterio);
-		Document usuarioBso = resultado.first();
-		if (usuarioBso==null)
-			throw new Exception("Fallo la actualizacion de los datos del usuario.");
 
-		Document actualizacion= new Document("$set", new Document(password, new BsonString(usuario.getPassword())));
-		usuarios.findOneAndUpdate(usuarioBso, actualizacion);
-	}
+public void updatePwd(Usuario usuario) throws Exception{
+	MongoCollection<Document> usuarios = obtenerUsuarios();
+	Document criterio = new Document();
+	criterio.append(name, new BsonString(usuario.getNombre()));
+	FindIterable<Document> resultado=usuarios.find(criterio);
+	Document usuarioBso = resultado.first();
+	if (usuarioBso==null)
+		throw new Exception("Fallo la actualizacion de los datos del usuario.");
+
+/**usuario.getPassword() hay que desencriptar**/
+	
+	Document actualizacion= new Document("$set", new Document(password, new BsonString(Utilidades.encrypt(usuario.getPassword()))));
+	usuarios.findOneAndUpdate(usuarioBso, actualizacion);
+}
+
 	public void updateRol(Usuario usuario, String rolNuevo) throws Exception{
 		MongoCollection<Document> usuarios = obtenerUsuarios();
 		Document criterio = new Document();

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.uclm.equipo02.Auxiliar.Utilidades;
 import com.uclm.equipo02.mail.MailSender;
 import com.uclm.equipo02.modelo.Usuario;
 import com.uclm.equipo02.persistencia.UsuarioDaoImplement;
@@ -36,7 +37,7 @@ public class AdminController {
 		//UsuarioDaoImplement userDao = new UsuarioDaoImplement();
 		Usuario user = new Usuario();
 		user.setNombre(nombre);
-		user.setPassword(pass);
+		user.setPassword(Utilidades.encrypt(pass));
 		user.setEmail(mail);
 		user.setRol(rol);
 
