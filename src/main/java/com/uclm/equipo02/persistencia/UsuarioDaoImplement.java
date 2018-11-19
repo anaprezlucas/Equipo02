@@ -138,7 +138,6 @@ public class UsuarioDaoImplement{
 		usuarios.deleteOne(bso);
 	}
 	
-	
 	//Devuelve una lista de todos los usuarios
 	public List<Usuario> selectAll() {
 		MongoCollection<Document> usuarios = obtenerUsuarios();
