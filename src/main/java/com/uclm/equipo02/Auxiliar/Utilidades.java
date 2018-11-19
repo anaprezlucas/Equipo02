@@ -17,7 +17,7 @@ import org.apache.commons.codec.binary.Base64;
 public class Utilidades {
 
 
-	private static String key = "InTimeQQ12345";
+	private static String key = "InTimeQQ12345678";
 	private static String initVector = "RandomInitVector";
 
 
