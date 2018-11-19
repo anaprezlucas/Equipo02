@@ -75,10 +75,12 @@ public class Utilidades {
 		return pass_md5;
     }
     
+    
     /******Cambiar a return string y poner ese string  en una alerta en el updatePWD del controller y en el jsp de updatePWD******/
-    public static void seguridadPassword(String pwd) throws Exception {
+    public static boolean seguridadPassword(String pwd){
+    	
 		if (pwd.length() < 8)
-			throw new Exception("Password poco segura (minimo 8 caracteres, con numeros y letras)");
+			return false;
 		boolean caracter = false;
 		boolean numero = false;
 		char c;
@@ -93,7 +95,8 @@ public class Utilidades {
 			}
 		}
 		if (!caracter || !numero)
-			throw new Exception("Password poco segura (minimo 8 caracteres, con numeros y letras)");
+			return false;
+		return true;
 }
     
     

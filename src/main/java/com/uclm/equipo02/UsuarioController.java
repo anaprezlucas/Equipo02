@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+
+import com.uclm.equipo02.Auxiliar.Utilidades;
 import com.uclm.equipo02.modelo.Usuario;
 import com.uclm.equipo02.persistencia.UsuarioDaoImplement;
 
@@ -46,12 +48,17 @@ public class UsuarioController {
 		
 		
 		System.out.println(usuario.toString());
-		usuario.setPassword(pwdNueva);
-		userDao.updatePwd(usuario);
-		HttpSession session = request.getSession();
-		request.setAttribute("usuarioNombre", usuario.getNombre());
-		request.setAttribute("usuarioEmail", usuario.getEmail());
-		session.setAttribute("alertaModificarPerfilUsuario", "Mandando alerta modificar perfil usuario");
+		
+		if(!Utilidades.seguridadPassword(pwdNueva)) {
+			model.addAttribute("alertaPWDinsegura","Password poco segura (minimo 8 caracteres, con numeros y letras)");
+		}else {
+			usuario.setPassword(pwdNueva);
+			userDao.updatePwd(usuario);
+			HttpSession session = request.getSession();
+			request.setAttribute("usuarioNombre", usuario.getNombre());
+			request.setAttribute("usuarioEmail", usuario.getEmail());
+			session.setAttribute("alertaModificarPerfilUsuario", "Mandando alerta modificar perfil usuario");
+		}
 		return "fichajes";
 	}
 	@RequestMapping(value = "/inicio", method = RequestMethod.GET)

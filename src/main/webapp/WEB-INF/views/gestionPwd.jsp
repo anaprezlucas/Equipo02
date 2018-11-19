@@ -141,6 +141,7 @@
 							value="Aceptar" /> <input type="submit"
 							class="btnUsuario input-lg" name="Cancelar" value="Cancelar" />
 					 <span style="color: red"><em>${alerta}</em></span>
+					 <span style="color:red"><em>${alertaPWDinsegura}</em></span>
 					</div>
 
 				</form>
