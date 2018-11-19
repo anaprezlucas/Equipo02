@@ -37,7 +37,7 @@ public class AdminController {
 		//UsuarioDaoImplement userDao = new UsuarioDaoImplement();
 		Usuario user = new Usuario();
 		user.setNombre(nombre);
-		user.setPassword(Utilidades.encrypt_md5(pass));
+		user.setPassword(Utilidades.encrypt(pass));
 		user.setEmail(mail);
 		user.setRol(rol);
 

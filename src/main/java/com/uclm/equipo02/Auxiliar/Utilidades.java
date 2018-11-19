@@ -19,6 +19,9 @@ public class Utilidades {
 	
 	private static String key = "InTimeQQ12345";
 	private static String initVector = "RandomInitVector";
+	
+	
+	
     public static String encrypt(String value) {
         try {
             IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
