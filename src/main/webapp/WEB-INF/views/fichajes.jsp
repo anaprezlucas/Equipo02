@@ -216,12 +216,7 @@ height:180px
 	<div class="alert alert-success alert-dismissable centediv">
 		<button type="button" class="close" data-dismiss="alert"
 			aria-hidden="true">&times;</button>
-		${alertaAbrir}
-	</div>
-	<div class="alert alert-danger alert-dismissable centerdiv">
-		<button type="button" class="close" data-dismiss="alert"
-			aria-hidden="true">&times;</button>
-		${alertaCerrar}
+		${alertaFichaje}
 	</div>
 
 
