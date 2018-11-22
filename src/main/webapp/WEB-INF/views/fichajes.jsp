@@ -120,17 +120,6 @@ height:180px
 		}
 	}
 
-	$(document).ready(function() {
-		$('#btnCerrar').click(function() {
-			$('.alert').show()
-		})
-	});
-	
-	$(document).ready(function() {
-		$('#btnAbrir').click(function() {
-			$('.alert').show()
-		})
-	});
 	
 </script>
 
@@ -210,16 +199,12 @@ height:180px
 	</div>
 
 	<div class="centerdiv">
-		<span style="color: red"><em>${errorMessageCerrar}</em></span> <span
-			style="color: red"><em>${errorMessageAbrir}</em></span>
+		<span style="color: red"><em>${errorMessageCerrar}</em></span> 
+		<span style="color: red"><em>${errorMessageAbrir}</em></span>
+		<span style="color: green"><em>${alertaFichaje}</em></span>
 	</div>
 	
-	<div class="alert alert-success alert-dismissable centerdiv">
-		<button type="button" class="close" data-dismiss="alert"
-			aria-hidden="true">&times;</button>
-		${alertaFichaje}
-	</div>
-
+	
 
 
 	<div class="historial collapse.in col-md-8 col-md-offset-2" id="panelFichajes">

@@ -224,7 +224,7 @@ height:180px
 <div class="centerdiv">
 	<span style="color:red"><em>${errorMessageCerrar}</em></span>
 		<span style="color:red"><em>${errorMessageAbrir}</em></span>
-		<span style="color:red"><em>${alertaFichaje}</em></span>
+		<span style="color: green"><em>${alertaFichaje}</em></span>
 	</div>
 
 
