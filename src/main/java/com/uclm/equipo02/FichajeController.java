@@ -62,17 +62,6 @@ public class FichajeController {
 
 
 
-	/**HACER VALIDEZ ABRIR, PARA PODER ABRIR DOS O MAS FICHAJES EN UN MISMO DIA, TODOS LOS FICHAJES DE ESE DIA DEBEN DE ESTAR CERRADOS
-	COMPROBAR QUE AL CERRAR EL SEGUNDO FICHAJE DEL DIA NO ACTUALIZE EL PRIMER FICHAJE DEL DIA
-
-
-	AL CREAR UN SEGUNDO FICHAJE LO CREA BIEN PERO SI VAS A CERRAR ESE SEGUNDO FICHAJE TE ACTUALZIA LA HORA DE SALIDA DEL PRIMERO,
-	TENDRIA QUE COGER EL HORA DE FICHAJE MAS ACTUAL Y ACTUALIZAR Y CERRAR ESE
-
-	COMPROBAR TAMBIEN QUE SE CIERRE EL ULTIMO FICHAJE aunque eso croe que se comprueba con el hehco de no poder abrir ningun 
-	fichaje hasta que se cierre el que esta abierto
-	 **/
-
 	@RequestMapping(value = "cerrarFichaje", method = RequestMethod.POST)
 	public String cerrarFichaje(HttpServletRequest request, Model model) throws Exception {
 		Usuario usuario;
@@ -80,9 +69,6 @@ public class FichajeController {
 		String fecha;
 		fecha=(java.time.LocalDate.now()).toString();
 
-		/**Al no poder trabajar mas de 8 horas los fichajes entre dias quedan descartados, el criterio de busqueda se rige por nombre
-		de empleado y la fecha del dia actual para poder cerrar el fichaje, si los criterios de aception cambian y debemos hacer fichajes entre dias
-		se arreglaria introduciendo un ID al fichaje como criterio de busqueda en la BBD**/
 		String horaentrada;
 		horaentrada=fichajedao.getHoraEntrada(usuario.getEmail(),fecha);
 
@@ -216,8 +202,7 @@ public class FichajeController {
 		} 
 	 
 	
-	/***Redireccion a gestionPwd***/
-	
+
 	
 	@RequestMapping(value = "/gestionPwd", method = RequestMethod.GET)
 	public ModelAndView gestionPwd(HttpServletRequest request) {
@@ -227,11 +212,6 @@ public class FichajeController {
 		request.setAttribute("mailUser", usuario.getEmail());
 		return new ModelAndView("gestionPwd");
 	}
-
-	/**for (int i = 0; i < listaFichAd.size(); i++) {
-			System.out.println(listaFichAd.get(i).toString());
-		}**/
-
 
 
 }
