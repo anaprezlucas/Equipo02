@@ -97,10 +97,6 @@ width:180px;
 height:180px
 }
 
-.alert{
-    display: none;
-}
-
 
 </style>
 
