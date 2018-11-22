@@ -34,8 +34,10 @@ public class FichajeController {
 	private final String errorMessageCerrar = "errorMessageCerrar";
 	private final String fichajes = "fichajes";
 	private final String interfazAdministrador="interfazAdministrador";
-	private final String alertaFichaje="alertaFichaje";
-
+	private final String alertaAbrir="alertaAbrir";
+	private final String alertaCerrar="alertaCerrar";
+	
+	
 	@RequestMapping(value = "abrirFichaje", method = RequestMethod.POST)
 	public String abrirFichaje(HttpServletRequest request, Model model) throws Exception {
 		String hora;
@@ -56,7 +58,7 @@ public class FichajeController {
 
 		}else {
 			fichajedao.abrirFichaje(fichaje);
-			model.addAttribute(alertaFichaje,"El usuario "+fichaje.getEmailFichaje()+" ha abierto un fichaje");
+			model.addAttribute(alertaAbrir,"El usuario "+fichaje.getEmailFichaje()+" ha abierto un fichaje");
 		}
 		return fichajes;
 	} 
@@ -82,7 +84,7 @@ public class FichajeController {
 
 		if(fichajedao.validezCerrado(fichaje)) {
 			fichajedao.cerrarFichaje(usuario, fichaje);
-			model.addAttribute(alertaFichaje,"El usuario "+fichaje.getEmailFichaje()+" ha cerrado un fichaje");
+			model.addAttribute(alertaCerrar,"El usuario "+fichaje.getEmailFichaje()+" ha cerrado un fichaje");
 
 
 		}else {
@@ -146,7 +148,7 @@ public class FichajeController {
 
 		}else {
 			fichajedao.abrirFichaje(fichaje);
-			model.addAttribute(alertaFichaje,"El usuario "+fichaje.getEmailFichaje()+" ha abierto un fichaje");
+			model.addAttribute(alertaAbrir,"El usuario "+fichaje.getEmailFichaje()+" ha abierto un fichaje");
 		}
 		return interfazAdministrador;
 	} 
@@ -170,7 +172,7 @@ public class FichajeController {
 
 		if(fichajedao.validezCerrado(fichaje)) {
 			fichajedao.cerrarFichaje(usuario, fichaje);
-			model.addAttribute(alertaFichaje,"El usuario "+fichaje.getEmailFichaje()+" ha cerrado un fichaje");
+			model.addAttribute(alertaCerrar,"El usuario "+fichaje.getEmailFichaje()+" ha cerrado un fichaje");
 
 
 		}else {

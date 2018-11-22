@@ -97,6 +97,10 @@ width:180px;
 height:180px
 }
 
+.alert{
+    display: none;
+}
+
 
 </style>
 
@@ -104,20 +108,23 @@ height:180px
 
 
 <script>
-	
-function switchState() {
+	function switchState() {
 
-    if(document.getElementById( 'tdState' ).innerHTML = "true"){
-    	
-    	return document.getElementById('tdState').innerHTML = "Abierto";
-    	
-    }else if(document.getElementById( 'tdState' ).innerHTML = "false"){
-    	
-    	return document.getElementById('tdState').innerHTML = "Cerrado";
-    }     
-}	
-	
-	
+		if (document.getElementById('tdState').innerHTML = "true") {
+
+			return document.getElementById('tdState').innerHTML = "Abierto";
+
+		} else if (document.getElementById('tdState').innerHTML = "false") {
+
+			return document.getElementById('tdState').innerHTML = "Cerrado";
+		}
+	}
+
+	$(document).ready(function() {
+		$('button').click(function() {
+			$('.alert').show()
+		})
+	});
 </script>
 
 
@@ -194,11 +201,18 @@ function switchState() {
 			</div>
 	
 	</div>
-	
+
 	<div class="centerdiv">
-	<span style="color:red"><em>${errorMessageCerrar}</em></span>
-		<span style="color:red"><em>${errorMessageAbrir}</em></span>
-		<span class="badge badge-danger"><em>${alertaFichaje}</em></span>
+		<span style="color: red"><em>${errorMessageCerrar}</em></span> <span
+			style="color: red"><em>${errorMessageAbrir}</em></span>
+		<div class="alert alert-success alert-dismissable">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			${alertaAbrir}
+		</div>
+		<div class="alert alert-danger alert-dismissable">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			${alertaCerrar}
+		</div>
 	</div>
 
 
