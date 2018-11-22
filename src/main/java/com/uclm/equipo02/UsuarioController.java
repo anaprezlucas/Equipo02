@@ -27,7 +27,7 @@ public class UsuarioController {
 		Usuario usuarioLigero = (Usuario) request.getSession().getAttribute(usuario_conect);
 		String emailActual = usuarioLigero.getEmail();
 		
-		String pwdActual = request.getParameter("contrasenActual");
+		String pwdActual = request.getParameter("contrasenaActual");
 		String pwdNueva = request.getParameter("contrasenaNueva");
 		String pwdNueva2 = request.getParameter("contrasenaNueva2");
 		String nombre = userDao.devolverUser(usuarioLigero);
@@ -36,7 +36,10 @@ public class UsuarioController {
 		usuario.setEmail(emailActual);
 		usuario.setPassword(pwdActual);
 		
+		
 		if(!userDao.login(usuario)) {
+			request.setAttribute("nombreUser", usuario.getNombre());
+			request.setAttribute("mailUser", usuario.getEmail());
 			model.addAttribute(alert, "Password actual incorrecta");
 			return gestionPwd;
 		}
