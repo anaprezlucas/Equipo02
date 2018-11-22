@@ -150,13 +150,11 @@
 				<form action="adminModificarPwd" method="post" id="formCrearUsuario">
 					<div class="form-group">
 						<h3>Nombre</h3>
-						<input id="nombreUser" type="text" disabled class="form-control"
-						 value=<%=request.getAttribute("nombreUser")%> />
+						<input id="nombreUser" type="text" disabled class="form-control" value="${NombreUsuario}" />
 					</div>
           <div class="form-group">
   					<h3>E-mail</h3>
-						<input id="mailUser" type="text" disabled class="form-control"
-						 value=<%=request.getAttribute("mailUser")%> />
+						<input id="mailUser" type="text" disabled class="form-control" value=value="${EmailUsuario}" />
 					</div>
 					<div class="form-group">
 						<h3>Contraseña Nueva</h3>
