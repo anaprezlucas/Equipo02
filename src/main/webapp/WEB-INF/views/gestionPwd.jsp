@@ -127,6 +127,11 @@
 						 value=<%=request.getAttribute("mailUser")%> />
 					</div>
 					<div class="form-group">
+						<h3>Contraseña Actual</h3>
+						<input name="contrasenaActual" type="password" class="form-control"
+							placeholder="Contraseña Actual*" value="" />
+					</div>
+					<div class="form-group">
 						<h3>Contraseña Nueva</h3>
 						<input name="contrasenaNueva" type="password" class="form-control"
 							placeholder="Contraseña Nueva*" value="" />

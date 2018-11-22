@@ -287,6 +287,9 @@ height:180px
 						
 							<input type="submit" class="btnUsuario input-lg"
 								name="eliminarUsuario" value="Eliminar usuario" formaction = "interfazEliminarUsuario"/>
+								
+							<input type="submit" class="btnUsuario input-lg"
+								name="modificarPwd" value="Modificar contraseña usuario" formaction = "adminUpdatePwd"/>
 					
 					</div>
 				</form>

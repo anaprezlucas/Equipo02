@@ -1,6 +1,8 @@
 package com.uclm.equipo02;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,8 @@ public class AdminController {
 	UsuarioDaoImplement userDao = new UsuarioDaoImplement();
 	Usuario user = new Usuario();
 	private final String alert = "alerta";
+	private final String usuario_conect = "usuarioConectado";
+	private final String adminUpdatePwd = "adminUpdatePwd";
 
 	//private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
@@ -73,23 +77,7 @@ public class AdminController {
 		return pass = new String(conjunto);
 	}
 	
-	@RequestMapping(value = "/fichajesAdmin", method = RequestMethod.GET)
-	public ModelAndView interfazFichajesAdmin() {
-		return new ModelAndView("interfazAdministrador");
-	}
-
-	@RequestMapping(value = "/interfazCrearUsuario", method = RequestMethod.GET)
-	public ModelAndView interfazCrearUsuario() {
-		return new ModelAndView("interfazCrearUsuario");
-	}
-	@RequestMapping(value = "/interfazEliminarUsuario", method = RequestMethod.GET)
-	public ModelAndView interfazEliminarUsuario() {
-		return new ModelAndView("interfazEliminarUsuario");
-	}
-	@RequestMapping(value = "/modificarUsuario", method = RequestMethod.GET)
-	public ModelAndView modificarUsuario() {
-		return new ModelAndView("modificarUsuario");
-	}
+	
 
 	@RequestMapping(value = "/eliminarUsuario", method = RequestMethod.POST)
 	public String eliminarUsuario(HttpServletRequest request, Model model) throws Exception {
@@ -148,4 +136,64 @@ public class AdminController {
 		return "interfazAdministrador";
 
 	}
+	
+	
+	@RequestMapping(value = "/modificarPwd", method = RequestMethod.POST)
+	public String modificarPwd(HttpServletRequest request, Model model) throws Exception {
+		Usuario usuarioLigero = (Usuario) request.getSession().getAttribute(usuario_conect);
+		
+		String pwdNueva = request.getParameter("contrasenaNueva");
+		String pwdNueva2 = request.getParameter("contrasenaNueva2");
+		String nombre = userDao.devolverUser(usuarioLigero);
+		
+		Usuario usuario = userDao.selectNombre(nombre);
+		if (usuario == null || !(pwdNueva.equals(pwdNueva2))) {
+			request.setAttribute("nombreUser", usuario.getNombre());
+			request.setAttribute("mailUser", usuario.getEmail());
+			model.addAttribute(alert, "Datos incorrectos");
+			return adminUpdatePwd;
+		}
+		try {
+	
+		} catch (Exception e) {
+			model.addAttribute(alert, e.getMessage());
+			request.setAttribute("nombreUser", usuario.getNombre());
+			request.setAttribute("mailUser", usuario.getEmail());
+			return adminUpdatePwd;
+		}
+		
+		if(!Utilidades.seguridadPassword(pwdNueva)) {
+			request.setAttribute("nombreUser", usuario.getNombre());
+			request.setAttribute("mailUser", usuario.getEmail());
+			model.addAttribute("alertaPWDinsegura","Password poco segura (minimo 8 caracteres, con numeros y letras)");
+			return adminUpdatePwd;
+		}else {
+			usuario.setPassword(pwdNueva);
+			userDao.updatePwd(usuario);
+			HttpSession session = request.getSession();
+			request.setAttribute("usuarioNombre", usuario.getNombre());
+			request.setAttribute("usuarioEmail", usuario.getEmail());
+			session.setAttribute("alertaModificarPerfilUsuario", "Mandando alerta modificar perfil usuario");
+		}
+		return adminUpdatePwd;
+	}
+	
+	@RequestMapping(value = "/adminUpdatePwd", method = RequestMethod.GET)
+	public ModelAndView interfazFichajesAdmin() {
+		return new ModelAndView("adminUpdatePwd");
+	}
+
+	@RequestMapping(value = "/interfazCrearUsuario", method = RequestMethod.GET)
+	public ModelAndView interfazCrearUsuario() {
+		return new ModelAndView("interfazCrearUsuario");
+	}
+	@RequestMapping(value = "/interfazEliminarUsuario", method = RequestMethod.GET)
+	public ModelAndView interfazEliminarUsuario() {
+		return new ModelAndView("interfazEliminarUsuario");
+	}
+	@RequestMapping(value = "/modificarUsuario", method = RequestMethod.GET)
+	public ModelAndView modificarUsuario() {
+		return new ModelAndView("modificarUsuario");
+	}
+	
 }
