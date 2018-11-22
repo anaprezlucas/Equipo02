@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-  pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -18,35 +18,42 @@
 
 <style>
 .modificacion-container {
-    margin-left: 5%;
+	margin-left: 5%;
 	margin-bottom: 5%;
 	box-shadow: 5px 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
 		rgba(0, 0, 0, 0.19);
 }
-.modificacion-container h2{
+
+.modificacion-container h2 {
 	padding: 0% 0% 0% 5%;
 }
+
 .busqueda-container {
-    margin-left: 5%;
+	margin-left: 5%;
 	margin-bottom: 5%;
 	box-shadow: 5px 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
 		rgba(0, 0, 0, 0.19);
 }
-.busqueda-container h2{
+
+.busqueda-container h2 {
 	padding: 0% 0% 0% 5%;
 }
+
 .gestion-form {
 	padding: 0% 5% 0% 5%;
 }
+
 .gestion-form h3 {
 	text-align: left;
 	color: #333;
 	text-align: left;
 	font-size: 17px;
 }
+
 .botones-form {
 	padding: 5% 0% 5% 0%;
 }
+
 .botones-form .btnModUsuario {
 	font-weight: 600;
 	color: #fff;
@@ -64,15 +71,32 @@
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#"></a>
 			</div>
-      
-			<div class="nav-item pull-left col-md-1 fixed-top" style="position: relative; top: 8px">
-				<form action="fichajesAdmin" method="GET"> <button class="btn" type="submit"><strong><span class="glyphicon glyphicon-sort"></span> Fichajes</strong></button></form>
+
+			<div class="nav-item pull-left col-md-1 fixed-top"
+				style="position: relative; top: 8px">
+				<form action="fichajesAdmin" method="GET">
+					<button class="btn" type="submit">
+						<strong><span class="glyphicon glyphicon-sort"></span>
+							Fichajes</strong>
+					</button>
+				</form>
 			</div>
-			<div class="nav-item pull-left col-md-1 fixed-top" style="position: relative; top: 8px">
-				<form action="" method="GET"> <button class="btn" type="submit"><strong><span class="glyphicon glyphicon-copy"></span> Incidencias</strong></button></form>
+			<div class="nav-item pull-left col-md-1 fixed-top"
+				style="position: relative; top: 8px">
+				<form action="" method="GET">
+					<button class="btn" type="submit">
+						<strong><span class="glyphicon glyphicon-copy"></span>
+							Incidencias</strong>
+					</button>
+				</form>
 			</div>
-			<div class="col-md-1 pull-right fixed-top" style="position: relative; top: 8px">
-				<form action="logout" method="GET"> <button class="btn btn-danger" type="submit"><strong><span class="glyphicon glyphicon-log-out"></span>Salir</strong></button></form>
+			<div class="col-md-1 pull-right fixed-top"
+				style="position: relative; top: 8px">
+				<form action="logout" method="GET">
+					<button class="btn btn-danger" type="submit">
+						<strong><span class="glyphicon glyphicon-log-out"></span>Salir</strong>
+					</button>
+				</form>
 			</div>
 		</div>
 	</nav>
@@ -85,62 +109,29 @@
 			</h2>
 
 			<div class="gestion-form left-div">
-				<form id="busquedaUsuario" action="buscarUsuarioPorEmail"  method=get >
+				<form id="busquedaUsuario" action="buscarUsuarioAdmin" method=get>
 					<div class="form-group">
-							<h3>E-mail del usuario</h3>
-							<input name="txtEmail" type="text" class="form-control" 
+						<h3>E-mail del usuario</h3>
+						<input name="txtEmail" type="text" class="form-control"
 							placeholder="usuario@ejemplo.com" value="${EmailUsuario}" />
-							
-					</div>				
-					
+
+					</div>
+
 					<div class="botones-form text-right" style="margin: auto;">
-						    	<input type="submit" class="btnBusquedaUsuario input-lg"
-									name="Buscar" value="Búsqueda"/>
-									
-									
-					</div> 
-					
+						<input type="submit" class="btnBusquedaUsuario input-lg"
+							name="Buscar" value="Búsqueda" />
+
+
+					</div>
+
 				</form>
 			</div>
-			
+
 		</div>
 	</div>
-		<!--  <div class="container modificacion-container col-md-6">
-		
-			<h2>
-				<span class="glyphicon glyphicon-pencil"></span> Modificaci&oacuten Usuario
-			</h2>
-			<label>Email de usuario actual: ${EmailUsuario}</label>
-			<form id="ModificacionUsuario" action="modificarUser"  method=get >
-			<div class="form-group">
-							
-							<h3>Nombre del usuario</h3>
-							<input name="txtNombre" type="text" class="form-control" 
-							placeholder="Nombre" value="" />
-							<label>Nombre de usuario actual: ${NombreUsuario} </label>
-				 	</div>
-				 	<div class="form-group">
-						    <h3>Rol del usuario</h3> 
-						    <select name = "listaRoles">
-						    	<option value = "Empleado"> Empleado </option>
-						    	<option value = "Gestor de inicidencias"> Gestor de incidencias </option>
-						    </select>
-						    <label>Rol de usuario actual: ${RolUsuario} </label>
-						    	
-					</div>
-					
-					<div class="botones-form text-right" style="margin: auto;">
-						    	<input type="submit" class="btnModUsuario input-lg"
-									name="Aceptar" value="Aceptar" />
-								
-						</div>
-					</form>
-			
-			</div>-->
-			
-			<!-- CAMBIO PWD -->
-			
-			<div class="container creacion-container col-md-6">
+
+
+	<div class="container creacion-container col-md-6">
 		<div class="row">
 			<h2>
 				<span class="   glyphicon glyphicon-edit"></span> Perfil de Usuario
@@ -150,11 +141,13 @@
 				<form action="adminModificarPwd" method="post" id="formCrearUsuario">
 					<div class="form-group">
 						<h3>Nombre</h3>
-						<input id="nombreUser" type="text" disabled class="form-control" value="${NombreUsuario}" />
+						<input id="nombreUser" type="text" disabled class="form-control"
+						 value="${NombreUsuarioAdmin}" />
 					</div>
-          <div class="form-group">
-  					<h3>E-mail</h3>
-						<input id="mailUser" type="text" disabled class="form-control" value=value="${EmailUsuario}" />
+          			<div class="form-group">
+	  					<h3>E-mail</h3>
+							<input id="mailUser" type="text" disabled class="form-control"
+							 value="${EmailUsuario}" />
 					</div>
 					<div class="form-group">
 						<h3>Contraseña Nueva</h3>
@@ -163,15 +156,15 @@
 					</div>
 					<div class="form-group">
 						<h3>Confirmar Contraseña</h3>
-						<input name="contrasenaNueva2" type="password" class="form-control"
-							placeholder="Contraseña Nueva*" value="" />
+						<input name="contrasenaNueva2" type="password"
+							class="form-control" placeholder="Contraseña Nueva*" value="" />
 					</div>
 					<div class="botones-form text-center" style="margin: auto;">
 						<input type="submit" class="btnUsuario input-lg" name="Aceptar"
 							value="Aceptar" /> <input type="submit"
 							class="btnUsuario input-lg" name="Cancelar" value="Cancelar" />
-					 <span style="color: red"><em>${alerta}</em></span>
-					 <span style="color:red"><em>${alertaPWDinsegura}</em></span>
+						<span style="color: red"><em>${alerta}</em></span> <span
+							style="color: red"><em>${alertaPWDinsegura}</em></span>
 					</div>
 
 				</form>
@@ -180,9 +173,9 @@
 		</div>
 
 	</div>
-			
-	
-	
+
+
+
 
 </body>
 </html>

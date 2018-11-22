@@ -53,6 +53,7 @@ public class UsuarioDaoImplement{
 		}else
 			throw new Exception("Cuenta existente");
 	}
+	
 	//Devuelve un true si existe y false si no existe
 	private boolean selectNombre(Usuario usuario) {
 		MongoCollection<Document> usuarios = obtenerUsuarios();
@@ -65,6 +66,7 @@ public class UsuarioDaoImplement{
 		}
 		return true;
 	}
+	
 public Usuario selectNombre(String nombreParam) {
 		
 		MongoCollection<Document> usuarios = obtenerUsuarios();
@@ -228,6 +230,8 @@ public void updatePwd(Usuario usuario) throws Exception{
 		usuarios.findOneAndUpdate(usuarioBso, actualizacion);
 		
 	}
+	
+	
 
 
 }

@@ -119,6 +119,27 @@ public class AdminController {
 		return "modificarUsuario";
 
 	}
+	
+	@RequestMapping(value = "/buscarUsuarioAdmin", method = RequestMethod.GET)
+	public String buscarUsuarioAdmin(HttpServletRequest request, Model model) throws Exception {
+
+		String email = request.getParameter("txtEmail");
+		//Usuario user = new Usuario();
+		user.setEmail(email);
+
+		user.setNombre(userDao.devolverUser(user));
+		user.setRol(userDao.devolverRol(user));
+
+		model.addAttribute("NombreUsuarioAdmin", user.getNombre());
+		model.addAttribute("RolUsuarioAdmin", user.getRol());
+		model.addAttribute("EmailUsuarioAdmin",email);
+
+
+		return "adminUpdatePwd";
+
+	}
+	
+	
 	@RequestMapping(value = "/modificarUser", method = RequestMethod.GET)
 	public String modificarUser(HttpServletRequest request, Model model) throws Exception {
 
@@ -139,16 +160,23 @@ public class AdminController {
 	
 	
 	@RequestMapping(value = "/adminModificarPwd", method = RequestMethod.POST)
-	public String modificarPwd(HttpServletRequest request, Model model) throws Exception {
+	public String adminModificarPwd(HttpServletRequest request, Model model) throws Exception {
 		Usuario usuarioLigero = (Usuario) request.getSession().getAttribute(usuario_conect);
+		
 		
 		String pwdNueva = request.getParameter("contrasenaNueva");
 		String pwdNueva2 = request.getParameter("contrasenaNueva2");
-		String nombre = userDao.devolverUser(usuarioLigero);
+		
+		
+		Usuario usuarioBusqueda = new Usuario(request.getParameter("nombreUsuarioAdmin"),pwdNueva,request.getParameter("EmailUsuarioAdmin"),request.getParameter("RolUsuarioAdmin"));
+		String nombre = userDao.devolverUser(usuarioBusqueda);
+		
+		
+		
 		
 		Usuario usuario = userDao.selectNombre(nombre);
 		if (usuario == null || !(pwdNueva.equals(pwdNueva2))) {
-			request.setAttribute("nombreUser", usuario.getNombre());
+			request.setAttribute("nombreUserBusqueda", usuario.getNombre());
 			request.setAttribute("mailUser", usuario.getEmail());
 			model.addAttribute(alert, "Datos incorrectos");
 			return adminUpdatePwd;
@@ -168,7 +196,6 @@ public class AdminController {
 			model.addAttribute("alertaPWDinsegura","Password poco segura (minimo 8 caracteres, con numeros y letras)");
 			return adminUpdatePwd;
 		}else {
-			usuario.setPassword(pwdNueva);
 			userDao.updatePwd(usuario);
 			HttpSession session = request.getSession();
 			request.setAttribute("usuarioNombre", usuario.getNombre());
