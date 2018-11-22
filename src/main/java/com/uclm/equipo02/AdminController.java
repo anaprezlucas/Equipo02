@@ -15,6 +15,8 @@ import com.uclm.equipo02.Auxiliar.Utilidades;
 import com.uclm.equipo02.mail.MailSender;
 import com.uclm.equipo02.modelo.Usuario;
 import com.uclm.equipo02.persistencia.UsuarioDaoImplement;
+import com.uclm.equipo02.persistencia.DAOAdmin;
+
 
 @Controller
 public class AdminController {
@@ -166,13 +168,16 @@ public class AdminController {
 	public String adminModificarPwd(HttpServletRequest request, Model model) throws Exception {
 		Usuario usuarioLigero = (Usuario) request.getSession().getAttribute(usuario_conect);
 		
+		String emailUsuario=request.getParameter("txtEmail");;
 		
 		String pwdNueva = request.getParameter("contrasenaNueva");
 		String pwdNueva2 = request.getParameter("contrasenaNueva2");
 		
+		DAOAdmin daoadmin=new DAOAdmin();
+		
 		
 		//Creacion usuario nuevo mediante busqueda por email para su posterior modificacion
-		Usuario usuarioBusqueda = new Usuario(request.getParameter("NombreUsuarioAdmin"),pwdNueva,request.getParameter("EmailUsuarioAdmin"),request.getParameter("RolUsuarioAdmin"));
+		Usuario usuarioBusqueda = daoadmin.buscarUsuarioEmail(emailUsuario);
 		String nombre = userDao.devolverUser(usuarioBusqueda);
 		
 		
