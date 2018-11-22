@@ -37,7 +37,7 @@ public class UsuarioController {
 		usuario.setPassword(pwdActual);
 		
 		if(!userDao.login(usuario)) {
-			model.addAttribute(alert, "Contraseña actual incorrecta");
+			model.addAttribute(alert, "Password actual incorrecta");
 			return gestionPwd;
 		}
 		if (usuario == null || !(pwdNueva.equals(pwdNueva2))) {
