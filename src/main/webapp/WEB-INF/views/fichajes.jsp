@@ -121,10 +121,17 @@ height:180px
 	}
 
 	$(document).ready(function() {
-		$('button').click(function() {
+		$('btnCerrar').click(function() {
 			$('.alert').show()
 		})
 	});
+	
+	$(document).ready(function() {
+		$('btnAbrir').click(function() {
+			$('.alert').show()
+		})
+	});
+	
 </script>
 
 
@@ -207,13 +214,15 @@ height:180px
 			style="color: red"><em>${errorMessageAbrir}</em></span>
 	</div>
 	<div class="alert alert-success alert-dismissable centediv">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			${alertaAbrir}
-		</div>
-		<div class="alert alert-danger alert-dismissable centerdiv">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			${alertaCerrar}
-		</div>
+		<button type="button" class="close" data-dismiss="alert"
+			aria-hidden="true">&times;</button>
+		${alertaAbrir}
+	</div>
+	<div class="alert alert-danger alert-dismissable centerdiv">
+		<button type="button" class="close" data-dismiss="alert"
+			aria-hidden="true">&times;</button>
+		${alertaCerrar}
+	</div>
 
 
 
