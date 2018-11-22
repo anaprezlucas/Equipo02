@@ -213,7 +213,8 @@ height:180px
 		<span style="color: red"><em>${errorMessageCerrar}</em></span> <span
 			style="color: red"><em>${errorMessageAbrir}</em></span>
 	</div>
-	<div class="alert alert-success alert-dismissable centediv">
+	
+	<div class="alert alert-success alert-dismissable centerdiv">
 		<button type="button" class="close" data-dismiss="alert"
 			aria-hidden="true">&times;</button>
 		${alertaFichaje}
