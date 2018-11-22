@@ -121,13 +121,13 @@ height:180px
 	}
 
 	$(document).ready(function() {
-		$('btnCerrar').click(function() {
+		$('#btnCerrar').click(function() {
 			$('.alert').show()
 		})
 	});
 	
 	$(document).ready(function() {
-		$('btnAbrir').click(function() {
+		$('#btnAbrir').click(function() {
 			$('.alert').show()
 		})
 	});
