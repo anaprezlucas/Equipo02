@@ -205,15 +205,15 @@ height:180px
 	<div class="centerdiv">
 		<span style="color: red"><em>${errorMessageCerrar}</em></span> <span
 			style="color: red"><em>${errorMessageAbrir}</em></span>
-		<div class="alert alert-success alert-dismissable">
+	</div>
+	<div class="alert alert-success alert-dismissable centediv">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 			${alertaAbrir}
 		</div>
-		<div class="alert alert-danger alert-dismissable">
+		<div class="alert alert-danger alert-dismissable centerdiv">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 			${alertaCerrar}
 		</div>
-	</div>
 
 
 
