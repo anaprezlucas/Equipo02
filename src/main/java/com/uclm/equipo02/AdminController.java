@@ -171,9 +171,8 @@ public class AdminController {
 		String pwdNueva2 = request.getParameter("contrasenaNueva2");
 		
 		
-		
 		//Creacion usuario nuevo mediante busqueda por email para su posterior modificacion
-		Usuario usuarioBusqueda = new Usuario(request.getParameter("nombreUsuarioAdmin"),pwdNueva,request.getParameter("EmailUsuarioAdmin"),request.getParameter("RolUsuarioAdmin"));
+		Usuario usuarioBusqueda = new Usuario(request.getParameter("nombreUsuarioAdmin"),pwdNueva,request.getParameter("mailUser"),request.getParameter("RolUsuarioAdmin"));
 		String nombre = userDao.devolverUser(usuarioBusqueda);
 		
 		
