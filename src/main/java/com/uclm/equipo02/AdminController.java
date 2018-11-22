@@ -172,13 +172,16 @@ public class AdminController {
 		
 		
 		//Creacion usuario nuevo mediante busqueda por email para su posterior modificacion
-		Usuario usuarioBusqueda = new Usuario(request.getParameter("nombreUsuarioAdmin"),pwdNueva,request.getParameter("mailUser"),request.getParameter("RolUsuarioAdmin"));
+		Usuario usuarioBusqueda = new Usuario(request.getParameter("NombreUsuarioAdmin"),pwdNueva,request.getParameter("EmailUsuarioAdmin"),request.getParameter("RolUsuarioAdmin"));
 		String nombre = userDao.devolverUser(usuarioBusqueda);
 		
 		
 		
 		
 		Usuario usuario = userDao.selectNombre(nombre);
+		usuario.setEmail(usuarioBusqueda.getEmail());
+		usuario.setPassword(pwdNueva);
+		
 		if (usuario == null || !(pwdNueva.equals(pwdNueva2))) {
 			request.setAttribute("nombreUserBusqueda", usuario.getNombre());
 			request.setAttribute("mailUser", usuario.getEmail());
