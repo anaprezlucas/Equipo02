@@ -113,7 +113,7 @@
 					<div class="form-group">
 						<h3>E-mail del usuario</h3>
 						<input name="txtEmail" type="text" class="form-control"
-							placeholder="usuario@ejemplo.com" value="${EmailUsuario}" />
+							placeholder="usuario@ejemplo.com" value="${EmailUsuarioAdmin}" />
 
 					</div>
 
