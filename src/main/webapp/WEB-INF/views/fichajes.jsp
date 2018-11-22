@@ -196,8 +196,9 @@ function switchState() {
 	</div>
 	
 	<div class="centerdiv">
-		<span style="color:red"><em>${errorMessageCerrar}</em></span>
-		<span style="color:red"><em>${errorMessageAbrir}</em></span>
+	<span class="alert alert-danger"><em>${errorMessageCerrar}</em></span>
+		<span class="alert alert-danger"><em>${errorMessageAbrir}</em></span>
+		<span class="alert alert-success"><em>${alertaFichaje}</em></span>
 	</div>
 
 
