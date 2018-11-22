@@ -102,6 +102,9 @@ public class AdminController {
 		}
 	}
 
+	
+	/**COMPROBAR SI NO EXISTE ESE EMAIL***/
+	
 	@RequestMapping(value = "/buscarUsuarioPorEmail", method = RequestMethod.GET)
 	public String buscarUsuario(HttpServletRequest request, Model model) throws Exception {
 
