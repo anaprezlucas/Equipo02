@@ -147,7 +147,7 @@
           			<div class="form-group">
 	  					<h3>E-mail</h3>
 							<input id="mailUser" type="text" disabled class="form-control"
-							 value="${EmailUsuario}" />
+							 value="${EmailUsuarioAdmin}" />
 					</div>
 					<div class="form-group">
 						<h3>Contraseña Nueva</h3>
