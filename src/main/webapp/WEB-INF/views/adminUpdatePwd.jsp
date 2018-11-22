@@ -147,7 +147,7 @@
 			</h2>
 
 			<div class="gestion-form left-div">
-				<form action="modificarPwd" method="post" id="formCrearUsuario">
+				<form action="adminModificarPwd" method="post" id="formCrearUsuario">
 					<div class="form-group">
 						<h3>Nombre</h3>
 						<input id="nombreUser" type="text" disabled class="form-control"

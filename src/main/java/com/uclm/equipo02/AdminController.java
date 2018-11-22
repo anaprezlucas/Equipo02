@@ -138,7 +138,7 @@ public class AdminController {
 	}
 	
 	
-	@RequestMapping(value = "/modificarPwd", method = RequestMethod.POST)
+	@RequestMapping(value = "/adminModificarPwd", method = RequestMethod.POST)
 	public String modificarPwd(HttpServletRequest request, Model model) throws Exception {
 		Usuario usuarioLigero = (Usuario) request.getSession().getAttribute(usuario_conect);
 		
