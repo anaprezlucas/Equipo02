@@ -120,19 +120,19 @@
 					</div>
 					
 					<div class="form-group">
-						<h3>Contraseña Actual</h3>
+						<h3>Contrase&ntilde;a Actual</h3>
 						<input name="contrasenaActual" type="password" class="form-control"
 							placeholder="Contrase&ntilde;a Actual*" value="" />
 					</div>
 					
 					<div class="form-group">
-						<h3>Contraseña Nueva</h3>
+						<h3>Contrase&ntilde;a Nueva</h3>
 						<input name="contrasenaNueva" type="password" class="form-control"
 							placeholder="Contrase&ntilde;a Nueva*" value="" />
 					</div>
 					
 					<div class="form-group">
-						<h3>Confirmar Contraseña</h3>
+						<h3>Confirmar Contrase&ntilde;a</h3>
 						<input name="contrasenaNueva2" type="password" class="form-control"
 							placeholder="Contrase&ntilde;a Nueva*" value="" />
 					</div>
