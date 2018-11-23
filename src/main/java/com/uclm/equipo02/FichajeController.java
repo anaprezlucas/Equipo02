@@ -34,8 +34,10 @@ public class FichajeController {
 	private final String errorMessageCerrar = "errorMessageCerrar";
 	private final String fichajes = "fichajes";
 	private final String interfazAdministrador="interfazAdministrador";
-
-
+	private final String alertaFichaje="alertaFichaje";
+	
+	
+	
 	@RequestMapping(value = "abrirFichaje", method = RequestMethod.POST)
 	public String abrirFichaje(HttpServletRequest request, Model model) throws Exception {
 		String hora;
@@ -56,6 +58,7 @@ public class FichajeController {
 
 		}else {
 			fichajedao.abrirFichaje(fichaje);
+			model.addAttribute(alertaFichaje,"El usuario "+fichaje.getEmailFichaje()+" ha abierto un fichaje");
 		}
 		return fichajes;
 	} 
@@ -79,8 +82,9 @@ public class FichajeController {
 
 		Fichaje fichaje = new Fichaje(usuario.getEmail(), fecha,horaentrada,horaactual,false);;
 
-		if(fichajedao.validezCerrado(fichaje)) {///FUNCIONA PERO NO SALE EL MENSAJE
+		if(fichajedao.validezCerrado(fichaje)) {
 			fichajedao.cerrarFichaje(usuario, fichaje);
+			model.addAttribute(alertaFichaje,"El usuario "+fichaje.getEmailFichaje()+" ha cerrado un fichaje");
 
 
 		}else {
@@ -144,6 +148,7 @@ public class FichajeController {
 
 		}else {
 			fichajedao.abrirFichaje(fichaje);
+			model.addAttribute(alertaFichaje,"El usuario "+fichaje.getEmailFichaje()+" ha abierto un fichaje");
 		}
 		return interfazAdministrador;
 	} 
@@ -155,10 +160,6 @@ public class FichajeController {
 		usuario = (Usuario) request.getSession().getAttribute(usuario_conect);
 		String fecha;
 		fecha=(java.time.LocalDate.now()).toString();
-
-		/**Al no poder trabajar mas de 8 horas los fichajes entre dias quedan descartados, el criterio de busqueda se rige por nombre
-		de empleado y la fecha del dia actual para poder cerrar el fichaje, si los criterios de aception cambian y debemos hacer fichajes entre dias
-		se arreglaria introduciendo un ID al fichaje como criterio de busqueda en la BBD**/
 		String horaentrada;
 		horaentrada=fichajedao.getHoraEntrada(usuario.getEmail(),fecha);
 
@@ -169,8 +170,9 @@ public class FichajeController {
 
 		Fichaje fichaje = new Fichaje(usuario.getEmail(), fecha,horaentrada,horaactual,false);;
 
-		if(fichajedao.validezCerrado(fichaje)) {///FUNCIONA PERO NO SALE EL MENSAJE
+		if(fichajedao.validezCerrado(fichaje)) {
 			fichajedao.cerrarFichaje(usuario, fichaje);
+			model.addAttribute(alertaFichaje,"El usuario "+fichaje.getEmailFichaje()+" ha cerrado un fichaje");
 
 
 		}else {
@@ -202,7 +204,8 @@ public class FichajeController {
 		} 
 	 
 	
-
+	/***Redireccion a gestionPwd***/
+	
 	
 	@RequestMapping(value = "/gestionPwd", method = RequestMethod.GET)
 	public ModelAndView gestionPwd(HttpServletRequest request) {
@@ -212,6 +215,7 @@ public class FichajeController {
 		request.setAttribute("mailUser", usuario.getEmail());
 		return new ModelAndView("gestionPwd");
 	}
+
 
 
 }
