@@ -104,19 +104,18 @@ height:180px
 
 
 <script>
-	
-function switchState() {
+	function switchState() {
 
-    if(document.getElementById( 'tdState' ).innerHTML = "true"){
-    	
-    	return document.getElementById('tdState').innerHTML = "Abierto";
-    	
-    }else if(document.getElementById( 'tdState' ).innerHTML = "false"){
-    	
-    	return document.getElementById('tdState').innerHTML = "Cerrado";
-    }     
-}	
-	
+		if (document.getElementById('tdState').innerHTML = "true") {
+
+			return document.getElementById('tdState').innerHTML = "Abierto";
+
+		} else if (document.getElementById('tdState').innerHTML = "false") {
+
+			return document.getElementById('tdState').innerHTML = "Cerrado";
+		}
+	}
+
 	
 </script>
 
@@ -194,12 +193,14 @@ function switchState() {
 			</div>
 	
 	</div>
-	
-	<div class="centerdiv">
-		<span style="color:red"><em>${errorMessageCerrar}</em></span>
-		<span style="color:red"><em>${errorMessageAbrir}</em></span>
-	</div>
 
+	<div class="centerdiv">
+		<span style="color: red"><em>${errorMessageCerrar}</em></span> 
+		<span style="color: red"><em>${errorMessageAbrir}</em></span>
+		<span style="color: green"><em>${alertaFichaje}</em></span>
+	</div>
+	
+	
 
 
 	<div class="historial collapse.in col-md-8 col-md-offset-2" id="panelFichajes">
