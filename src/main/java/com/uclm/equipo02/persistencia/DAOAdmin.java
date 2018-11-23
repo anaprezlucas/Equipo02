@@ -46,11 +46,9 @@ public class DAOAdmin {
 			documento = elementos.next();
 				if(documento.get("email").toString().equalsIgnoreCase(email)) {
 					bool=true;
-					System.out.println("CHECK BOOL IF"+bool);
 				}
 				
 		}
-		System.out.println("CHECK BOOL RETURN"+bool);
 		return bool;
 		
 	}

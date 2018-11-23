@@ -115,7 +115,7 @@ public class AdminController {
 		
 		if(!daoadmin.existeUser(email)) {
 			model.addAttribute("alertaUsuarioNull","El usuario buscado no existe");
-			return adminUpdatePwd;
+			return "modificarUsuario";
 		}else {
 		
 		//Usuario user = new Usuario();
@@ -126,9 +126,11 @@ public class AdminController {
 
 		model.addAttribute("NombreUsuario", user.getNombre());
 		model.addAttribute("RolUsuario", user.getRol());
+		
+		return "modificarUsuario";
 		}
 
-		return "modificarUsuario";
+		
 
 	}
 	
@@ -223,7 +225,7 @@ public class AdminController {
 		return new ModelAndView("adminUpdatePwd");
 		
 	}
-	@RequestMapping(value = "/fichajesAdminNav", method = RequestMethod.GET)
+	@RequestMapping(value = "/REfichajesAdminNav", method = RequestMethod.GET)
 	public ModelAndView fichajesAdminNav() {
 		return new ModelAndView("interfazAdministrador");
 		
