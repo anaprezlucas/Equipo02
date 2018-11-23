@@ -159,28 +159,10 @@ height:180px
 			</div>
 			<div class="nav-item pull-left fixed-top"
 				style="position: relative; top: 8px">
-				<form action="inicio" method="GET">
+				<form action="REfichajesAdminNav" method="GET">
 					<button class="btn btn-space" type="submit">
 						<strong><span class="glyphicon glyphicon-sort"></span>
 							Fichajes</strong>
-					</button>
-				</form>
-			</div>
-			<div class="nav-item pull-left  fixed-top"
-				style="position: relative; top: 8px">
-				<form action="fichajes" method="GET">
-					<button class="btn btn-space " type="submit">
-						<strong><span class="glyphicon glyphicon-copy"></span>
-							Gestionar Incidencias</strong>
-					</button>
-				</form>
-			</div>
-			<div class="nav-item pull-left fixed-top"
-				style="position: relative; top: 8px">
-				<form action="Incidencias" method="GET">
-					<button class="btn btn-space" type="submit">
-						<strong><span class="glyphicon glyphicon-cog"></span>
-							Gestionar Contraseña</strong>
 					</button>
 				</form>
 			</div>
@@ -224,6 +206,7 @@ height:180px
 <div class="centerdiv">
 	<span style="color:red"><em>${errorMessageCerrar}</em></span>
 		<span style="color:red"><em>${errorMessageAbrir}</em></span>
+		<span style="color: green"><em>${alertaFichaje}</em></span>
 	</div>
 
 
@@ -268,7 +251,7 @@ height:180px
 	<div class="container gestion-container col-md-4">
 		<div class="row">
 			<h2>
-				<span class=" glyphicon glyphicon-asterisk"></span> Gestión de usuarios
+				<span class=" glyphicon glyphicon-asterisk"></span> GestiÃ³n de usuarios
 			</h2>
 
 
@@ -286,6 +269,9 @@ height:180px
 						
 							<input type="submit" class="btnUsuario input-lg"
 								name="eliminarUsuario" value="Eliminar usuario" formaction = "interfazEliminarUsuario"/>
+								
+							<input type="submit" class="btnUsuario input-lg"
+								name="modificarPwd" value="Modificar contraseÃ±a usuario" formaction = "adminUpdatePwd"/>
 					
 					</div>
 				</form>
