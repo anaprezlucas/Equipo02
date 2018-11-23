@@ -74,19 +74,10 @@
 
 			<div class="nav-item pull-left col-md-1 fixed-top"
 				style="position: relative; top: 8px">
-				<form action="fichajesAdmin" method="GET">
+				<form action="fichajesAdminNav" method="GET">
 					<button class="btn" type="submit">
 						<strong><span class="glyphicon glyphicon-sort"></span>
 							Fichajes</strong>
-					</button>
-				</form>
-			</div>
-			<div class="nav-item pull-left col-md-1 fixed-top"
-				style="position: relative; top: 8px">
-				<form action="" method="GET">
-					<button class="btn" type="submit">
-						<strong><span class="glyphicon glyphicon-copy"></span>
-							Incidencias</strong>
 					</button>
 				</form>
 			</div>
@@ -102,52 +93,24 @@
 	</nav>
 
 
-	<div class="container busqueda-container col-md-4">
+
+
+	<div class="container creacion-container col-md-6 col-md-offset-3" style="border:1px solid #cecece">
+
+		
 		<div class="row">
 			<h2>
-				<span class="glyphicon glyphicon-search"></span> B&uacutesqueda de usuario
-			</h2>
-
-			<div class="gestion-form left-div">
-				<form id="busquedaUsuario" action="buscarUsuarioAdmin" method=get>
-					<div class="form-group">
-						<h3>E-mail del usuario</h3>
-						<input name="txtEmail" type="text" class="form-control"
-							placeholder="usuario@ejemplo.com" value="${EmailUsuarioAdmin}" />
-
-					</div>
-
-					<div class="botones-form text-right" style="margin: auto;">
-						<input type="submit" class="btnBusquedaUsuario input-lg"
-							name="Buscar" value="Búsqueda" />
-
-
-					</div>
-
-				</form>
-			</div>
-
-		</div>
-	</div>
-
-
-	<div class="container creacion-container col-md-6">
-		<div class="row">
-			<h2>
-				<span class="   glyphicon glyphicon-edit"></span> Perfil de Usuario
+				<span class="   glyphicon glyphicon-edit"></span> Modificación contraseña usuario
 			</h2>
 
 			<div class="gestion-form left-div">
 				<form action="adminModificarPwd" method="post" id="formCrearUsuario">
+				
 					<div class="form-group">
-						<h3>Nombre</h3>
-						<input id="nombreUser" type="text" disabled class="form-control"
-						 value="${NombreUsuarioAdmin}" />
-					</div>
-          			<div class="form-group">
-	  					<h3>E-mail</h3>
-							<input id="mailUser" type="text" disabled class="form-control"
-							 value="${EmailUsuarioAdmin}" />
+					<h3>E-mail del usuario</h3>
+						<input name="txtEmail" type="text" class="form-control"
+							placeholder="usuario@ejemplo.com" value="" />
+
 					</div>
 					<div class="form-group">
 						<h3>Contraseña Nueva</h3>
@@ -163,8 +126,10 @@
 						<input type="submit" class="btnUsuario input-lg" name="Aceptar"
 							value="Aceptar" /> <input type="submit"
 							class="btnUsuario input-lg" name="Cancelar" value="Cancelar" />
-						<span style="color: red"><em>${alerta}</em></span> <span
-							style="color: red"><em>${alertaPWDinsegura}</em></span>
+						<span style="color: red"><em>${alerta}</em></span> 
+						<span style="color: red"><em>${alertaPWDinsegura}</em></span>
+						<span style="color:green"><em>${alertaCambio}</em></span>
+						<span style="color:red"><em>${alertaUsuarioNull}</em></span>
 					</div>
 
 				</form>

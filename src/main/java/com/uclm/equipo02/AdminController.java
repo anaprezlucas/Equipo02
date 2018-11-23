@@ -26,6 +26,7 @@ public class AdminController {
 	private final String alert = "alerta";
 	private final String usuario_conect = "usuarioConectado";
 	private final String adminUpdatePwd = "adminUpdatePwd";
+	private DAOAdmin daoadmin=new DAOAdmin();
 
 	//private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
@@ -111,6 +112,12 @@ public class AdminController {
 	public String buscarUsuario(HttpServletRequest request, Model model) throws Exception {
 
 		String email = request.getParameter("txtEmail");
+		
+		if(!daoadmin.existeUser(email)) {
+			model.addAttribute("alertaUsuarioNull","El usuario buscado no existe");
+			return adminUpdatePwd;
+		}else {
+		
 		//Usuario user = new Usuario();
 		user.setEmail(email);
 
@@ -119,28 +126,9 @@ public class AdminController {
 
 		model.addAttribute("NombreUsuario", user.getNombre());
 		model.addAttribute("RolUsuario", user.getRol());
-
+		}
 
 		return "modificarUsuario";
-
-	}
-	
-	@RequestMapping(value = "/buscarUsuarioAdmin", method = RequestMethod.GET)
-	public String buscarUsuarioAdmin(HttpServletRequest request, Model model) throws Exception {
-
-		String email = request.getParameter("txtEmail");
-		//Usuario user = new Usuario();
-		user.setEmail(email);
-
-		user.setNombre(userDao.devolverUser(user));
-		user.setRol(userDao.devolverRol(user));
-
-		model.addAttribute("NombreUsuarioAdmin", user.getNombre());
-		model.addAttribute("RolUsuarioAdmin", user.getRol());
-		model.addAttribute("EmailUsuarioAdmin",email);
-
-
-		return "adminUpdatePwd";
 
 	}
 	
@@ -168,16 +156,26 @@ public class AdminController {
 	public String adminModificarPwd(HttpServletRequest request, Model model) throws Exception {
 		Usuario usuarioLigero = (Usuario) request.getSession().getAttribute(usuario_conect);
 		
-		String emailUsuario=request.getParameter("txtEmail");;
+		String emailUsuario = request.getParameter("txtEmail");
+		
+		
 		
 		String pwdNueva = request.getParameter("contrasenaNueva");
 		String pwdNueva2 = request.getParameter("contrasenaNueva2");
 		
-		DAOAdmin daoadmin=new DAOAdmin();
+		
+		Usuario usuarioBusqueda= new Usuario();
 		
 		
-		//Creacion usuario nuevo mediante busqueda por email para su posterior modificacion
-		Usuario usuarioBusqueda = daoadmin.buscarUsuarioEmail(emailUsuario);
+		if(!daoadmin.existeUser(emailUsuario)) {
+			model.addAttribute("alertaUsuarioNull","El usuario buscado no existe");
+			return adminUpdatePwd;
+			
+		}else {
+		
+		usuarioBusqueda = daoadmin.buscarUsuarioEmail(emailUsuario);
+		
+		
 		String nombre = userDao.devolverUser(usuarioBusqueda);
 		
 		
@@ -212,14 +210,23 @@ public class AdminController {
 			HttpSession session = request.getSession();
 			request.setAttribute("usuarioNombre", usuario.getNombre());
 			request.setAttribute("usuarioEmail", usuario.getEmail());
-			session.setAttribute("alertaModificarPerfilUsuario", "Mandando alerta modificar perfil usuario");
+			session.setAttribute("alertaCambio", "La contraseña ha sido cambiada satisfactoriamente");
+			return adminUpdatePwd;
 		}
-		return adminUpdatePwd;
+		
+		}
+		
 	}
 	
 	@RequestMapping(value = "/adminUpdatePwd", method = RequestMethod.GET)
 	public ModelAndView interfazFichajesAdmin() {
 		return new ModelAndView("adminUpdatePwd");
+		
+	}
+	@RequestMapping(value = "/fichajesAdminNav", method = RequestMethod.GET)
+	public ModelAndView fichajesAdminNav() {
+		return new ModelAndView("interfazAdministrador");
+		
 	}
 
 	@RequestMapping(value = "/interfazCrearUsuario", method = RequestMethod.GET)

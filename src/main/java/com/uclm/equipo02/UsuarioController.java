@@ -67,11 +67,11 @@ public class UsuarioController {
 			usuario.setPassword(pwdNueva);
 			userDao.updatePwd(usuario);
 			HttpSession session = request.getSession();
-			request.setAttribute("usuarioNombre", usuario.getNombre());
-			request.setAttribute("usuarioEmail", usuario.getEmail());
-			session.setAttribute("alertaModificarPerfilUsuario", "Mandando alerta modificar perfil usuario");
+			request.setAttribute("nombreUser", usuario.getNombre());
+			request.setAttribute("mailUser", usuario.getEmail());
+			session.setAttribute("alertaCambio", "La contraseña ha sido cambiada satisfactoriamente");
+			return gestionPwd;
 		}
-		return "fichajes";
 	}
 	
 	
