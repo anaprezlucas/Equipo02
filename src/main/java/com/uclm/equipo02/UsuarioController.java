@@ -69,7 +69,7 @@ public class UsuarioController {
 			HttpSession session = request.getSession();
 			request.setAttribute("nombreUser", usuario.getNombre());
 			request.setAttribute("mailUser", usuario.getEmail());
-			session.setAttribute("alertaCambio", "La contraseña ha sido cambiada satisfactoriamente");
+			session.setAttribute("alertaCambio", "La contrase&ntilde;a ha sido cambiada satisfactoriamente");
 			return gestionPwd;
 		}
 	}

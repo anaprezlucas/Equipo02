@@ -212,7 +212,7 @@ public class AdminController {
 			HttpSession session = request.getSession();
 			request.setAttribute("usuarioNombre", usuario.getNombre());
 			request.setAttribute("usuarioEmail", usuario.getEmail());
-			session.setAttribute("alertaCambio", "La contraseña ha sido cambiada satisfactoriamente");
+			session.setAttribute("alertaCambio", "La contrase&ntilde;a ha sido cambiada satisfactoriamente");
 			return adminUpdatePwd;
 		}
 		
