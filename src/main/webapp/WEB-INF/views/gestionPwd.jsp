@@ -121,27 +121,37 @@
 						<input id="nombreUser" type="text" disabled class="form-control"
 						 value=<%=request.getAttribute("nombreUser")%> />
 					</div>
-          <div class="form-group">
-  					<h3>E-mail</h3>
-						<input id="mailUser" type="text" disabled class="form-control"
-						 value=<%=request.getAttribute("mailUser")%> />
+          			<div class="form-group">
+	  					<h3>E-mail</h3>
+							<input id="mailUser" type="text" disabled class="form-control"
+							 value=<%=request.getAttribute("mailUser")%> />
 					</div>
+					
 					<div class="form-group">
-						<h3>Contrase�a Nueva</h3>
+						<h3>Contraseña Actual</h3>
+						<input name="contrasenaActual" type="password" class="form-control"
+							placeholder="Contraseña Actual*" value="" />
+					</div>
+					
+					<div class="form-group">
+						<h3>Contraseña Nueva</h3>
 						<input name="contrasenaNueva" type="password" class="form-control"
-							placeholder="Contrase�a Nueva*" value="" />
+							placeholder="Contraseña Nueva*" value="" />
 					</div>
+					
 					<div class="form-group">
-						<h3>Confirmar Contrase�a</h3>
+						<h3>Confirmar Contraseña</h3>
 						<input name="contrasenaNueva2" type="password" class="form-control"
-							placeholder="Contrase�a Nueva*" value="" />
+							placeholder="Contraseña Nueva*" value="" />
 					</div>
+					
 					<div class="botones-form text-center" style="margin: auto;">
 						<input type="submit" class="btnUsuario input-lg" name="Aceptar"
 							value="Aceptar" /> <input type="submit"
 							class="btnUsuario input-lg" name="Cancelar" value="Cancelar" />
 					 <span style="color: red"><em>${alerta}</em></span>
 					 <span style="color:red"><em>${alertaPWDinsegura}</em></span>
+					 <span style="color:green"><em>${alertaCambio}</em></span>
 					</div>
 
 				</form>
