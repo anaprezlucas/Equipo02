@@ -53,7 +53,7 @@ public class FichajeController {
 
 		Fichaje fichaje = new Fichaje(usuario.getEmail(), fecha, hora,null,true);
 
-		if(!fichajedao.validezAbierto(fichaje)) {///FUNCIONA PERO NO SALE EL MENSAJE
+		if(!fichajedao.validezAbierto(fichaje)) {
 			model.addAttribute(errorMessageAbrir, "No puedes abrir otro fichaje, necesitas cerrar tu fichaje actual");
 
 		}else {
@@ -143,7 +143,7 @@ public class FichajeController {
 
 		Fichaje fichaje = new Fichaje(usuario.getEmail(), fecha, hora,null,true);
 
-		if(!fichajedao.validezAbierto(fichaje)) {///FUNCIONA PERO NO SALE EL MENSAJE
+		if(!fichajedao.validezAbierto(fichaje)) {
 			model.addAttribute(errorMessageAbrir, "No puedes abrir otro fichaje, necesitas cerrar tu fichaje actual");
 
 		}else {

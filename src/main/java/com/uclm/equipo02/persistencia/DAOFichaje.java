@@ -150,21 +150,6 @@ public class DAOFichaje {
 
 		return false;
 	}
-/**
-	public boolean creacionVarios(Fichaje fichaje) {
-		Document documento = new Document();
-		MongoCursor<Document> elementos = getFichajes().find().iterator();
-		while(elementos.hasNext()) {
-			documento = elementos.next();
-			if(documento.get("emailEmpleado").toString().equalsIgnoreCase(fichaje.getEmailFichaje()))
-				if(documento.get("fechaFichaje").toString().equals(fichaje.getFechaFichaje()))
-					if(documento.get("estado").toString().equals(Boolean.toString(fichaje.getEstado())))
-						return true;
-
-		}
-		return false;
-	}
-**/
 
 
 
