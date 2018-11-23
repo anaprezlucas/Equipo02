@@ -14,6 +14,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script 
+	src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
 
 
 <style>
@@ -104,7 +106,7 @@
 			</h2>
 
 			<div class="gestion-form left-div">
-				<form action="adminModificarPwd" method="post" id="formCrearUsuario">
+				<form action="adminModificarPwd" method="post" id="formCrearUsuario" data-toggle="validator">
 				
 					<div class="form-group">
 					<h3>E-mail del usuario</h3>
@@ -113,14 +115,16 @@
 
 					</div>
 					<div class="form-group">
-						<h3>Contraseña Nueva</h3>
-						<input name="contrasenaNueva" type="password" class="form-control"
-							placeholder="Contraseña Nueva*" value="" />
+						<h3>Contrase&ntilde;a Nueva</h3>
+						<input id="contrasenaNueva" name="contrasenaNueva" type="password" class="form-control"
+							placeholder="Contrase&ntilde;a Nueva*" data-match-error="Las contrase&ntilde;as no coinciden" required/>
 					</div>
+					
 					<div class="form-group">
-						<h3>Confirmar Contraseña</h3>
-						<input name="contrasenaNueva2" type="password"
-							class="form-control" placeholder="Contraseña Nueva*" value="" />
+						<h3>Confirmar Contrase&ntilde;a</h3>
+						<input id="contrasenaNueva2" name="contrasenaNueva2" type="password" class="form-control" data-match="#contrasenaNueva" 
+						placeholder="Contrase&ntilde;a Nueva*"  data-match-error="Las contrase&ntilde;as no coinciden" required/>
+							<div class="help-block with-errors"></div>
 					</div>
 					<div class="botones-form text-center" style="margin: auto;">
 						<input type="submit" class="btnUsuario input-lg" name="Aceptar"
