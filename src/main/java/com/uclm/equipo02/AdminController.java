@@ -1,6 +1,8 @@
 package com.uclm.equipo02;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,8 @@ import com.uclm.equipo02.Auxiliar.Utilidades;
 import com.uclm.equipo02.mail.MailSender;
 import com.uclm.equipo02.modelo.Usuario;
 import com.uclm.equipo02.persistencia.UsuarioDaoImplement;
+import com.uclm.equipo02.persistencia.DAOAdmin;
+
 
 @Controller
 public class AdminController {
@@ -20,6 +24,9 @@ public class AdminController {
 	UsuarioDaoImplement userDao = new UsuarioDaoImplement();
 	Usuario user = new Usuario();
 	private final String alert = "alerta";
+	private final String usuario_conect = "usuarioConectado";
+	private final String adminUpdatePwd = "adminUpdatePwd";
+	private DAOAdmin daoadmin=new DAOAdmin();
 
 	//private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
@@ -48,8 +55,8 @@ public class AdminController {
 		}
 
 		String destinatario =  "alguien@servidor.com"; //A quien le quieres escribir.
-		String asunto = "Contraseña por defecto";
-		String cuerpo = "Hola " + nombre + "! \nLa contraseña por defecto es la siguiente:\n" + pass
+		String asunto = "ContraseÃ±a por defecto";
+		String cuerpo = "Hola " + nombre + "! \nLa contraseÃ±a por defecto es la siguiente:\n" + pass
 				+"\n\nUn Saludo\nInTime Corporation";
 
 		MailSender mailSender = new MailSender();
@@ -73,23 +80,7 @@ public class AdminController {
 		return pass = new String(conjunto);
 	}
 	
-	@RequestMapping(value = "/fichajesAdmin", method = RequestMethod.GET)
-	public ModelAndView interfazFichajesAdmin() {
-		return new ModelAndView("interfazAdministrador");
-	}
-
-	@RequestMapping(value = "/interfazCrearUsuario", method = RequestMethod.GET)
-	public ModelAndView interfazCrearUsuario() {
-		return new ModelAndView("interfazCrearUsuario");
-	}
-	@RequestMapping(value = "/interfazEliminarUsuario", method = RequestMethod.GET)
-	public ModelAndView interfazEliminarUsuario() {
-		return new ModelAndView("interfazEliminarUsuario");
-	}
-	@RequestMapping(value = "/modificarUsuario", method = RequestMethod.GET)
-	public ModelAndView modificarUsuario() {
-		return new ModelAndView("modificarUsuario");
-	}
+	
 
 	@RequestMapping(value = "/eliminarUsuario", method = RequestMethod.POST)
 	public String eliminarUsuario(HttpServletRequest request, Model model) throws Exception {
@@ -113,11 +104,17 @@ public class AdminController {
 			return "interfazAdministrador";
 		}
 	}
-
+	
 	@RequestMapping(value = "/buscarUsuarioPorEmail", method = RequestMethod.GET)
 	public String buscarUsuario(HttpServletRequest request, Model model) throws Exception {
 
 		String email = request.getParameter("txtEmail");
+		
+		if(!daoadmin.existeUser(email)) {
+			model.addAttribute("alertaUsuarioNull","El usuario buscado no existe");
+			return "modificarUsuario";
+		}else {
+		
 		//Usuario user = new Usuario();
 		user.setEmail(email);
 
@@ -126,11 +123,15 @@ public class AdminController {
 
 		model.addAttribute("NombreUsuario", user.getNombre());
 		model.addAttribute("RolUsuario", user.getRol());
-
-
+		
 		return "modificarUsuario";
+		}
+
+		
 
 	}
+	
+	
 	@RequestMapping(value = "/modificarUser", method = RequestMethod.GET)
 	public String modificarUser(HttpServletRequest request, Model model) throws Exception {
 
@@ -148,4 +149,96 @@ public class AdminController {
 		return "interfazAdministrador";
 
 	}
+	
+	
+	@RequestMapping(value = "/adminModificarPwd", method = RequestMethod.POST)
+	public String adminModificarPwd(HttpServletRequest request, Model model) throws Exception {
+		Usuario usuarioLigero = (Usuario) request.getSession().getAttribute(usuario_conect);
+		
+		String emailUsuario = request.getParameter("txtEmail");
+		
+		
+		
+		String pwdNueva = request.getParameter("contrasenaNueva");
+		String pwdNueva2 = request.getParameter("contrasenaNueva2");
+		
+		
+		Usuario usuarioBusqueda= new Usuario();
+		
+		
+		if(!daoadmin.existeUser(emailUsuario)) {
+			model.addAttribute("alertaUsuarioNull","El usuario buscado no existe");
+			return adminUpdatePwd;
+			
+		}else {
+		
+		usuarioBusqueda = daoadmin.buscarUsuarioEmail(emailUsuario);
+		
+		
+		String nombre = userDao.devolverUser(usuarioBusqueda);
+		
+		
+		
+		
+		Usuario usuario = userDao.selectNombre(nombre);
+		usuario.setEmail(usuarioBusqueda.getEmail());
+		usuario.setPassword(pwdNueva);
+		
+		if (usuario == null || !(pwdNueva.equals(pwdNueva2))) {
+			request.setAttribute("nombreUserBusqueda", usuario.getNombre());
+			request.setAttribute("mailUser", usuario.getEmail());
+			model.addAttribute(alert, "Datos incorrectos");
+			return adminUpdatePwd;
+		}
+		try {
+	
+		} catch (Exception e) {
+			model.addAttribute(alert, e.getMessage());
+			request.setAttribute("nombreUser", usuario.getNombre());
+			request.setAttribute("mailUser", usuario.getEmail());
+			return adminUpdatePwd;
+		}
+		
+		if(!Utilidades.seguridadPassword(pwdNueva)) {
+			request.setAttribute("nombreUser", usuario.getNombre());
+			request.setAttribute("mailUser", usuario.getEmail());
+			model.addAttribute("alertaPWDinsegura","Password poco segura (minimo 8 caracteres, con numeros y letras)");
+			return adminUpdatePwd;
+		}else {
+			userDao.updatePwd(usuario);
+			HttpSession session = request.getSession();
+			request.setAttribute("usuarioNombre", usuario.getNombre());
+			request.setAttribute("usuarioEmail", usuario.getEmail());
+			session.setAttribute("alertaCambio", "La contrase&ntilde;a ha sido cambiada satisfactoriamente");
+			return adminUpdatePwd;
+		}
+		
+		}
+		
+	}
+	
+	@RequestMapping(value = "/adminUpdatePwd", method = RequestMethod.GET)
+	public ModelAndView interfazFichajesAdmin() {
+		return new ModelAndView("adminUpdatePwd");
+		
+	}
+	@RequestMapping(value = "/REfichajesAdminNav", method = RequestMethod.GET)
+	public ModelAndView fichajesAdminNav() {
+		return new ModelAndView("interfazAdministrador");
+		
+	}
+
+	@RequestMapping(value = "/interfazCrearUsuario", method = RequestMethod.GET)
+	public ModelAndView interfazCrearUsuario() {
+		return new ModelAndView("interfazCrearUsuario");
+	}
+	@RequestMapping(value = "/interfazEliminarUsuario", method = RequestMethod.GET)
+	public ModelAndView interfazEliminarUsuario() {
+		return new ModelAndView("interfazEliminarUsuario");
+	}
+	@RequestMapping(value = "/modificarUsuario", method = RequestMethod.GET)
+	public ModelAndView modificarUsuario() {
+		return new ModelAndView("modificarUsuario");
+	}
+	
 }
