@@ -50,7 +50,7 @@
 
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Modificaci&oacute;n Contrase&ntilde;a</title>
 </head>
 
 <body>
@@ -122,19 +122,19 @@
 					<div class="form-group">
 						<h3>Contraseña Actual</h3>
 						<input name="contrasenaActual" type="password" class="form-control"
-							placeholder="Contraseña Actual*" value="" />
+							placeholder="Contrase&ntilde;a Actual*" value="" />
 					</div>
 					
 					<div class="form-group">
 						<h3>Contraseña Nueva</h3>
 						<input name="contrasenaNueva" type="password" class="form-control"
-							placeholder="Contraseña Nueva*" value="" />
+							placeholder="Contrase&ntilde;a Nueva*" value="" />
 					</div>
 					
 					<div class="form-group">
 						<h3>Confirmar Contraseña</h3>
 						<input name="contrasenaNueva2" type="password" class="form-control"
-							placeholder="Contraseña Nueva*" value="" />
+							placeholder="Contrase&ntilde;a Nueva*" value="" />
 					</div>
 					
 					<div class="botones-form text-center" style="margin: auto;">
