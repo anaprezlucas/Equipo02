@@ -25,12 +25,24 @@ public class UsuarioController {
 	@RequestMapping(value = "/modificarPwd", method = RequestMethod.POST)
 	public String modificarPwd(HttpServletRequest request, Model model) throws Exception {
 		Usuario usuarioLigero = (Usuario) request.getSession().getAttribute(usuario_conect);
+		String emailActual = usuarioLigero.getEmail();
 		
+		String pwdActual = request.getParameter("contrasenaActual");
 		String pwdNueva = request.getParameter("contrasenaNueva");
 		String pwdNueva2 = request.getParameter("contrasenaNueva2");
 		String nombre = userDao.devolverUser(usuarioLigero);
 		
 		Usuario usuario = userDao.selectNombre(nombre);
+		usuario.setEmail(emailActual);
+		usuario.setPassword(pwdActual);
+		
+		
+		if(!userDao.login(usuario)) {
+			request.setAttribute("nombreUser", usuario.getNombre());
+			request.setAttribute("mailUser", usuario.getEmail());
+			model.addAttribute(alert, "Password actual incorrecta");
+			return gestionPwd;
+		}
 		if (usuario == null || !(pwdNueva.equals(pwdNueva2))) {
 			request.setAttribute("nombreUser", usuario.getNombre());
 			request.setAttribute("mailUser", usuario.getEmail());
@@ -55,12 +67,14 @@ public class UsuarioController {
 			usuario.setPassword(pwdNueva);
 			userDao.updatePwd(usuario);
 			HttpSession session = request.getSession();
-			request.setAttribute("usuarioNombre", usuario.getNombre());
-			request.setAttribute("usuarioEmail", usuario.getEmail());
-			session.setAttribute("alertaModificarPerfilUsuario", "Mandando alerta modificar perfil usuario");
+			request.setAttribute("nombreUser", usuario.getNombre());
+			request.setAttribute("mailUser", usuario.getEmail());
+			session.setAttribute("alertaCambio", "La contrase&ntilde;a ha sido cambiada satisfactoriamente");
+			return gestionPwd;
 		}
-		return "fichajes";
 	}
+	
+	
 	@RequestMapping(value = "/inicio", method = RequestMethod.GET)
 	public ModelAndView irFichajes() {
 		return new ModelAndView("fichajes");
