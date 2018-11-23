@@ -60,14 +60,6 @@
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#"></a>
 			</div>
-			<!--  
-			<ul class="nav navbar-nav">
-				<li style="color: white; font-size: 15px;"><a href="#">Inicio</a></li>
-				<li style="color: white; font-size: 15px;"><a
-					href="#">Fichajes</a></li>
-			</ul>
-			
-			-->
 
 			<div class="nav-item pull-left col-md-1 fixed-top"
 				style="position: relative; top: 8px">
@@ -128,21 +120,21 @@
 					</div>
 					
 					<div class="form-group">
-						<h3>Contraseña Actual</h3>
+						<h3>ContraseÃ±a Actual</h3>
 						<input name="contrasenaActual" type="password" class="form-control"
-							placeholder="Contraseña Actual*" value="" />
+							placeholder="ContraseÃ±a Actual*" value="" />
 					</div>
 					
 					<div class="form-group">
-						<h3>Contraseña Nueva</h3>
+						<h3>ContraseÃ±a Nueva</h3>
 						<input name="contrasenaNueva" type="password" class="form-control"
-							placeholder="Contraseña Nueva*" value="" />
+							placeholder="ContraseÃ±a Nueva*" value="" />
 					</div>
 					
 					<div class="form-group">
-						<h3>Confirmar Contraseña</h3>
+						<h3>Confirmar ContraseÃ±a</h3>
 						<input name="contrasenaNueva2" type="password" class="form-control"
-							placeholder="Contraseña Nueva*" value="" />
+							placeholder="ContraseÃ±a Nueva*" value="" />
 					</div>
 					
 					<div class="botones-form text-center" style="margin: auto;">

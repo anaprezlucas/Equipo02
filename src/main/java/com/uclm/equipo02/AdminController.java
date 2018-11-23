@@ -55,8 +55,8 @@ public class AdminController {
 		}
 
 		String destinatario =  "alguien@servidor.com"; //A quien le quieres escribir.
-		String asunto = "Contraseña por defecto";
-		String cuerpo = "Hola " + nombre + "! \nLa contraseña por defecto es la siguiente:\n" + pass
+		String asunto = "ContraseÃ±a por defecto";
+		String cuerpo = "Hola " + nombre + "! \nLa contraseÃ±a por defecto es la siguiente:\n" + pass
 				+"\n\nUn Saludo\nInTime Corporation";
 
 		MailSender mailSender = new MailSender();

@@ -251,7 +251,7 @@ height:180px
 	<div class="container gestion-container col-md-4">
 		<div class="row">
 			<h2>
-				<span class=" glyphicon glyphicon-asterisk"></span> Gestión de usuarios
+				<span class=" glyphicon glyphicon-asterisk"></span> GestiÃ³n de usuarios
 			</h2>
 
 
@@ -271,7 +271,7 @@ height:180px
 								name="eliminarUsuario" value="Eliminar usuario" formaction = "interfazEliminarUsuario"/>
 								
 							<input type="submit" class="btnUsuario input-lg"
-								name="modificarPwd" value="Modificar contraseña usuario" formaction = "adminUpdatePwd"/>
+								name="modificarPwd" value="Modificar contraseÃ±a usuario" formaction = "adminUpdatePwd"/>
 					
 					</div>
 				</form>
