@@ -210,8 +210,10 @@ height:180px
 							<h3>
 									<span class="glyphicon glyphicon-edit"></span> Listar Fichajes
 							</h3>
-							<label>Introduzca la fecha del fichaje:<br></label> 
-							<input placeholder="yyyy-MM-dd" type="text" name="fecha" id="fecha">
+							<label>Introduzca primera fecha del periodo de fichajes:<br></label> 
+							<input placeholder="yyyy-MM-dd" type="text" name="fecha1" id="fecha1">
+							<label>Introduzca segunda fecha del periodo de fichajes:<br></label> 
+							<input placeholder="yyyy-MM-dd" type="text" name="fecha2" id="fecha2">
 							<button id="btnListar"  class="btn btn-primary btnListar btnUsuario" type="submit" data-toggle="collapse.in" data-target="#panelFichajes" aria-expanded="false" aria-controls="panelFichajes">ListarFichajes</button>
 				</fieldset>
 						<span style="color: red"><em>${nullFecha}</em></span>

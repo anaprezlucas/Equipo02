@@ -6,7 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.TimeZone;
 
 
@@ -169,8 +171,8 @@ public class DAOFichaje {
 
 
 
-	public static List<Document> listarFichajesFecha(String email, String fecha) {
-
+	public static List<Document> listarFichajesPeriodo(String email, String fecha1,String fecha2) {
+		List<Date> periodo=calculoPeriodoFechas(fecha1,fecha2);
 
 		List<Document> fichajesFechaEmpleado = new ArrayList<Document>();
 		Document documento = new Document();
@@ -179,29 +181,82 @@ public class DAOFichaje {
 		while(elementos.hasNext()) {
 			documento = elementos.next();
 			if((documento.get("emailEmpleado").toString()).equalsIgnoreCase(email))
-				if((documento.get("fechaFichaje").toString()).equalsIgnoreCase(fecha))
+				if(comparacionFichajePeriodo(periodo,documento.get("fechaFichaje").toString()))
 				fichajesFechaEmpleado.add(documento);
 		}
 		
 		return fichajesFechaEmpleado;
 	}
+
 	
 	
-	public static boolean existeFichajeFecha(String email, String fecha) {
+	
+	public static boolean existeFichajesPeriodo(String email, String fecha1,String fecha2) {
+			
+			List<Date> periodo=calculoPeriodoFechas(fecha1,fecha2);
+			
+			boolean bool=false;
+	
+			
+			Document documento = new Document();
+			MongoCursor<Document> elementos = getFichajes().find().iterator();
+	
+			while(elementos.hasNext()) {
+				documento = elementos.next();
+				if((documento.get("emailEmpleado").toString()).equalsIgnoreCase(email))
+					if(comparacionFichajePeriodo(periodo,documento.get("fechaFichaje").toString()))	
+					bool=true;
+			}
+			
+			return bool;
+		}
+	
+	
+	
+	public static boolean comparacionFichajePeriodo(List<Date> periodo, String fechaFichaje) {
 		boolean bool=false;
-
+		 
+		Date fechafichaje=parserFecha(fechaFichaje);
 		
-		Document documento = new Document();
-		MongoCursor<Document> elementos = getFichajes().find().iterator();
-
-		while(elementos.hasNext()) {
-			documento = elementos.next();
-			if((documento.get("emailEmpleado").toString()).equalsIgnoreCase(email))
-				if((documento.get("fechaFichaje").toString()).equalsIgnoreCase(fecha))
-				bool=true;
+		if(periodo.contains(fechafichaje)) {
+			bool= true;
 		}
 		
 		return bool;
+		
+	}
+	
+	public static Date parserFecha(String fecha) {
+		Date fechaparseada=new Date();
+		
+		try {
+			DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+			fechaparseada=format.parse(fecha);
+			return fechaparseada;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+		return fechaparseada;
+		
+	}
+	
+	public static List<Date> calculoPeriodoFechas(String fecha1, String fecha2) {
+		
+		Date startdate = parserFecha(fecha1);
+		Date enddate = parserFecha(fecha2);
+		
+		List<Date> dates = new ArrayList<Date>();
+	    Calendar calendar = new GregorianCalendar();
+	    calendar.setTime(startdate);
+
+	    while (calendar.getTime().before(enddate))
+	    {
+	        Date result = calendar.getTime();
+	        dates.add(result);
+	        calendar.add(Calendar.DATE, 1);
+	    }
+	    return dates;
+		
 	}
 	
 

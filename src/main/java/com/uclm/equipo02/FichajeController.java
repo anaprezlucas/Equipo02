@@ -94,6 +94,26 @@ public class FichajeController {
 		return fichajes;
 
 	} 
+	
+	@RequestMapping(value = "consultaFichajesFecha", method = RequestMethod.GET)
+	public String consultaFichajesFecha(HttpServletRequest request, Model model) {
+		Usuario usuario;
+		usuario = (Usuario) request.getSession().getAttribute(usuario_conect);
+
+		String email = usuario.getEmail();
+		String fecha1= request.getParameter("fecha1");
+		String fecha2= request.getParameter("fecha2");
+
+		if(!DAOFichaje.existeFichajesPeriodo(email, fecha1,fecha2)) {
+			model.addAttribute("nullFecha","No existe ning&uacuten fichaje en ese periodo de fechas");
+			return fichajes;
+		}else {
+		List<Document> listaFichajesFecha =DAOFichaje.listarFichajesPeriodo(email, fecha1,fecha2);
+		model.addAttribute("listafichajes", listaFichajesFecha);
+		return fichajes;
+		}
+	}
+	
 
 
 
@@ -101,11 +121,10 @@ public class FichajeController {
 
 
 
-	/*
+	/** 
 	 * 
 	 * 
-	 * 
-	 * ****ADMIN FICHAJES**
+	  ****ADMIN FICHAJES**
 	 * 
 	 * 
 	 * */
@@ -166,44 +185,22 @@ public class FichajeController {
 
 	} 
 
-
-
-
-	@RequestMapping(value = "listarFichajesAdmin", method = RequestMethod.GET) 
-	public String listarFichajesAdmin(HttpServletRequest request, Model model) throws Exception {		
-		Usuario usuario;
-
-		usuario = (Usuario) request.getSession().getAttribute(usuario_conect); 
-		String emailEmpleado = usuario.getEmail();
-
-
-		List<Document> listaFichAd = new ArrayList<Document>();
-
-		listaFichAd = usuario.getFichajesEmpleado(emailEmpleado);
-
-		model.addAttribute("listafichajesAd", listaFichAd);
-
-		return interfazAdministrador;
-	} 
-
-
-
-
-	@RequestMapping(value = "consultaFichajesFecha", method = RequestMethod.GET)
-	public String consultaFichajesFecha(HttpServletRequest request, Model model) {
+	@RequestMapping(value = "consultaFichajesFechaAdmin", method = RequestMethod.GET)
+	public String consultaFichajesFechaAdmin(HttpServletRequest request, Model model) {
 		Usuario usuario;
 		usuario = (Usuario) request.getSession().getAttribute(usuario_conect);
 
 		String email = usuario.getEmail();
-		String fecha= request.getParameter("fecha");
+		String fecha1= request.getParameter("fecha1");
+		String fecha2= request.getParameter("fecha2");
 
-		if(!DAOFichaje.existeFichajeFecha(email, fecha)) {
-			model.addAttribute("nullFecha","No existe ning&uacuten fichaje en esa fecha");
+		if(!DAOFichaje.existeFichajesPeriodo(email, fecha1,fecha2)) {
+			model.addAttribute("nullFecha","No existe ning&uacuten fichaje en ese periodo de fechas");
 			return fichajes;
 		}else {
-		List<Document> listaFichajesFecha =DAOFichaje.listarFichajesFecha(email, fecha);
+		List<Document> listaFichajesFecha =DAOFichaje.listarFichajesPeriodo(email, fecha1,fecha2);
 		model.addAttribute("listafichajes", listaFichajesFecha);
-		return fichajes;
+		return interfazAdministrador;
 		}
 	}
 	
