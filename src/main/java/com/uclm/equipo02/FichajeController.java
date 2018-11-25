@@ -196,7 +196,7 @@ public class FichajeController {
 
 		if(!DAOFichaje.existeFichajesPeriodo(email, fecha1,fecha2)) {
 			model.addAttribute("nullFecha","No existe ning&uacuten fichaje en ese periodo de fechas");
-			return fichajes;
+			return interfazAdministrador;
 		}else {
 		List<Document> listaFichajesFecha =DAOFichaje.listarFichajesPeriodo(email, fecha1,fecha2);
 		model.addAttribute("listafichajes", listaFichajesFecha);

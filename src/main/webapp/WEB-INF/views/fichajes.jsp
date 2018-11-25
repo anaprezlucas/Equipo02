@@ -170,13 +170,13 @@ height:180px
 	<center>
 	<img src="https://i.imgur.com/bwlSMSI.png" class="logo">
 	</center>
-	<div class = "page-header h1div">
 	
-   <h1>
-      Gesti&oacute;n y Validaci&oacute;n de Fichajes
-   </h1>
-   
-</div>
+	<div class = "page-header h1div">
+	   <h1>
+	      Gesti&oacute;n y Validaci&oacute;n de Fichajes
+	   </h1>
+   </div>
+
 
 	<div class="container centerdiv">
 		
