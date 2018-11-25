@@ -30,6 +30,7 @@
 .gestion-div{
 	box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
 		rgba(0, 0, 0, 0.19);
+	padding-bottom: 5px;
 }
 
 
