@@ -72,24 +72,6 @@
 					</button>
 				</form>
 			</div>
-			<div class="nav-item pull-left col-md-1 fixed-top"
-				style="position: relative; top: 8px">
-				<form action="incidencias" method="GET">
-					<button class="btn" type="submit">
-						<strong><span class="glyphicon glyphicon-copy"></span>
-							Incidencias</strong>
-					</button>
-				</form>
-			</div>
-			<div class="nav-item pull-left col-md-1 fixed-top"
-				style="position: relative; top: 8px">
-				<form action="modificarPwd" method="GET">
-					<button class="btn" type="submit">
-						<strong><span class="glyphicon glyphicon-cog"></span>
-							Perfil de Usuario</strong>
-					</button>
-				</form>
-			</div>
 			<div class="col-md-1 pull-right fixed-top"
 				style="position: relative; top: 8px">
 				<form action="logout" method="GET">
