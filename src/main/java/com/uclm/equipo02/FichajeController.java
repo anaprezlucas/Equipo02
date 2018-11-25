@@ -35,9 +35,9 @@ public class FichajeController {
 	private final String fichajes = "fichajes";
 	private final String interfazAdministrador="interfazAdministrador";
 	private final String alertaFichaje="alertaFichaje";
-	
-	
-	
+
+
+
 	@RequestMapping(value = "abrirFichaje", method = RequestMethod.POST)
 	public String abrirFichaje(HttpServletRequest request, Model model) throws Exception {
 		String hora;
@@ -97,27 +97,10 @@ public class FichajeController {
 
 
 
-	@RequestMapping(value = "listarFichajesEmpleado", method = RequestMethod.GET) 
-	public String listarFichajesEmpleado(HttpServletRequest request, Model model) throws Exception {		
-		Usuario usuario;
-
-		usuario = (Usuario) request.getSession().getAttribute(usuario_conect); 
-		String emailEmpleado = usuario.getEmail();
 
 
-		List<Document> listaFich = new ArrayList<Document>();
-
-		listaFich = usuario.getFichajesEmpleado(emailEmpleado);
 
 
-		model.addAttribute("listafichajes", listaFich);
-
-		return "fichajes";
-		} 
-	
-	
-	
-	
 	/*
 	 * 
 	 * 
@@ -126,8 +109,8 @@ public class FichajeController {
 	 * 
 	 * 
 	 * */
-	
-	
+
+
 	@RequestMapping(value = "abrirFichajeAdmin", method = RequestMethod.POST)
 	public String abrirFichajeAdmin(HttpServletRequest request, Model model) throws Exception {
 		String hora;
@@ -152,8 +135,8 @@ public class FichajeController {
 		}
 		return interfazAdministrador;
 	} 
-	
-	
+
+
 	@RequestMapping(value = "cerrarFichajeAdmin", method = RequestMethod.POST)
 	public String cerrarFichajeAdmin(HttpServletRequest request, Model model) throws Exception {
 		Usuario usuario;
@@ -182,10 +165,10 @@ public class FichajeController {
 		return interfazAdministrador;
 
 	} 
-	
-	
-	
-	
+
+
+
+
 	@RequestMapping(value = "listarFichajesAdmin", method = RequestMethod.GET) 
 	public String listarFichajesAdmin(HttpServletRequest request, Model model) throws Exception {		
 		Usuario usuario;
@@ -193,20 +176,43 @@ public class FichajeController {
 		usuario = (Usuario) request.getSession().getAttribute(usuario_conect); 
 		String emailEmpleado = usuario.getEmail();
 
-		
+
 		List<Document> listaFichAd = new ArrayList<Document>();
 
 		listaFichAd = usuario.getFichajesEmpleado(emailEmpleado);
-		
+
 		model.addAttribute("listafichajesAd", listaFichAd);
 
 		return interfazAdministrador;
-		} 
-	 
+	} 
+
+
+
+
+	@RequestMapping(value = "consultaFichajesFecha", method = RequestMethod.GET)
+	public String consultaFichajesFecha(HttpServletRequest request, Model model) {
+		Usuario usuario;
+		usuario = (Usuario) request.getSession().getAttribute(usuario_conect);
+
+		String email = usuario.getEmail();
+		String fecha= request.getParameter("fecha");
+
+		if(!DAOFichaje.existeFichajeFecha(email, fecha)) {
+			model.addAttribute("nullFecha","No existe ning&uacuten fichaje en esa fecha");
+			return fichajes;
+		}else {
+		List<Document> listaFichajesFecha =DAOFichaje.listarFichajesFecha(email, fecha);
+		model.addAttribute("listafichajes", listaFichajesFecha);
+		return fichajes;
+		}
+	}
 	
+
+
+
 	/***Redireccion a gestionPwd***/
-	
-	
+
+
 	@RequestMapping(value = "/gestionPwd", method = RequestMethod.GET)
 	public ModelAndView gestionPwd(HttpServletRequest request) {
 		Usuario usuario;

@@ -22,7 +22,7 @@ public class DAOFichaje {
 
 
 
-	public MongoCollection<Document> getFichajes() {
+	public static MongoCollection<Document> getFichajes() {
 		MongoBroker broker = MongoBroker.get();
 		MongoCollection<Document> fichajes = broker.getCollection("Fichajes");
 		return fichajes;
@@ -49,7 +49,7 @@ public class DAOFichaje {
 
 	public void abrirFichaje(Fichaje fichaje) {
 		Document documento = new Document();
-		
+
 		documento.append("emailEmpleado", fichaje.getEmailFichaje());
 		documento.append("fechaFichaje", fichaje.getFechaFichaje());
 		documento.append("horaEntrada", fichaje.getHoraEntrada());
@@ -72,7 +72,7 @@ public class DAOFichaje {
 		MongoBroker broker = MongoBroker.get();
 
 		Document criteria=new Document();
-		
+
 		criteria.put("emailEmpleado", usuario.getEmail());
 		criteria.put("fechaFichaje", fichaje.getFechaFichaje());
 
@@ -107,7 +107,7 @@ public class DAOFichaje {
 		return horaentrada;
 
 	}
-	
+
 
 
 	/**
@@ -141,10 +141,10 @@ public class DAOFichaje {
 		MongoCursor<Document> elementos = getFichajes().find().iterator();
 		while(elementos.hasNext()) {
 			documento = elementos.next();
-				if(documento.get("emailEmpleado").toString().equalsIgnoreCase(fichaje.getEmailFichaje()))//usuario sesion
-					if(documento.get("fechaFichaje").toString().equals(fichaje.getFechaFichaje()))
-						if(documento.get("estado").toString().equals(Boolean.toString(true))) 
-							return true;
+			if(documento.get("emailEmpleado").toString().equalsIgnoreCase(fichaje.getEmailFichaje()))//usuario sesion
+				if(documento.get("fechaFichaje").toString().equals(fichaje.getFechaFichaje()))
+					if(documento.get("estado").toString().equals(Boolean.toString(true))) 
+						return true;
 
 		}
 
@@ -165,6 +165,45 @@ public class DAOFichaje {
 
 		return fichajesempleado;
 	}
+
+
+
+
+	public static List<Document> listarFichajesFecha(String email, String fecha) {
+
+
+		List<Document> fichajesFechaEmpleado = new ArrayList<Document>();
+		Document documento = new Document();
+		MongoCursor<Document> elementos = getFichajes().find().iterator();
+
+		while(elementos.hasNext()) {
+			documento = elementos.next();
+			if((documento.get("emailEmpleado").toString()).equalsIgnoreCase(email))
+				if((documento.get("fechaFichaje").toString()).equalsIgnoreCase(fecha))
+				fichajesFechaEmpleado.add(documento);
+		}
+		
+		return fichajesFechaEmpleado;
+	}
+	
+	
+	public static boolean existeFichajeFecha(String email, String fecha) {
+		boolean bool=false;
+
+		
+		Document documento = new Document();
+		MongoCursor<Document> elementos = getFichajes().find().iterator();
+
+		while(elementos.hasNext()) {
+			documento = elementos.next();
+			if((documento.get("emailEmpleado").toString()).equalsIgnoreCase(email))
+				if((documento.get("fechaFichaje").toString()).equalsIgnoreCase(fecha))
+				bool=true;
+		}
+		
+		return bool;
+	}
+	
 
 
 }

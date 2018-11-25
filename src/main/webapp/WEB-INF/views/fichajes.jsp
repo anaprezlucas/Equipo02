@@ -205,8 +205,16 @@ height:180px
 
 	<div class="historial collapse.in col-md-8 col-md-offset-2" id="panelFichajes">
 	
-	<form id="formListar" action="listarFichajesEmpleado" method="get">
-				<button id="btnListar"  class="btn btn-primary btnListar btnUsuario" type="submit" data-toggle="collapse.in" data-target="#panelFichajes" aria-expanded="false" aria-controls="panelFichajes">ListarFichajes</button>
+	<form id="formListar" action="consultaFichajesFecha" method="get">
+				<fieldset>
+							<h3>
+									<span class="glyphicon glyphicon-edit"></span> Listar Fichajes
+							</h3>
+							<label>Introduzca la fecha del fichaje:<br></label> 
+							<input placeholder="yyyy-MM-dd" type="text" name="fecha" id="fecha">
+							<button id="btnListar"  class="btn btn-primary btnListar btnUsuario" type="submit" data-toggle="collapse.in" data-target="#panelFichajes" aria-expanded="false" aria-controls="panelFichajes">ListarFichajes</button>
+				</fieldset>
+						<span style="color: red"><em>${nullFecha}</em></span>
 			</form>
 			
 		<table class="table table-bordered">
