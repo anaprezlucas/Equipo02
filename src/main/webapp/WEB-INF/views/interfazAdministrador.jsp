@@ -19,7 +19,6 @@
 
 
 
-
 <style>
 
 
@@ -196,7 +195,7 @@ height:180px
 						
 									<form id="formListar" action="consultaFichajesFechaAdmin" method="get">
 												
-												<fieldset>
+												<fieldset class="form-group">
 															
 															<label>Introduzca primera fecha del periodo de fichajes:<br></label> 
 															<input placeholder="yyyy-MM-dd" type="text" name="fecha1" id="fecha1">
