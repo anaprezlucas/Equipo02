@@ -19,47 +19,29 @@
 
 
 
-
 <style>
-.fichaje-container {
-	margin-right: 10%;
 
-}
-.gestion-container {
-
-	margin-left: 10%;
-}
 
 .historial-container {
 	margin-top: 5%;
 }
 
-.gestion-form {
-	padding: 5%;
+.gestion-div{
+	box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
+		rgba(0, 0, 0, 0.19);
+	padding-bottom: 5px;
+}
+
+
+.historial-div {
 	box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
 		rgba(0, 0, 0, 0.19);
 }
 
-.gestion-form h3 {
-	text-align: center;
+.historial-div h2 {
 	color: #333;
 }
 
-.historial-form {
-	padding: 5%;
-	background: #0062cc;
-	box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
-		rgba(0, 0, 0, 0.19);
-}
-
-.historial-form h3 {
-	text-align: center;
-	color: #fff;
-}
-
-.historial-form h4 {
-	color: #fff;
-}
 
 .btnUsuario {
 	width: 50%;
@@ -92,6 +74,7 @@
 .btn-space {
     margin-right: 5px;
 }
+
 .btn-verticalspace{
 	margin-bottom:30px;
 }
@@ -101,23 +84,12 @@
   justify-content: center;
 }
 
-.historial{
-padding: 15px;
-}
 
 .inlinediv{
 float: left;
 }
 
-.h1div{
-display: flex;
-  justify-content: center;
-  margin-bottom:30px;
-
-}
-
 .btnAbrir{
- padding: 10px 20px;
     font-size: 20px;
     border-radius: 10px;
 margin-bottom:30px;
@@ -126,15 +98,14 @@ margin-right: 10px;
 }
 
 .btnCerrar{
-
- padding: 10px 20px;
     font-size: 20px;
     border-radius: 10px;
 margin-bottom:30px;
 }
 
 .btnListar{
- padding: 15px 15px;
+ width: 150px;
+ padding: 10px 10px;
     font-size: 15px;
     border-radius: 15px;
 margin-bottom:10px;	
@@ -145,6 +116,7 @@ margin-bottom:10px;
 width:180px;
 height:180px
 }
+
 </style>
 
 
@@ -184,101 +156,111 @@ height:180px
 
 
 
-	<div class="container fichaje-container col-md-4">
+	<div class="container">
 		<div class="row">
-
-			<div class="container centerdiv">
-
-				<div class="inlinediv">
+			<div class="col-md-5 col-md-offset-4">
+				<div class="inlinediv" >
 					<form action="abrirFichajeAdmin" method="post">
 						<button type="submit" id="btnAbrir" class="btn btn-primary btnAbrir btnFichajes" value="Abrir Fichaje">Abrir Fichaje</button>
 					</form>
 				</div>
 
-				<div class="inlinediv ">
+				<div >
 					<form action="cerrarFichajeAdmin" method="post">
 						<button type="submit" id="btnCerrar" class="btn btn-primary btnCerrar btnFichajes" value="Cerrar Fichaje">Cerrar Fichaje</button>
 					</form>
 				</div>
-
 			</div>
-
-<div class="centerdiv">
-	<span style="color:red"><em>${errorMessageCerrar}</em></span>
-		<span style="color:red"><em>${errorMessageAbrir}</em></span>
-		<span style="color: green"><em>${alertaFichaje}</em></span>
-	</div>
-
-
-	<div class="historial collapse.in col-md-4 col-md-offset-4" id="panelFichajes">
-	
-	<form id="formListar" action="listarFichajesAdmin" method="get">
-				<button id="btnListar"  class="btn btn-primary btnListar btnFichajes" type="submit" data-toggle="collapse.in" data-target="#panelFichajes" aria-expanded="false" aria-controls="panelFichajes">Listar Fichajes</button>
-			</form>
 			
-		<table class="table table-bordered">
-			<thead class="thead">
-				<tr>
-					<th scope="col">Fecha</th>
-					<th scope="col">Entrada</th>
-					<th scope="col">Salida</th>
-					<th scope="col">Estado</th>
-
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${listafichajesAd}" var="fichaje">
-					<tr>
-						<td>${fichaje.fechaFichaje}</td>
-						<td>${fichaje.horaEntrada}</td>
-						<td>${fichaje.horaSalida}</td>
-						<td onload="switchState();" id="tdState">${fichaje.estado}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-
-	</div>
-
 		</div>
-
 	</div>
 
-
-
-
-
-	<div class="container gestion-container col-md-4">
-		<div class="row">
-			<h2>
-				<span class=" glyphicon glyphicon-asterisk"></span> Gestión de usuarios
-			</h2>
-
-
-			<div class="gestion-form center-div">
-				<form method = "get">
-
-					<div class="form-inline text-center" style="margin: auto;">
-
-							
-							<input type="submit" class="btnUsuario input-lg"
-								name="crearUsuario" value="Crear usuario" formaction = "interfazCrearUsuario" />
-							
-							<input type="submit" class="btnUsuario input-lg"
-								name="modificarUsuario" value="Modificar usuario" formaction = "modificarUsuario"/>
-						
-							<input type="submit" class="btnUsuario input-lg"
-								name="eliminarUsuario" value="Eliminar usuario" formaction = "interfazEliminarUsuario"/>
-								
-							<input type="submit" class="btnUsuario input-lg"
-								name="modificarPwd" value="Modificar contrase&ntilde;a usuario" formaction = "adminUpdatePwd"/>
-					
-					</div>
-				</form>
+	<div class="container centerdiv col-md-6 col-md-offset-3">
+			<div class="row">
+				<span style="color:red"><em>${errorMessageCerrar}</em></span>
+				<span style="color:red"><em>${errorMessageAbrir}</em></span>
+				<span style="color: green"><em>${alertaFichaje}</em></span>
 			</div>
-
-		</div>
-
 	</div>
+	
+
+	
+	<div class="container col-md-12" style="margin-top: 5%;">
+			<div class="row">
+
+						<div class="historial-div collapse.in col-md-5 col-md-offset-1" id="panelFichajes">
+												<h2>
+															<span class="glyphicon glyphicon-edit"></span> Listar Fichajes
+												</h2>
+						
+									<form id="formListar" action="consultaFichajesFechaAdmin" method="get">
+												
+												<fieldset class="form-group">
+															
+															<label>Introduzca primera fecha del periodo de fichajes:<br></label> 
+															<input placeholder="yyyy-MM-dd" type="text" name="fecha1" id="fecha1">
+															<label>Introduzca segunda fecha del periodo de fichajes:<br></label> 
+															<input placeholder="yyyy-MM-dd" type="text" name="fecha2" id="fecha2">
+															<button id="btnListar" class="btn btn-primary btnListar btnUsuario" type="submit" data-toggle="collapse.in" data-target="#panelFichajes" aria-expanded="false" aria-controls="panelFichajes">Listar Fichajes</button>
+												</fieldset>
+														<span style="color: red"><em>${nullFecha}</em></span>
+									</form>
+											
+										<table class="table table-bordered">
+											<thead class="thead">
+												<tr>
+													<th scope="col">Fecha</th>
+													<th scope="col">Entrada</th>
+													<th scope="col">Salida</th>
+													<th scope="col">Estado</th>
+
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach items="${listafichajes}" var="fichaje">
+													<tr>
+														<td>${fichaje.fechaFichaje}</td>
+														<td>${fichaje.horaEntrada}</td>
+														<td>${fichaje.horaSalida}</td>
+														<td onload="switchState();" id="tdState">${fichaje.estado}</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+
+						</div>
+
+					
+
+						<div class="gestion-div col-md-4 col-md-offset-1">
+								<h2>
+									<span class=" glyphicon glyphicon-asterisk"></span> Gesti&oacuten de usuarios
+								</h2>
+									<form method = "get">
+										<div class="text-center"">
+										
+												<input type="submit" class="btnUsuario input-lg"
+													name="crearUsuario" value="Crear usuario" formaction = "interfazCrearUsuario" />
+												
+												<input type="submit" class="btnUsuario input-lg"
+													name="modificarUsuario" value="Modificar usuario" formaction = "modificarUsuario"/>
+											
+												<input type="submit" class="btnUsuario input-lg"
+													name="eliminarUsuario" value="Eliminar usuario" formaction = "interfazEliminarUsuario"/>
+													
+												<input type="submit" class="btnUsuario input-lg"
+													name="modificarPwd" value="Modificar contrase&ntilde;a usuario" formaction = "adminUpdatePwd"/>
+										
+										</div>
+									</form>
+						</div>
+
+							
+
+						</div>
+			
+			</div>
+	
+	
 </body>
 </html>

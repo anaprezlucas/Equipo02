@@ -44,6 +44,8 @@
 }
 
 .historial{
+box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
+		rgba(0, 0, 0, 0.19);
 padding: 15px;
 }
 
@@ -170,13 +172,13 @@ height:180px
 	<center>
 	<img src="https://i.imgur.com/bwlSMSI.png" class="logo">
 	</center>
-	<div class = "page-header h1div">
 	
-   <h1>
-      Gesti&oacute;n y Validaci&oacute;n de Fichajes
-   </h1>
-   
-</div>
+	<div class = "page-header h1div">
+	   <h1>
+	      Gesti&oacute;n y Validaci&oacute;n de Fichajes
+	   </h1>
+   </div>
+
 
 	<div class="container centerdiv">
 		
@@ -205,8 +207,18 @@ height:180px
 
 	<div class="historial collapse.in col-md-8 col-md-offset-2" id="panelFichajes">
 	
-	<form id="formListar" action="listarFichajesEmpleado" method="get">
-				<button id="btnListar"  class="btn btn-primary btnListar btnUsuario" type="submit" data-toggle="collapse.in" data-target="#panelFichajes" aria-expanded="false" aria-controls="panelFichajes">ListarFichajes</button>
+	<form id="formListar" action="consultaFichajesFecha" method="get">
+				<fieldset>
+							<h3>
+									<span class="glyphicon glyphicon-edit"></span> Listar Fichajes
+							</h3>
+							<label>Introduzca primera fecha del periodo de fichajes:<br></label> 
+							<input placeholder="yyyy-MM-dd" type="text" name="fecha1" id="fecha1">
+							<label>Introduzca segunda fecha del periodo de fichajes:<br></label> 
+							<input placeholder="yyyy-MM-dd" type="text" name="fecha2" id="fecha2">
+							<button id="btnListar"  class="btn btn-primary btnListar btnUsuario" type="submit" data-toggle="collapse.in" data-target="#panelFichajes" aria-expanded="false" aria-controls="panelFichajes">ListarFichajes</button>
+				</fieldset>
+						<span style="color: red"><em>${nullFecha}</em></span>
 			</form>
 			
 		<table class="table table-bordered">

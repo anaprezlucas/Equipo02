@@ -6,7 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.TimeZone;
 
 
@@ -22,7 +24,7 @@ public class DAOFichaje {
 
 
 
-	public MongoCollection<Document> getFichajes() {
+	public static MongoCollection<Document> getFichajes() {
 		MongoBroker broker = MongoBroker.get();
 		MongoCollection<Document> fichajes = broker.getCollection("Fichajes");
 		return fichajes;
@@ -49,7 +51,7 @@ public class DAOFichaje {
 
 	public void abrirFichaje(Fichaje fichaje) {
 		Document documento = new Document();
-		
+
 		documento.append("emailEmpleado", fichaje.getEmailFichaje());
 		documento.append("fechaFichaje", fichaje.getFechaFichaje());
 		documento.append("horaEntrada", fichaje.getHoraEntrada());
@@ -72,7 +74,7 @@ public class DAOFichaje {
 		MongoBroker broker = MongoBroker.get();
 
 		Document criteria=new Document();
-		
+
 		criteria.put("emailEmpleado", usuario.getEmail());
 		criteria.put("fechaFichaje", fichaje.getFechaFichaje());
 
@@ -107,7 +109,7 @@ public class DAOFichaje {
 		return horaentrada;
 
 	}
-	
+
 
 
 	/**
@@ -141,10 +143,10 @@ public class DAOFichaje {
 		MongoCursor<Document> elementos = getFichajes().find().iterator();
 		while(elementos.hasNext()) {
 			documento = elementos.next();
-				if(documento.get("emailEmpleado").toString().equalsIgnoreCase(fichaje.getEmailFichaje()))//usuario sesion
-					if(documento.get("fechaFichaje").toString().equals(fichaje.getFechaFichaje()))
-						if(documento.get("estado").toString().equals(Boolean.toString(true))) 
-							return true;
+			if(documento.get("emailEmpleado").toString().equalsIgnoreCase(fichaje.getEmailFichaje()))//usuario sesion
+				if(documento.get("fechaFichaje").toString().equals(fichaje.getFechaFichaje()))
+					if(documento.get("estado").toString().equals(Boolean.toString(true))) 
+						return true;
 
 		}
 
@@ -165,6 +167,98 @@ public class DAOFichaje {
 
 		return fichajesempleado;
 	}
+
+
+
+
+	public static List<Document> listarFichajesPeriodo(String email, String fecha1,String fecha2) {
+		List<Date> periodo=calculoPeriodoFechas(fecha1,fecha2);
+
+		List<Document> fichajesFechaEmpleado = new ArrayList<Document>();
+		Document documento = new Document();
+		MongoCursor<Document> elementos = getFichajes().find().iterator();
+
+		while(elementos.hasNext()) {
+			documento = elementos.next();
+			if((documento.get("emailEmpleado").toString()).equalsIgnoreCase(email))
+				if(comparacionFichajePeriodo(periodo,documento.get("fechaFichaje").toString()))
+				fichajesFechaEmpleado.add(documento);
+		}
+		
+		return fichajesFechaEmpleado;
+	}
+
+	
+	
+	
+	public static boolean existeFichajesPeriodo(String email, String fecha1,String fecha2) {
+			
+			List<Date> periodo=calculoPeriodoFechas(fecha1,fecha2);
+			
+			boolean bool=false;
+	
+			
+			Document documento = new Document();
+			MongoCursor<Document> elementos = getFichajes().find().iterator();
+	
+			while(elementos.hasNext()) {
+				documento = elementos.next();
+				if((documento.get("emailEmpleado").toString()).equalsIgnoreCase(email))
+					if(comparacionFichajePeriodo(periodo,documento.get("fechaFichaje").toString()))	
+					bool=true;
+			}
+			
+			return bool;
+		}
+	
+	
+	
+	public static boolean comparacionFichajePeriodo(List<Date> periodo, String fechaFichaje) {
+		boolean bool=false;
+		 
+		Date fechafichaje=parserFecha(fechaFichaje);
+		
+		if(periodo.contains(fechafichaje)) {
+			bool= true;
+		}
+		
+		return bool;
+		
+	}
+	
+	public static Date parserFecha(String fecha) {
+		Date fechaparseada=new Date();
+		
+		try {
+			DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+			fechaparseada=format.parse(fecha);
+			return fechaparseada;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+		return fechaparseada;
+		
+	}
+	
+	public static List<Date> calculoPeriodoFechas(String fecha1, String fecha2) {
+		
+		Date startdate = parserFecha(fecha1);
+		Date enddate = parserFecha(fecha2);
+		
+		List<Date> dates = new ArrayList<Date>();
+	    Calendar calendar = new GregorianCalendar();
+	    calendar.setTime(startdate);
+
+	    while (calendar.getTime().before(enddate))
+	    {
+	        Date result = calendar.getTime();
+	        dates.add(result);
+	        calendar.add(Calendar.DATE, 1);
+	    }
+	    return dates;
+		
+	}
+	
 
 
 }
