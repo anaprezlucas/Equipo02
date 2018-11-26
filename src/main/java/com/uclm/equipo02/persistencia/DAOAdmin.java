@@ -30,6 +30,7 @@ public class DAOAdmin {
 					user.setNombre(documento.get("nombre").toString());
 					user.setPassword(documento.get("pwd").toString());
 					user.setRol(documento.get("rol").toString());
+					user.setDni(documento.get("dni").toString());
 					
 				}
 		}

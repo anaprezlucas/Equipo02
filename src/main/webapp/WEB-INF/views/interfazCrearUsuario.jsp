@@ -93,6 +93,11 @@
 							placeholder="Nombre y apellidos" value="" />
 				 	</div>
 				 	<div class="form-group">
+							<h3>DNI del usuario</h3>
+							<input name="txtDni" type="text" class="form-control" 
+							placeholder="00000000X" value="" />
+				 	</div>
+				 	<div class="form-group">
 						    <h3>Rol del usuario</h3>
 						    <select name = "listaRoles">
 						    	<option value = "Empleado"> Empleado </option>

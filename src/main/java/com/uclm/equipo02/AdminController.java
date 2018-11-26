@@ -36,8 +36,9 @@ public class AdminController {
 		String mail = request.getParameter("txtUsuarioEmail");
 		String nombre = request.getParameter("txtUsuarioNombre");
 		String rol = request.getParameter("listaRoles");
+		String dni = request.getParameter("txtDni");
 		String pass = passRandom();
-		if (mail.equals("") || nombre.equals("") || rol.equals("")) {
+		if (mail.equals("") || nombre.equals("") || rol.equals("")||dni.equals("")) {
 			//model.addAttribute(alert, "Por favor rellene los campos");
 
 		}
@@ -47,6 +48,7 @@ public class AdminController {
 		user.setPassword(Utilidades.encrypt(pass));
 		user.setEmail(mail);
 		user.setRol(rol);
+		user.setDni(dni);
 
 		try {
 			userDao.insert(user);
@@ -137,11 +139,13 @@ public class AdminController {
 
 		String nombre = request.getParameter("txtNombre");
 		String rol = request.getParameter("listaRoles");
+		String dni = request.getParameter("txtDni");
 
 		try {
 			
 			userDao.updateNombre(user, nombre);
 			userDao.updateRol(user, rol);
+			userDao.updateDni(user,dni);
 		}catch(Exception e) {
 
 		}

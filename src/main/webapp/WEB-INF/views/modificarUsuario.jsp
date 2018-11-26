@@ -118,6 +118,13 @@
 							<label>Nombre de usuario actual: ${NombreUsuario} </label>
 				 	</div>
 				 	<div class="form-group">
+							
+							<h3>DNI del usuario</h3>
+							<input name="txtDni" type="text" class="form-control" 
+							placeholder="00000000X" value="" />
+							<label>Nombre de usuario actual: ${DniUsuario} </label>
+				 	</div>
+				 	<div class="form-group">
 						    <h3>Rol del usuario</h3> 
 						    <select name = "listaRoles">
 						    	<option value = "Empleado"> Empleado </option>
