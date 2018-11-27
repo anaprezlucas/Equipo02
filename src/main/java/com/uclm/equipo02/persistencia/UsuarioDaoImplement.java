@@ -52,7 +52,7 @@ public class UsuarioDaoImplement{
 			bso.append(dni, new BsonString(usuario.getDni()));
 			MongoCollection<Document> usuarios = obtenerUsuarios();
 			usuarios.insertOne(bso);
-		}else
+		}//else
 			//throw new Exception("Cuenta existente");
 	}
 	
