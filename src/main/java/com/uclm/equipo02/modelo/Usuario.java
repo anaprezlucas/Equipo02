@@ -66,7 +66,7 @@ public class Usuario {
 				+ dao + "]";
 	}
 
-	public void setDni(String string) {
+	public void setDni(String dni) {
 		this.dni=dni;
 		
 	}
