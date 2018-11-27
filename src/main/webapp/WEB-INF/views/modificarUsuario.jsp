@@ -86,7 +86,7 @@
 					<div class="form-group">
 							<h3>DNI del usuario</h3>
 							<input name="txtDniBusqueda" type="text" class="form-control" 
-							placeholder="00000000A" value="${DniUsuario}" />
+							placeholder="00000000A" value="" />
 							
 					</div>				
 					
