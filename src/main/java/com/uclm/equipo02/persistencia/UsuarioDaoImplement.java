@@ -121,6 +121,22 @@ public Usuario selectNombre(String nombreParam) {
 		}
 		return usuario.getNombre();
 	}
+	public String devolverDni(Usuario usuario) {
+		MongoCollection<Document> usuarios = obtenerUsuarios();
+		Document criterio = new Document();
+		criterio.append(email, new BsonString(usuario.getEmail()));
+		FindIterable<Document> resultado=usuarios.find(criterio);
+		Document usuariobso = resultado.first();
+		if (usuario==null){
+			return null;
+		}else {
+			String dniUser = usuariobso.getString(dni);
+			usuario.setDni(dniUser);
+
+		}
+		return usuario.getDni();
+		
+	}
 
 	//Obtener todos los usuarios
 	private MongoCollection<Document> obtenerUsuarios() {
@@ -247,6 +263,9 @@ public void updatePwd(Usuario usuario) throws Exception{
 		Document actualizacion= new Document("$set", new Document(dni, new BsonString(dniNuevo)));
 		usuarios.findOneAndUpdate(usuarioBso, actualizacion);
 	}
+
+
+	
 	
 	
 
