@@ -79,7 +79,7 @@
 			<h2>
 				<span class="glyphicon glyphicon-plus"></span> Crear usuario
 			</h2>
-
+			<label>Estado: ${alert} </label>
 			<div class="gestion-form left-div">
 				<form action="crearUsuario" method="post" id="formCrearUsuario">
 					<div class="form-group">

@@ -53,7 +53,7 @@ public class AdminController {
 		try {
 			userDao.insert(user);
 		} catch (Exception e) {
-
+			model.addAttribute(alert, "Insercion fallida");
 		}
 
 		String destinatario =  "alguien@servidor.com"; //A quien le quieres escribir.
