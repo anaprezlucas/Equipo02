@@ -18,18 +18,19 @@ public class DAOAdmin {
 
 	
 	
-	public Usuario buscarUsuarioEmail(String email) {
+	public Usuario buscarUsuarioEmail(String dni) {
 		Usuario user = new Usuario();
 		
 		Document documento = new Document();
 		MongoCursor<Document> elementos = getUsuarios().find().iterator();
 		while(elementos.hasNext()) {
 			documento = elementos.next();
-				if(documento.get("email").toString().equalsIgnoreCase(email)) {
-					user.setEmail(email);
+				if(documento.get("dni").toString().equalsIgnoreCase(dni)) {
+					user.setEmail(documento.get("email").toString());
 					user.setNombre(documento.get("nombre").toString());
 					user.setPassword(documento.get("pwd").toString());
 					user.setRol(documento.get("rol").toString());
+					user.setDni(dni);
 					
 				}
 		}
@@ -38,14 +39,16 @@ public class DAOAdmin {
 	}
 	
 	
-	public boolean existeUser(String email) {
+	public boolean existeUser(String dni) {
 		boolean bool=false;
 		Document documento = new Document();
 		MongoCursor<Document> elementos = getUsuarios().find().iterator();
 		while(elementos.hasNext()) {
 			documento = elementos.next();
-				if(documento.get("email").toString().equalsIgnoreCase(email)) {
-					bool=true;
+				
+					if(documento.get("dni").toString().equalsIgnoreCase(dni)) {
+						bool=true;
+	
 				}
 				
 		}

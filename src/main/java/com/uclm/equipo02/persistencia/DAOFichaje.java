@@ -52,7 +52,7 @@ public class DAOFichaje {
 	public void abrirFichaje(Fichaje fichaje) {
 		Document documento = new Document();
 
-		documento.append("emailEmpleado", fichaje.getEmailFichaje());
+		documento.append("dniEmpleado", fichaje.getDNIFichaje());
 		documento.append("fechaFichaje", fichaje.getFechaFichaje());
 		documento.append("horaEntrada", fichaje.getHoraEntrada());
 		documento.append("horaSalida", null);
@@ -75,7 +75,7 @@ public class DAOFichaje {
 
 		Document criteria=new Document();
 
-		criteria.put("emailEmpleado", usuario.getEmail());
+		criteria.put("dniEmpleado", usuario.getDni());
 		criteria.put("fechaFichaje", fichaje.getFechaFichaje());
 
 
@@ -95,13 +95,13 @@ public class DAOFichaje {
 
 
 
-	public String getHoraEntrada(String emailEmpleado, String fechaFichaje) {
+	public String getHoraEntrada(String dniEmpleado, String fechaFichaje) {
 		String horaentrada="";
 		Document documento = new Document();
 		MongoCursor<Document> elementos = getFichajes().find().iterator();
 		while(elementos.hasNext()) {
 			documento = elementos.next();
-			if(documento.get("emailEmpleado").toString().equalsIgnoreCase(emailEmpleado))
+			if(documento.get("dniEmpleado").toString().equalsIgnoreCase(dniEmpleado))
 				if(documento.get("fechaFichaje").toString().equals(fechaFichaje))
 					horaentrada=documento.getString("horaEntrada");
 
@@ -122,7 +122,7 @@ public class DAOFichaje {
 		MongoCursor<Document> elementos = getFichajes().find().iterator();
 		while(elementos.hasNext()) {
 			documento = elementos.next();
-			if(documento.get("emailEmpleado").toString().equalsIgnoreCase(fichaje.getEmailFichaje()))//usuario sesion
+			if(documento.get("dniEmpleado").toString().equalsIgnoreCase(fichaje.getDNIFichaje()))//usuario sesion
 				if(documento.get("fechaFichaje").toString().equals(fichaje.getFechaFichaje()))
 					if(documento.get("estado").toString().equals(Boolean.toString(true)))
 						return false;
@@ -143,7 +143,7 @@ public class DAOFichaje {
 		MongoCursor<Document> elementos = getFichajes().find().iterator();
 		while(elementos.hasNext()) {
 			documento = elementos.next();
-			if(documento.get("emailEmpleado").toString().equalsIgnoreCase(fichaje.getEmailFichaje()))//usuario sesion
+			if(documento.get("dniEmpleado").toString().equalsIgnoreCase(fichaje.getDNIFichaje()))//usuario sesion
 				if(documento.get("fechaFichaje").toString().equals(fichaje.getFechaFichaje()))
 					if(documento.get("estado").toString().equals(Boolean.toString(true))) 
 						return true;
@@ -155,13 +155,13 @@ public class DAOFichaje {
 
 
 
-	public List<Document> fichajesEmpleado(String emailEmpleado){
+	public List<Document> fichajesEmpleado(String dniEmpleado){
 		List<Document> fichajesempleado = new ArrayList<Document>();
 		Document documento = new Document();
 		MongoCursor<Document> elementos = getFichajes().find().iterator();
 		while(elementos.hasNext()) {
 			documento = elementos.next();
-			if(documento.get("emailEmpleado").toString().equalsIgnoreCase(emailEmpleado))
+			if(documento.get("dniEmpleado").toString().equalsIgnoreCase(dniEmpleado))
 				fichajesempleado.add(documento);
 		}
 
@@ -171,7 +171,7 @@ public class DAOFichaje {
 
 
 
-	public static List<Document> listarFichajesPeriodo(String email, String fecha1,String fecha2) {
+	public static List<Document> listarFichajesPeriodo(String dni, String fecha1,String fecha2) {
 		List<Date> periodo=calculoPeriodoFechas(fecha1,fecha2);
 
 		List<Document> fichajesFechaEmpleado = new ArrayList<Document>();
@@ -180,7 +180,7 @@ public class DAOFichaje {
 
 		while(elementos.hasNext()) {
 			documento = elementos.next();
-			if((documento.get("emailEmpleado").toString()).equalsIgnoreCase(email))
+			if((documento.get("dniEmpleado").toString()).equalsIgnoreCase(dni))
 				if(comparacionFichajePeriodo(periodo,documento.get("fechaFichaje").toString()))
 				fichajesFechaEmpleado.add(documento);
 		}
@@ -191,7 +191,7 @@ public class DAOFichaje {
 	
 	
 	
-	public static boolean existeFichajesPeriodo(String email, String fecha1,String fecha2) {
+	public static boolean existeFichajesPeriodo(String dni, String fecha1,String fecha2) {
 			
 			List<Date> periodo=calculoPeriodoFechas(fecha1,fecha2);
 			
@@ -203,7 +203,7 @@ public class DAOFichaje {
 	
 			while(elementos.hasNext()) {
 				documento = elementos.next();
-				if((documento.get("emailEmpleado").toString()).equalsIgnoreCase(email))
+				if((documento.get("dniEmpleado").toString()).equalsIgnoreCase(dni))
 					if(comparacionFichajePeriodo(periodo,documento.get("fechaFichaje").toString()))	
 					bool=true;
 			}

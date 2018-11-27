@@ -3,7 +3,7 @@ package com.uclm.equipo02.modelo;
 import com.uclm.equipo02.persistencia.DAOFichaje;
 public class Fichaje {
 	
-	private String fechaFichaje, horaEntrada, horaSalida, emailEmpleado;
+	private String fechaFichaje, horaEntrada, horaSalida, dniEmpleado;
 
 	private boolean estado; //true=abierto false=cerrado
 
@@ -15,8 +15,8 @@ public class Fichaje {
 	///AnADIR HORA SALIDA Y ACTUALIZAR 
 
 
-	public Fichaje(String emailEmpleado, String fechaFichaje, String horaEntrada,String horaSalida,boolean estado ) {
-		this.emailEmpleado=emailEmpleado;
+	public Fichaje(String dniEmpleado, String fechaFichaje, String horaEntrada,String horaSalida,boolean estado ) {
+		this.dniEmpleado=dniEmpleado;
 		this.fechaFichaje = fechaFichaje;
 		this.horaEntrada = horaEntrada;
 		this.horaSalida=horaSalida;
@@ -27,12 +27,12 @@ public class Fichaje {
 
 	
 
-	public String getEmailFichaje() {
-		return emailEmpleado;
+	public String getDNIFichaje() {
+		return dniEmpleado;
 	}
 
-	public void setEmailFichaje(String emailEmpleado) {
-		this.emailEmpleado = emailEmpleado;
+	public void setDNIFichaje(String dniEmpleado) {
+		this.dniEmpleado = dniEmpleado;
 	}
 
 
@@ -66,7 +66,7 @@ public class Fichaje {
 	@Override
 	public String toString() {
 		return "Fichaje [fechaFichaje=" + fechaFichaje + ", horaEntrada=" + horaEntrada + ", horaSalida=" + horaSalida
-				+ ", emailEmpleado=" + emailEmpleado + ", estado=" + estado + "]";
+				+ ", dniEmpleado=" + dniEmpleado + ", estado=" + estado + "]";
 	}
 
 	

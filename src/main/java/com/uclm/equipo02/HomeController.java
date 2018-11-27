@@ -31,6 +31,8 @@ public class HomeController {
 	private final String password = "pwd";
 	private final String email = "email";
 	private final String rol = "rol";
+	private final String dni = "dni";
+	
 private final String welcome = "welcome";
 	
 	
@@ -71,6 +73,8 @@ private final String welcome = "welcome";
 		usuario.setPassword(password);
 		String nombre =  userDao.devolverUser(usuario);
 		usuario.setNombre(nombre);
+		String dni = userDao.devolverDni(usuario);
+		usuario.setDni(dni);
 		
 		if (userDao.login(usuario) && request.getSession().getAttribute(usuario_conect) == null){
 			usuario.setRol(userDao.devolverRol(usuario));
@@ -79,11 +83,13 @@ private final String welcome = "welcome";
 				request.getSession().setAttribute(usuario_conect, usuario);
 				request.setAttribute("nombreUser", usuario);
 				request.setAttribute("mailUser", email);
+				request.setAttribute("dniUser", dni);
 				return "fichajes";
 			}else if (usuario.getRol().equalsIgnoreCase("administrador")){
 				request.getSession().setAttribute(usuario_conect, usuario);
 				request.setAttribute("nombreUser", usuario.getNombre());
 				request.setAttribute("mailUser", email);
+				request.setAttribute("dniUser", dni);
 				return "interfazAdministrador";
 			}
 

@@ -79,7 +79,7 @@
 			<h2>
 				<span class="glyphicon glyphicon-plus"></span> Crear usuario
 			</h2>
-
+			
 			<div class="gestion-form left-div">
 				<form action="crearUsuario" method="post" id="formCrearUsuario">
 					<div class="form-group">
@@ -91,6 +91,11 @@
 							<h3>Nombre del usuario</h3>
 							<input name="txtUsuarioNombre" type="text" class="form-control" 
 							placeholder="Nombre y apellidos" value="" />
+				 	</div>
+				 	<div class="form-group">
+							<h3>DNI del usuario</h3>
+							<input name="txtDni" type="text" class="form-control" 
+							placeholder="00000000A" value="" />
 				 	</div>
 				 	<div class="form-group">
 						    <h3>Rol del usuario</h3>

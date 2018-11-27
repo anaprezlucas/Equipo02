@@ -11,14 +11,16 @@ public class Usuario {
 	private String password;
 	private String email;
 	private String rol;
+	private String dni;
 	private DAOFichaje dao = new DAOFichaje();
 
-	public Usuario(String nombre, String password, String email, String rol) {
+	public Usuario(String nombre, String password, String email, String rol,String dni) {
 		super();
 		this.nombre = nombre;
 		this.password = password;
 		this.email = email;
 		this.rol = rol;
+		this.dni = dni;
 	}
 	
 	public List<Document> getFichajesEmpleado(String nombreEmpleado){
@@ -55,10 +57,17 @@ public class Usuario {
 	public void setRol(String rol) {
 		this.rol = rol;
 	}
-
+	public String getDni() {
+		return dni;
+	}
 	@Override
 	public String toString() {
-		return "Usuario [nombre=" + nombre + ", password=" + password + ", email=" + email + ", rol=" + rol + ", dao="
+		return "Usuario [nombre=" + nombre + ", password=" + password +"dni = "+dni +", email=" + email + ", rol=" + rol + ", dao="
 				+ dao + "]";
+	}
+
+	public void setDni(String dni) {
+		this.dni=dni;
+		
 	}
 }

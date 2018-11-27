@@ -109,10 +109,15 @@
 				<form action="adminModificarPwd" method="post" id="formCrearUsuario" data-toggle="validator">
 				
 					<div class="form-group">
-					<h3>E-mail del usuario</h3>
-						<input name="txtEmail" type="text" class="form-control"
-							placeholder="usuario@ejemplo.com" value="" />
+					<h3>DNI del usuario</h3>
+						<input name="dniUsuario" type="text" class="form-control"
+							placeholder="00000000A*" value="" />
 
+					</div>
+					<div class="form-group">
+						<h3>Contrase&ntilde;a Actual</h3>
+						<input name="contrasenaActual" type="password" class="form-control"
+							placeholder="Contrase&ntilde;a Actual*" value="" />
 					</div>
 					<div class="form-group">
 						<h3>Contrase&ntilde;a Nueva</h3>

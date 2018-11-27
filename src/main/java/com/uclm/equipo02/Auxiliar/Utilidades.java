@@ -7,7 +7,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.xml.bind.DatatypeConverter;
+//import javax.xml.bind.DatatypeConverter;
 
 import org.apache.commons.codec.binary.Base64;
 
@@ -57,7 +57,7 @@ public class Utilidades {
 
 		return null;
 	}
-
+/*
 	public static String encrypt_md5(String password) {
 		String pass_md5;
 		byte[] thedigest = null;
@@ -74,7 +74,7 @@ public class Utilidades {
 		}
 		return pass_md5;
 	}
-
+*/
 
 	/******Cambiar a return string y poner ese string  en una alerta en el updatePWD del controller y en el jsp de updatePWD******/
 	public static boolean seguridadPassword(String pwd){

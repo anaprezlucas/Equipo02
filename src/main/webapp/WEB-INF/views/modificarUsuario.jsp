@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -82,11 +82,11 @@
 			</h2>
 
 			<div class="gestion-form left-div">
-				<form id="busquedaUsuario" action="buscarUsuarioPorEmail"  method=get >
+				<form id="busquedaUsuario" action="buscarUsuarioPorDni"  method=get >
 					<div class="form-group">
-							<h3>E-mail del usuario</h3>
-							<input name="txtEmail" type="text" class="form-control" 
-							placeholder="usuario@ejemplo.com" value="${EmailUsuario}" />
+							<h3>DNI del usuario</h3>
+							<input name="txtDniBusqueda" type="text" class="form-control" 
+							placeholder="00000000A" value="" />
 							
 					</div>				
 					
@@ -110,12 +110,25 @@
 			</h2>
 			<label>Email de usuario actual: ${EmailUsuario}</label>
 			<form id="ModificacionUsuario" action="modificarUser"  method=get >
-			<div class="form-group">
+			
+        		 	<div class="form-group">
+    				<h3>DNI del usuario</h3>
+						<input id="DNIUsuario" type="text" disabled class="form-control"
+						 value=<%=request.getAttribute("dniUser")%> />
+					</div>
+      
+        		<div class="form-group">
+  					<h3>Nombre del Usuario</h3>
+						<input id="NombreUsuario" type="text" disabled class="form-control"
+						 value=<%=request.getAttribute("nombreUser")%> />
+					</div>
+	
+				 	<div class="form-group">
 							
-							<h3>Nombre del usuario</h3>
-							<input name="txtNombre" type="text" class="form-control" 
-							placeholder="Nombre" value="" />
-							<label>Nombre de usuario actual: ${NombreUsuario} </label>
+							<h3>E-mail del usuario</h3>
+							<input name="txtEmail" type="text" class="form-control" 
+							placeholder="usuario@ejemplo.com" value="" />
+							<label>E-mail actual: ${EmailUsuario} </label>
 				 	</div>
 				 	<div class="form-group">
 						    <h3>Rol del usuario</h3> 

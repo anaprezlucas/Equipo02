@@ -19,7 +19,8 @@ public class UsuarioDaoImplement{
 	private final String password = "pwd";
 	private final String email = "email";
 	private final String rol = "rol";
-
+	private final String dni = "dni";
+	
 	public UsuarioDaoImplement() {
 		super();
 	}
@@ -48,6 +49,7 @@ public class UsuarioDaoImplement{
 			bso.append(password, new BsonString(usuario.getPassword()));
 			bso.append(email, new BsonString(usuario.getEmail()));
 			bso.append(rol, new BsonString(usuario.getRol()));
+			bso.append(dni, new BsonString(usuario.getDni()));
 			MongoCollection<Document> usuarios = obtenerUsuarios();
 			usuarios.insertOne(bso);
 		}else
@@ -84,8 +86,8 @@ public Usuario selectNombre(String nombreParam) {
 			String pwdUser = usuario.getString(password);
 			String mailUser = usuario.getString(email);
 			String rolUser = usuario.getString(rol);
-						
-			result = new Usuario(nombreUser, pwdUser, mailUser, rolUser);
+			String dniUser = usuario.getString(dni);
+			result = new Usuario(nombreUser, pwdUser, mailUser, rolUser,dniUser);
 		}
 		return result;
 }
@@ -93,7 +95,7 @@ public Usuario selectNombre(String nombreParam) {
 	public String devolverRol(Usuario usuario) {
 		MongoCollection<Document> usuarios = obtenerUsuarios();
 		Document criterio = new Document();
-		criterio.append(email, new BsonString(usuario.getEmail()));
+		criterio.append(dni, new BsonString(usuario.getDni()));
 		FindIterable<Document> resultado=usuarios.find(criterio);
 		Document usuariobso = resultado.first();
 		if (usuario==null){
@@ -118,6 +120,22 @@ public Usuario selectNombre(String nombreParam) {
 			usuario.setNombre(nombreFinal);
 		}
 		return usuario.getNombre();
+	}
+	public String devolverDni(Usuario usuario) {
+		MongoCollection<Document> usuarios = obtenerUsuarios();
+		Document criterio = new Document();
+		criterio.append(email, new BsonString(usuario.getEmail()));
+		FindIterable<Document> resultado=usuarios.find(criterio);
+		Document usuariobso = resultado.first();
+		if (usuario==null){
+			return null;
+		}else {
+			String dniUser = usuariobso.getString(dni);
+			usuario.setDni(dniUser);
+
+		}
+		return usuario.getDni();
+		
 	}
 
 	//Obtener todos los usuarios
@@ -173,7 +191,7 @@ public Usuario selectNombre(String nombreParam) {
 	public String devolverMail(Usuario usuario) {
 		MongoCollection<Document> usuarios = obtenerUsuarios();
 		Document criterio = new Document();
-		criterio.append(name, new BsonString(usuario.getNombre()));
+		criterio.append(dni, new BsonString(usuario.getDni()));
 		FindIterable<Document> resultado=usuarios.find(criterio);
 		Document usuariobso = resultado.first();
 		if (usuario==null){
@@ -208,7 +226,7 @@ public void updatePwd(Usuario usuario) throws Exception{
 	public void updateRol(Usuario usuario, String rolNuevo) throws Exception{
 		MongoCollection<Document> usuarios = obtenerUsuarios();
 		Document criterio = new Document();
-		criterio.append(email, new BsonString(usuario.getEmail()));
+		criterio.append(dni, new BsonString(usuario.getDni()));
 		FindIterable<Document> resultado=usuarios.find(criterio);
 		Document usuarioBso = resultado.first();
 		if (usuarioBso==null)
@@ -230,8 +248,18 @@ public void updatePwd(Usuario usuario) throws Exception{
 		usuarios.findOneAndUpdate(usuarioBso, actualizacion);
 		
 	}
-	
-	
+	public void updateEmail(Usuario usuario, String emailNuevo) throws Exception{
+		MongoCollection<Document> usuarios = obtenerUsuarios();
+		Document criterio = new Document();
+		criterio.append(dni, new BsonString(usuario.getDni()));
+		FindIterable<Document> resultado=usuarios.find(criterio);
+		Document usuarioBso = resultado.first();
+		if (usuarioBso==null)
+			throw new Exception("Fallo la actualizacion de los datos del usuario.");
 
+		Document actualizacion= new Document("$set", new Document(email, new BsonString(emailNuevo)));
+		usuarios.findOneAndUpdate(usuarioBso, actualizacion);
+		
+	}
 
 }
