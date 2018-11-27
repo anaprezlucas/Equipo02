@@ -45,13 +45,14 @@ public class DAOAdmin {
 		MongoCursor<Document> elementos = getUsuarios().find().iterator();
 		while(elementos.hasNext()) {
 			documento = elementos.next();
-				
+				if(dni.equals(null)) {
+					
+				}else {
 					if(documento.get("dni").toString().equalsIgnoreCase(dni)) {
 						bool=true;
-					
+	
 				}
-				
-				
+				}
 		}
 		return bool;
 		
