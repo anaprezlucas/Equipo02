@@ -82,11 +82,11 @@
 			</h2>
 
 			<div class="gestion-form left-div">
-				<form id="busquedaUsuario" action="buscarUsuarioPorEmail"  method=get >
+				<form id="busquedaUsuario" action="buscarUsuarioPorDni"  method=get >
 					<div class="form-group">
-							<h3>E-mail del usuario</h3>
-							<input name="txtEmail" type="text" class="form-control" 
-							placeholder="usuario@ejemplo.com" value="${EmailUsuario}" />
+							<h3>DNI del usuario</h3>
+							<input name="txtDniBusqueda" type="text" class="form-control" 
+							placeholder="00000000A" value="${DniUsuario}" />
 							
 					</div>				
 					
@@ -123,6 +123,13 @@
 							<input name="txtDni" type="text" class="form-control" 
 							placeholder="00000000A" value="" />
 							<label>DNI actual: ${DniUsuario} </label>
+				 	</div>
+				 	<div class="form-group">
+							
+							<h3>E-mail del usuario</h3>
+							<input name="txtEmail" type="text" class="form-control" 
+							placeholder="usuario@ejemplo.com" value="" />
+							<label>E-mail actual: ${EmailUsuario} </label>
 				 	</div>
 				 	<div class="form-group">
 						    <h3>Rol del usuario</h3> 

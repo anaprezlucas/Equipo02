@@ -53,7 +53,7 @@ public class AdminController {
 		try {
 			userDao.insert(user);
 		} catch (Exception e) {
-			model.addAttribute("aviso", "Insercion fallida");
+			
 		}
 
 		String destinatario =  "alguien@servidor.com"; //A quien le quieres escribir.
@@ -107,24 +107,27 @@ public class AdminController {
 		}
 	}
 	
-	@RequestMapping(value = "/buscarUsuarioPorEmail", method = RequestMethod.GET)
+	@RequestMapping(value = "/buscarUsuarioPorDni", method = RequestMethod.GET)
 	public String buscarUsuario(HttpServletRequest request, Model model) throws Exception {
 
-		String email = request.getParameter("txtEmail");
+		String dni = request.getParameter("txtDniBusqueda");
 		
-		if(!daoadmin.existeUser(email)) {
+		if(!daoadmin.existeUser(dni)) {
 			model.addAttribute("alertaUsuarioNull","El usuario buscado no existe");
 			return "modificarUsuario";
 		}else {
 		
 		//Usuario user = new Usuario();
-		user.setEmail(email);
-
+		user.setDni(dni);
+		
+		user.setEmail(userDao.devolverMail(user));
 		user.setNombre(userDao.devolverUser(user));
 		user.setRol(userDao.devolverRol(user));
 
 		model.addAttribute("NombreUsuario", user.getNombre());
 		model.addAttribute("RolUsuario", user.getRol());
+		model.addAttribute("DniUsuario", user.getDni());
+		model.addAttribute("EmailUsuario", user.getEmail());
 		
 		return "modificarUsuario";
 		}

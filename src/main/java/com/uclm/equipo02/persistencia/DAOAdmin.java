@@ -39,13 +39,13 @@ public class DAOAdmin {
 	}
 	
 	
-	public boolean existeUser(String email) {
+	public boolean existeUser(String dni) {
 		boolean bool=false;
 		Document documento = new Document();
 		MongoCursor<Document> elementos = getUsuarios().find().iterator();
 		while(elementos.hasNext()) {
 			documento = elementos.next();
-				if(documento.get("email").toString().equalsIgnoreCase(email)) {
+				if(documento.get("dni").toString().equalsIgnoreCase(dni)) {
 					bool=true;
 				}
 				
