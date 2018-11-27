@@ -83,11 +83,13 @@ private final String welcome = "welcome";
 				request.getSession().setAttribute(usuario_conect, usuario);
 				request.setAttribute("nombreUser", usuario);
 				request.setAttribute("mailUser", email);
+				request.setAttribute("dniUser", dni);
 				return "fichajes";
 			}else if (usuario.getRol().equalsIgnoreCase("administrador")){
 				request.getSession().setAttribute(usuario_conect, usuario);
 				request.setAttribute("nombreUser", usuario.getNombre());
 				request.setAttribute("mailUser", email);
+				request.setAttribute("dniUser", dni);
 				return "interfazAdministrador";
 			}
 

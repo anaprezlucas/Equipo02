@@ -51,7 +51,7 @@ public class FichajeController {
 		fecha=(java.time.LocalDate.now()).toString();
 
 
-		Fichaje fichaje = new Fichaje(usuario.getEmail(), fecha, hora,null,true);
+		Fichaje fichaje = new Fichaje(usuario.getDni(), fecha, hora,null,true);
 
 		if(!fichajedao.validezAbierto(fichaje)) {
 			model.addAttribute(errorMessageAbrir, "No puedes abrir otro fichaje, necesitas cerrar tu fichaje actual");
@@ -73,7 +73,7 @@ public class FichajeController {
 		fecha=(java.time.LocalDate.now()).toString();
 
 		String horaentrada;
-		horaentrada=fichajedao.getHoraEntrada(usuario.getEmail(),fecha);
+		horaentrada=fichajedao.getHoraEntrada(usuario.getDni(),fecha);
 
 
 		String horaactual;
@@ -100,15 +100,15 @@ public class FichajeController {
 		Usuario usuario;
 		usuario = (Usuario) request.getSession().getAttribute(usuario_conect);
 
-		String email = usuario.getEmail();
+		String dni = usuario.getDni();
 		String fecha1= request.getParameter("fecha1");
 		String fecha2= request.getParameter("fecha2");
 
-		if(!DAOFichaje.existeFichajesPeriodo(email, fecha1,fecha2)) {
+		if(!DAOFichaje.existeFichajesPeriodo(dni, fecha1,fecha2)) {
 			model.addAttribute("nullFecha","No existe ning&uacuten fichaje en ese periodo de fechas");
 			return fichajes;
 		}else {
-		List<Document> listaFichajesFecha =DAOFichaje.listarFichajesPeriodo(email, fecha1,fecha2);
+		List<Document> listaFichajesFecha =DAOFichaje.listarFichajesPeriodo(dni, fecha1,fecha2);
 		model.addAttribute("listafichajes", listaFichajesFecha);
 		return fichajes;
 		}

@@ -95,7 +95,7 @@ public Usuario selectNombre(String nombreParam) {
 	public String devolverRol(Usuario usuario) {
 		MongoCollection<Document> usuarios = obtenerUsuarios();
 		Document criterio = new Document();
-		criterio.append(email, new BsonString(usuario.getEmail()));
+		criterio.append(dni, new BsonString(usuario.getDni()));
 		FindIterable<Document> resultado=usuarios.find(criterio);
 		Document usuariobso = resultado.first();
 		if (usuario==null){
@@ -191,7 +191,7 @@ public Usuario selectNombre(String nombreParam) {
 	public String devolverMail(Usuario usuario) {
 		MongoCollection<Document> usuarios = obtenerUsuarios();
 		Document criterio = new Document();
-		criterio.append(name, new BsonString(usuario.getNombre()));
+		criterio.append(dni, new BsonString(usuario.getDni()));
 		FindIterable<Document> resultado=usuarios.find(criterio);
 		Document usuariobso = resultado.first();
 		if (usuario==null){
@@ -226,7 +226,7 @@ public void updatePwd(Usuario usuario) throws Exception{
 	public void updateRol(Usuario usuario, String rolNuevo) throws Exception{
 		MongoCollection<Document> usuarios = obtenerUsuarios();
 		Document criterio = new Document();
-		criterio.append(email, new BsonString(usuario.getEmail()));
+		criterio.append(dni, new BsonString(usuario.getDni()));
 		FindIterable<Document> resultado=usuarios.find(criterio);
 		Document usuarioBso = resultado.first();
 		if (usuarioBso==null)
@@ -248,26 +248,18 @@ public void updatePwd(Usuario usuario) throws Exception{
 		usuarios.findOneAndUpdate(usuarioBso, actualizacion);
 		
 	}
-
-
-	public void updateDni(Usuario usuario, String dniNuevo) throws Exception{
-		
+	public void updateEmail(Usuario usuario, String emailNuevo) throws Exception{
 		MongoCollection<Document> usuarios = obtenerUsuarios();
 		Document criterio = new Document();
-		criterio.append(email, new BsonString(usuario.getEmail()));
+		criterio.append(dni, new BsonString(usuario.getDni()));
 		FindIterable<Document> resultado=usuarios.find(criterio);
 		Document usuarioBso = resultado.first();
 		if (usuarioBso==null)
 			throw new Exception("Fallo la actualizacion de los datos del usuario.");
 
-		Document actualizacion= new Document("$set", new Document(dni, new BsonString(dniNuevo)));
+		Document actualizacion= new Document("$set", new Document(email, new BsonString(emailNuevo)));
 		usuarios.findOneAndUpdate(usuarioBso, actualizacion);
+		
 	}
-
-
-	
-	
-	
-
 
 }
