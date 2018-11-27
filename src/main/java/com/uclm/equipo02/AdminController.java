@@ -64,7 +64,7 @@ public class AdminController {
 		MailSender mailSender = new MailSender();
 		mailSender.enviarConGMail(mail, asunto, cuerpo);
 
-		return "interfazAdministrador";
+		return "interfazCrearUsuario";
 	}
 
 	public String passRandom() {
