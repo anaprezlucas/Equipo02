@@ -42,7 +42,7 @@ public class UsuarioDaoImplement{
 
 
 	//Inserta un nuevo usuario en la BBDD
-	public void insert(Usuario usuario)  {
+	public void insert(Usuario usuario) throws Exception {
 		if(!selectNombre(usuario)) {
 			Document bso = new Document();
 			bso.append(name, new BsonString(usuario.getNombre()));
@@ -52,8 +52,8 @@ public class UsuarioDaoImplement{
 			bso.append(dni, new BsonString(usuario.getDni()));
 			MongoCollection<Document> usuarios = obtenerUsuarios();
 			usuarios.insertOne(bso);
-		}//else
-			//throw new Exception("Cuenta existente");
+		}else
+			throw new Exception("Cuenta existente");
 	}
 	
 	//Devuelve un true si existe y false si no existe

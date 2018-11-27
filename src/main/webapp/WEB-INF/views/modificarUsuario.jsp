@@ -121,8 +121,8 @@
 							
 							<h3>DNI del usuario </h3>
 							<input name="txtDni" type="text" class="form-control" 
-							placeholder="00000000X" value="" />
-							<label>Nombre de usuario actual: ${DniUsuario} </label>
+							placeholder="00000000A" value="" />
+							<label>DNI actual: ${DniUsuario} </label>
 				 	</div>
 				 	<div class="form-group">
 						    <h3>Rol del usuario</h3> 

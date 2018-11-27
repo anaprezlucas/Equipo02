@@ -95,7 +95,7 @@
 				 	<div class="form-group">
 							<h3>DNI del usuario</h3>
 							<input name="txtDni" type="text" class="form-control" 
-							placeholder="00000000X" value="" />
+							placeholder="00000000A" value="" />
 				 	</div>
 				 	<div class="form-group">
 						    <h3>Rol del usuario</h3>
