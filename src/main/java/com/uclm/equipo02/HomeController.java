@@ -31,6 +31,8 @@ public class HomeController {
 	private final String password = "pwd";
 	private final String email = "email";
 	private final String rol = "rol";
+	private final String dni = "dni";
+	
 private final String welcome = "welcome";
 	
 	

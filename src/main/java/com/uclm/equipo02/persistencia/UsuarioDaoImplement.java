@@ -200,9 +200,9 @@ public Usuario selectNombre(String nombreParam) {
 
 			String mailFinal=usuariobso.getString(email);
 
-			usuario.setRol(mailFinal);
+			usuario.setEmail(mailFinal);
 		}
-		return usuario.getRol();
+		return usuario.getEmail();
 	}
 
 
