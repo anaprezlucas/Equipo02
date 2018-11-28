@@ -148,10 +148,6 @@
 					</form>
 			
 			</div>
-			
-			
-	
-	
 
 </body>
 </html>
