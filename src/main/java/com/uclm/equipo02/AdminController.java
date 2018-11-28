@@ -155,9 +155,7 @@ public class AdminController {
 	public String adminModificarPwd(HttpServletRequest request, Model model) throws Exception {
 		Usuario usuarioLigero = (Usuario) request.getSession().getAttribute(usuario_conect);
 		
-		String emailUsuario = request.getParameter("txtEmail");
-		
-		
+		String dniUser = request.getParameter("dniUsuario");
 		
 		String pwdNueva = request.getParameter("contrasenaNueva");
 		String pwdNueva2 = request.getParameter("contrasenaNueva2");
@@ -165,21 +163,14 @@ public class AdminController {
 		
 		Usuario usuarioBusqueda= new Usuario();
 		
-		
-		if(!daoadmin.existeUser(emailUsuario)) {
+		if(!daoadmin.existeUser(dniUser)) {
 			model.addAttribute("alertaUsuarioNull","El usuario buscado no existe");
 			return adminUpdatePwd;
 			
 		}else {
 		
-		usuarioBusqueda = daoadmin.buscarUsuarioEmail(emailUsuario);
-		
-		
+		usuarioBusqueda = daoadmin.buscarUsuarioEmail(dniUser);
 		String nombre = userDao.devolverUser(usuarioBusqueda);
-		
-		
-		
-		
 		Usuario usuario = userDao.selectNombre(nombre);
 		usuario.setEmail(usuarioBusqueda.getEmail());
 		usuario.setPassword(pwdNueva);
