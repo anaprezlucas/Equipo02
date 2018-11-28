@@ -34,6 +34,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/pablo/Desktop/bson-3.0.4.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
