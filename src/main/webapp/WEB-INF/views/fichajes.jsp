@@ -213,7 +213,7 @@ height:180px
 									<span class="glyphicon glyphicon-edit"></span> Listar Fichajes
 							</h3>
 							<label>Introduzca primera fecha del periodo de fichajes:<br></label> 
-							<input placeholder="yyyy-MM-dd" type="text" name="fecha1" id="fecha1">
+							<input placeholder="yyyy-MM-dd" type="text" name="fecha1" id="fecha1"><br>
 							<label>Introduzca segunda fecha del periodo de fichajes:<br></label> 
 							<input placeholder="yyyy-MM-dd" type="text" name="fecha2" id="fecha2">
 							<button id="btnListar"  class="btn btn-primary btnListar btnUsuario" type="submit" data-toggle="collapse.in" data-target="#panelFichajes" aria-expanded="false" aria-controls="panelFichajes">ListarFichajes</button>
@@ -244,11 +244,11 @@ height:180px
 		</table>
 
 	</div>
-	
+	<!-- 
 	<form action="gestionPwd" method="get">
 					<button type="submit" id="btnCambioPwD" class="btn btn-primary btnCerrar btnUsuario"value="Cambio de contrasena" >Cambiar Contrase&ntilde;a</button>
 	</form>
-	
+	-->
 
 </body>
 </html>
