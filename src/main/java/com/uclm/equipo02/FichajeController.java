@@ -58,7 +58,7 @@ public class FichajeController {
 
 		}else {
 			fichajedao.abrirFichaje(fichaje);
-			model.addAttribute(alertaFichaje,"El usuario "+fichaje.getDNIFichaje()+" ha abierto un fichaje");
+			model.addAttribute(alertaFichaje,"Ha abierto un fichaje correctamente");
 		}
 		return fichajes;
 	} 
@@ -84,7 +84,7 @@ public class FichajeController {
 
 		if(fichajedao.validezCerrado(fichaje)) {
 			fichajedao.cerrarFichaje(usuario, fichaje);
-			model.addAttribute(alertaFichaje,"El usuario "+fichaje.getDNIFichaje()+" ha cerrado un fichaje");
+			model.addAttribute(alertaFichaje,"Ha cerrado un fichaje correctamente");
 
 
 		}else {
