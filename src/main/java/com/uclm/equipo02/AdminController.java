@@ -36,9 +36,8 @@ public class AdminController {
 		String mail = request.getParameter("txtUsuarioEmail");
 		String nombre = request.getParameter("txtUsuarioNombre");
 		String rol = request.getParameter("listaRoles");
-		String dni = request.getParameter("txtDni");
 		String pass = passRandom();
-		if (mail.equals("") || nombre.equals("") || rol.equals("")||dni.equals("")) {
+		if (mail.equals("") || nombre.equals("") || rol.equals("")) {
 			//model.addAttribute(alert, "Por favor rellene los campos");
 
 		}
@@ -48,12 +47,11 @@ public class AdminController {
 		user.setPassword(Utilidades.encrypt(pass));
 		user.setEmail(mail);
 		user.setRol(rol);
-		user.setDni(dni);
 
 		try {
 			userDao.insert(user);
 		} catch (Exception e) {
-			
+
 		}
 
 		String destinatario =  "alguien@servidor.com"; //A quien le quieres escribir.
@@ -64,7 +62,7 @@ public class AdminController {
 		MailSender mailSender = new MailSender();
 		mailSender.enviarConGMail(mail, asunto, cuerpo);
 
-		return "interfazCrearUsuario";
+		return "interfazAdministrador";
 	}
 
 	public String passRandom() {
@@ -107,29 +105,24 @@ public class AdminController {
 		}
 	}
 	
-	@RequestMapping(value = "/buscarUsuarioPorDni", method = RequestMethod.GET)
+	@RequestMapping(value = "/buscarUsuarioPorEmail", method = RequestMethod.GET)
 	public String buscarUsuario(HttpServletRequest request, Model model) throws Exception {
 
-		String dni = request.getParameter("txtDniBusqueda");
+		String email = request.getParameter("txtEmail");
 		
-		if(!daoadmin.existeUser(dni)) {
+		if(!daoadmin.existeUser(email)) {
 			model.addAttribute("alertaUsuarioNull","El usuario buscado no existe");
 			return "modificarUsuario";
 		}else {
-
-		user.setDni(dni);
 		
-		user.setEmail(userDao.devolverMail(user));
+		//Usuario user = new Usuario();
+		user.setEmail(email);
+
 		user.setNombre(userDao.devolverUser(user));
 		user.setRol(userDao.devolverRol(user));
-		
-		
-		HttpSession session = request.getSession();
-		request.setAttribute("nombreUser", user.getNombre());
-		request.setAttribute("dniUser", user.getDni());
 
+		model.addAttribute("NombreUsuario", user.getNombre());
 		model.addAttribute("RolUsuario", user.getRol());
-		model.addAttribute("EmailUsuario", user.getEmail());
 		
 		return "modificarUsuario";
 		}
@@ -142,11 +135,12 @@ public class AdminController {
 	@RequestMapping(value = "/modificarUser", method = RequestMethod.GET)
 	public String modificarUser(HttpServletRequest request, Model model) throws Exception {
 
+		String nombre = request.getParameter("txtNombre");
 		String rol = request.getParameter("listaRoles");
-		String email = request.getParameter("txtEmail");
+
 		try {
 			
-			userDao.updateEmail(user, email);
+			userDao.updateNombre(user, nombre);
 			userDao.updateRol(user, rol);
 		}catch(Exception e) {
 
@@ -161,10 +155,10 @@ public class AdminController {
 	public String adminModificarPwd(HttpServletRequest request, Model model) throws Exception {
 		Usuario usuarioLigero = (Usuario) request.getSession().getAttribute(usuario_conect);
 		
-		String dniUsuario = request.getParameter("dniUsuario");
+		String emailUsuario = request.getParameter("txtEmail");
 		
 		
-		String pwdActual = request.getParameter("contrasenaActual");
+		
 		String pwdNueva = request.getParameter("contrasenaNueva");
 		String pwdNueva2 = request.getParameter("contrasenaNueva2");
 		
@@ -172,14 +166,13 @@ public class AdminController {
 		Usuario usuarioBusqueda= new Usuario();
 		
 		
-		
-		if(!daoadmin.existeUser(dniUsuario)) {
+		if(!daoadmin.existeUser(emailUsuario)) {
 			model.addAttribute("alertaUsuarioNull","El usuario buscado no existe");
 			return adminUpdatePwd;
 			
 		}else {
 		
-		usuarioBusqueda = daoadmin.buscarUsuarioEmail(dniUsuario);
+		usuarioBusqueda = daoadmin.buscarUsuarioEmail(emailUsuario);
 		
 		
 		String nombre = userDao.devolverUser(usuarioBusqueda);
@@ -188,17 +181,8 @@ public class AdminController {
 		
 		
 		Usuario usuario = userDao.selectNombre(nombre);
-		usuario.setPassword(pwdActual);
-		if(!userDao.login(usuario)) {
-			request.setAttribute("nombreUser", usuario.getNombre());
-			request.setAttribute("mailUser", usuario.getEmail());
-			model.addAttribute(alert, "Password actual incorrecta");
-			return adminUpdatePwd;
-		}
-		
 		usuario.setEmail(usuarioBusqueda.getEmail());
 		usuario.setPassword(pwdNueva);
-		
 		
 		if (usuario == null || !(pwdNueva.equals(pwdNueva2))) {
 			request.setAttribute("nombreUserBusqueda", usuario.getNombre());
@@ -244,6 +228,11 @@ public class AdminController {
 		
 	}
 
+	@RequestMapping(value = "/interfazCrearIncidencia", method = RequestMethod.GET)
+	public ModelAndView interfazCrearIncidencia() {
+		return new ModelAndView("interfazCrearIncidencia");
+	}
+	
 	@RequestMapping(value = "/interfazCrearUsuario", method = RequestMethod.GET)
 	public ModelAndView interfazCrearUsuario() {
 		return new ModelAndView("interfazCrearUsuario");
