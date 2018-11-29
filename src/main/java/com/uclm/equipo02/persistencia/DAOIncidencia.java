@@ -76,5 +76,39 @@ public class DAOIncidencia{
 		return fechaparseada;
 		
 	}
+	
+	public static List<Document> getIncidenciasGestor() {
+
+
+		List<Document> incidenciasGestor = new ArrayList<Document>();
+		Document documento = new Document();
+		MongoCursor<Document> elementos = getIncidencias().find().iterator();
+
+		while(elementos.hasNext()) {
+			documento = elementos.next();
+			if(documento.get("estado").toString().equalsIgnoreCase("Pendiente"))
+				
+				incidenciasGestor.add(documento);
+		}
+		
+		return incidenciasGestor;
+	}
+	
+	public boolean existeIncidenciasEspera() {
+		boolean bool=false;
+		Document documento = new Document();
+		MongoCursor<Document> elementos = getIncidencias().find().iterator();
+		while(elementos.hasNext()) {
+			documento = elementos.next();
+				
+					if(documento.get("estado").toString().equalsIgnoreCase("Pendiente")) {
+						bool=true;
+	
+				}
+				
+		}
+		return bool;
+		
+	}
 
 }
