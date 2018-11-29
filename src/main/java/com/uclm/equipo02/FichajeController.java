@@ -218,6 +218,11 @@ public class FichajeController {
 		request.setAttribute("mailUser", usuario.getEmail());
 		return new ModelAndView("gestionPwd");
 	}
+	
+	@RequestMapping(value = "REfichajes", method = RequestMethod.GET)
+	public ModelAndView REfichajes() {
+		return new ModelAndView("fichajes");
+	}
 
 
 
