@@ -165,7 +165,6 @@ public class AdminController {
 		String dniUsuario = request.getParameter("dniUsuario");
 		
 		
-		String pwdActual = request.getParameter("contrasenaActual");
 		String pwdNueva = request.getParameter("contrasenaNueva");
 		String pwdNueva2 = request.getParameter("contrasenaNueva2");
 		
@@ -189,13 +188,7 @@ public class AdminController {
 		
 		
 		Usuario usuario = userDao.selectNombre(nombre);
-		usuario.setPassword(pwdActual);
-		if(!userDao.login(usuario)) {
-			request.setAttribute("nombreUser", usuario.getNombre());
-			request.setAttribute("mailUser", usuario.getEmail());
-			model.addAttribute(alert, "Password actual incorrecta");
-			return adminUpdatePwd;
-		}
+		
 		
 		usuario.setEmail(usuarioBusqueda.getEmail());
 		usuario.setPassword(pwdNueva);
