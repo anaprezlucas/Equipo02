@@ -133,7 +133,7 @@ height:180px
 			</div>
 			<div class="nav-item pull-left fixed-top"
 				style="position: relative; top: 8px">
-				<form action="inicio" method="GET">
+				<form action="REfichajes" method="GET">
 					<button class="btn btn-space" type="submit">
 						<strong><span class="glyphicon glyphicon-sort"></span>
 							Fichajes</strong>
@@ -142,7 +142,7 @@ height:180px
 			</div>
 			<div class="nav-item pull-left  fixed-top"
 				style="position: relative; top: 8px">
-				<form action="fichajes" method="GET">
+				<form action="RECrearIncidencia" method="GET">
 					<button class="btn btn-space " type="submit">
 						<strong><span class="glyphicon glyphicon-copy"></span>
 							Gestionar Incidencias</strong>
