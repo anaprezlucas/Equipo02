@@ -134,7 +134,7 @@
 						    <h3>Rol del usuario</h3> 
 						    <select name = "listaRoles">
 						    	<option value = "Empleado"> Empleado </option>
-						    	<option value = "Gestor de inicidencias"> Gestor de incidencias </option>
+						    	<option value = "Gestor de incidencias"> Gestor de incidencias </option>
 						    </select>
 						    <label>Rol de usuario actual: ${RolUsuario} </label>
 						    	
