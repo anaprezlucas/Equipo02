@@ -75,14 +75,7 @@ public class UsuarioController {
 	}
 	
 	
-	@RequestMapping(value = "/inicio", method = RequestMethod.GET)
-	public ModelAndView irFichajes() {
-		return new ModelAndView("fichajes");
-	}
-	@RequestMapping(value = "/incidencias", method = RequestMethod.GET)
-	public ModelAndView irIncidencias() {
-		return new ModelAndView("interfazCrearIncidencia");
-	}
+	
 	
 
 }
