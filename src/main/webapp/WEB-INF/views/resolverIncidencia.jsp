@@ -79,22 +79,23 @@
 		</div>
 	</nav>
 
-		<form id="formListar" action="listarIncidenciasGestor" method="get">
+		
 			<div class="container busqueda-container col-md-4">
 				<div class="row">
 					<h2>
 						<span class="glyphicon glyphicon-search"></span> Lista de Incidencias
 					</h2>
+					<span style="color: red"><em>${nullIncidencia}</em></span>
 		
 					<div class="list-group">
 						<c:forEach items="${listaIncidencias}" var="inci">
-							  <a href="#" class="list-group-item list-group-item-action ">${inci.nombreEmpleado}  ${inci.categoria} ${inici.fechaCreacion}</a>
+							  <a href="#" class="list-group-item list-group-item-action ">${inci.nombreUsuario} ${inci.dniUsuario} ${inci.categoria} ${inci.fechaCreacion}</a>
 							  </c:forEach>
 						</div>
 					
 				</div>
 			</div>
-			</form>
+			
 	
 	
 	

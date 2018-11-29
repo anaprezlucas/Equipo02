@@ -249,7 +249,7 @@ height:180px
 										<div class="text-center"">
 										
 												<input type="submit" class="btnUsuario input-lg"
-													name="resolverInci" value="Resolver Incidencia" formaction = "REResolverIncidencia" />
+													name="resolverIncidencia" value="Resolver Incidencias" formaction = "listarIncidenciasGestor" />
 													<input type="submit" class="btnUsuario input-lg"
 													name="crearIncidencia" value="Crear incidencia" formaction = "RECrearIncidencia" />
 												

@@ -66,6 +66,7 @@ public class IncidenciaController {
 		}else {
 			List<Document> listaIncidenciasGestor =incidenciaDao.getIncidenciasGestor();
 			model.addAttribute("listaIncidencias", listaIncidenciasGestor);
+			System.out.println("LISTA INCIDENCIAS"+listaIncidenciasGestor.toString());
 			return "resolverIncidencia";
 		}
 	}
