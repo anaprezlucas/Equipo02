@@ -77,7 +77,7 @@ public class IncidenciaController {
 		return new ModelAndView("interfazCrearIncidencia");
 	}
 	
-	@RequestMapping(value = "/RECrearIncidencia", method = RequestMethod.GET)
+	@RequestMapping(value = "/REResolverIncidencia", method = RequestMethod.GET)
 	public ModelAndView REResolverIncidencia() {
 		return new ModelAndView("resolverIncidencia");
 	}
