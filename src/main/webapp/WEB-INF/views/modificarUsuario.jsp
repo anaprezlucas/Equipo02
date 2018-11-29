@@ -92,7 +92,7 @@
 					
 					<div class="botones-form text-right" style="margin: auto;">
 						    	<input type="submit" class="btnBusquedaUsuario input-lg"
-									name="Buscar" value="B&uacutesqueda"/>
+									name="Buscar" value="B&uacute;squeda"/>
 									
 									
 					</div> 
