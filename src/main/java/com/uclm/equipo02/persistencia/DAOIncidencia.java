@@ -185,10 +185,14 @@ public class DAOIncidencia{
 		return inci;
 	}
 	
-	public void updateIncidencia(Incidencia incidencia) {
+	public void updateIncidencia(Incidencia incidencia,String modo) {
 		MongoCollection<Document> incidencias = getIncidencias();
 		MongoBroker broker = MongoBroker.get();
-
+		
+		
+		if(modo.equalsIgnoreCase("denegar") || modo.equalsIgnoreCase("resolver")) {
+			
+		
 		Document criteria=new Document();
 
 		criteria.put("_id", incidencia.get_id());
@@ -201,6 +205,9 @@ public class DAOIncidencia{
 		doc.put("$set", changes);
 
 		broker.updateDoc(incidencias, criteria, doc);
+		}else if(modo.equalsIgnoreCase("modificar")){
+		
+		}
 
 		
 	}

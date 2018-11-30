@@ -85,13 +85,14 @@ public class IncidenciaController {
 		Usuario usuario;
 		usuario = (Usuario) request.getSession().getAttribute(usuario_conect);
 		String texto=request.getParameter("textoGestor");
+		String modo="resolver";
 		
 		String idIncidencia=request.getParameter("idSeleccionada");
 		ObjectId id=new ObjectId(idIncidencia);
 		
 		Incidencia resuelta=incidenciaDao.resolverIncidencia(id,texto);
 		
-		incidenciaDao.updateIncidencia(resuelta);
+		incidenciaDao.updateIncidencia(resuelta,modo);
 		
 		//Creacion de lista de incidencias de nuevo
 		List<Document> listaIncidenciasGestor =incidenciaDao.getIncidenciasGestor();
@@ -107,11 +108,13 @@ public class IncidenciaController {
 		Usuario usuario;
 		usuario = (Usuario) request.getSession().getAttribute(usuario_conect);
 		String texto=request.getParameter("textoGestor");
+		String modo="denegar";
+		
 		String idIncidencia=request.getParameter("idSeleccionada");
 		ObjectId id=new ObjectId(idIncidencia);
 		
 		Incidencia denegada=incidenciaDao.denegarIncidencia(id,texto);
-		incidenciaDao.updateIncidencia(denegada);
+		incidenciaDao.updateIncidencia(denegada,modo);
 
 		//Creacion de lista de incidencias de nuevo
 		List<Document> listaIncidenciasGestor =incidenciaDao.getIncidenciasGestor();
