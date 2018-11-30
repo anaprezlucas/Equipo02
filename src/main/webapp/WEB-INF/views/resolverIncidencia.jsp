@@ -17,7 +17,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
-	
+	<c:set var="incidencia" value="${incidencia}" scope="request" />
 	
 	
 	
@@ -79,62 +79,78 @@
 		</div>
 	</nav>
 
-		
-			<div class="container busqueda-container col-md-4">
-				<div class="row">
-					<h2>
-						<span class="glyphicon glyphicon-search"></span> Lista de Incidencias
-					</h2>
-					<span style="color: red"><em>${nullIncidencia}</em></span>
-		
-					<div class="list-group">
-						<c:forEach items="${listaIncidencias}" var="inci">
-							  <a href="#" class="list-group-item list-group-item-action ">${inci.nombreUsuario} ${inci.dniUsuario} ${inci.categoria} ${inci.fechaCreacion}</a>
-							  </c:forEach>
-						</div>
-					
-				</div>
+	<div class="container busqueda-container col-md-4">
+		<div class="row">
+			<h2>
+				<span class="glyphicon glyphicon-search"></span> Lista de
+				Incidencias
+			</h2>
+			<span style="color: red"><em>${nullIncidencia}</em></span>
+
+			<div class="list-group">
+				<c:forEach items="${listaIncidencias}" var="incidencia">
+					<form action="seleccionarIncidencia" method="get">
+					<input name="idI" type="hidden" value="${incidencia._id}"/>
+						<a id="incidenciaA" class="list-group-item list-group-item-action ">Nombre: ${incidencia.nombreUsuario} Dni: ${incidencia.dniUsuario} Categoria: ${incidencia.categoria} Fecha: ${incidencia.fechaCreacion}</a>
+						<button type="submit" name="seleccionar">Seleccionar Incidencia</button>
+					</form>
+				</c:forEach>
 			</div>
-			
-	
-	
-	
-		<div class="container modificacion-container col-md-6">
+
+		</div>
+	</div>
+
+
+
+
+
+	<div class="container modificacion-container col-md-6">
 		
 			<h2>
-				<span class="glyphicon glyphicon-pencil"></span> Modificaci&oacuten Usuario
+				<span class="glyphicon glyphicon-pencil"></span> Resoluci&oacute;n Incidencia
 			</h2>
 			<label>Email de usuario actual: ${EmailUsuario}</label>
-			<form id="ModificacionUsuario" action="modificarUser"  method=get >
-			<div class="form-group">
-							
-							<h3>Nombre del usuario</h3>
-							<input name="txtNombre" type="text" class="form-control" 
-							placeholder="Nombre" value="" />
-							<label>Nombre de usuario actual: ${NombreUsuario} </label>
-				 	</div>
-				 	<div class="form-group">
-						    <h3>Rol del usuario</h3> 
-						    <select name = "listaRoles">
-						    	<option value = "Empleado"> Empleado </option>
-						    	<option value = "Gestor de inicidencias"> Gestor de incidencias </option>
-						    </select>
-						    <label>Rol de usuario actual: ${RolUsuario} </label>
-						    	
-					</div>
-					
-					<div class="botones-form text-right" style="margin: auto;">
-						    	<input type="submit" class="btnModUsuario input-lg"
-									name="Aceptar" value="Aceptar" />
-								
-						</div>
-					</form>
+		<form id="resolverIncidencia" action="resolverIncidencia" method=get>
 			
+			<div class="form-group">
+    				<h3>DNI del usuario</h3>
+						<input id="DNIUsuario" type="text" disabled class="form-control" placeholder="DNI del Usuario" value="${seleccionadaInci.getDniUsuario()} " />
+					</div>
+			<div class="form-group">
+				<h3>Nombre del usuario</h3>
+				<input name="txtNombre" type="text" disabled class="form-control" placeholder="Nombre del usuario" value="${seleccionadaInci.getNombreUsuario()}" /> 
 			</div>
 			
+			<div class="form-group">
+				<h3>Categoria</h3>
+				<input name="txtCategoria" type="text" disabled class="form-control" placeholder="Categoria" value="${seleccionadaInci.getCategoria()}" />
+
+			</div>
+			<div class="form-group">
+						   <h3>Descripción de la incidencia: </h3>
+                           <textarea disabled class=textoIncidencia name=textoIncidencia rows="5" cols="90"> ${seleccionadaInci.getDescripcion()}</textarea>
+			</div>
 			
+			<div class="form-group">
+						   <h3>Comentario de la incidencia: </h3>
+                           <textarea class=textoIncidencia name=textoGestor rows="5" cols="90"></textarea>
+			</div>
+			<input name="idSeleccionada" type="hidden" value="${seleccionadaInci.get_id()}"/>
+			<div class="botones-form text-right" style="margin: auto;">
+				<input type="submit" class="btnModUsuario input-lg" name="Resolver"
+					value="Resolver Incidencia" />
 	
-	
+			</div>
+		</form>
+
+	</div>
 
 </body>
+<script type="text/javascript">
+
+</script>
+
+
+
+
 </html>

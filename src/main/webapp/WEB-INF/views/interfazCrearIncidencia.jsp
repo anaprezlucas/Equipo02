@@ -89,10 +89,10 @@
 					<div class="tipoIncidencia-form">
                             <h3>Tipo de incidencia:</h3>
 							<select class="listaDesplegable" name = "listaTiposIncidencia">
-						    	<option value = "vacaciones"> Vacaciones </option>
-						    	<option value = "baja"> Baja médica </option>
-                                <option value = "ausencia"> Justificación de ausencia </option>
-                                <option value = "error"> Error de fichaje </option>
+						    	<option value = "Vacaciones"> Vacaciones </option>
+						    	<option value = "Baja"> Baja médica </option>
+                                <option value = "Ausencia"> Justificación de ausencia </option>
+                                <option value = "Error"> Error de fichaje </option>
 						    </select>
 				 	</div>
 				 	<div class="form-group">

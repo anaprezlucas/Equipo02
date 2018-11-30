@@ -12,6 +12,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import com.uclm.equipo02.modelo.Fichaje;
 import com.uclm.equipo02.modelo.Incidencia;
@@ -86,7 +87,7 @@ public class DAOIncidencia{
 
 		while(elementos.hasNext()) {
 			documento = elementos.next();
-			if(documento.get("estado").toString().equalsIgnoreCase("Pendiente"))
+			if(documento.get("estado").toString().equalsIgnoreCase("En espera"))
 				
 				incidenciasGestor.add(documento);
 		}
@@ -101,7 +102,7 @@ public class DAOIncidencia{
 		while(elementos.hasNext()) {
 			documento = elementos.next();
 				
-					if(documento.get("estado").toString().equalsIgnoreCase("Pendiente")) {
+					if(documento.get("estado").toString().equalsIgnoreCase("En espera")) {
 						bool=true;
 	
 				}
@@ -109,6 +110,32 @@ public class DAOIncidencia{
 		}
 		return bool;
 		
+	}
+	
+	
+	public Incidencia buscarIncidenciaID(ObjectId id) {
+		Incidencia inci=new Incidencia();
+		
+		Document documento = new Document();
+		MongoCursor<Document> elementos = getIncidencias().find().iterator();
+		while(elementos.hasNext()) {
+			documento = elementos.next();
+				
+					if(documento.get("_id").toString().equalsIgnoreCase(id.toString())) {
+						inci.set_id(id);
+						inci.setNombreUsuario(documento.get("nombreUsuario").toString());
+						inci.setDniUsuario(documento.get("dniUsuario").toString());
+						inci.setCategoria(documento.get("categoria").toString());
+						inci.setDescripcion(documento.get("descripcion").toString());
+						inci.setEstado(documento.get("estado").toString());
+						inci.setFechaCreacion(documento.get("fechaCreacion").toString());
+						inci.setComentarioGestor(documento.get("comentarioGestor").toString());
+				}
+				
+		}
+		
+		System.out.println("Inci fuera"+inci.toString());
+		return inci;
 	}
 
 }

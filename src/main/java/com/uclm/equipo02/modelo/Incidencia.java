@@ -1,20 +1,29 @@
 package com.uclm.equipo02.modelo;
 
+import org.bson.types.ObjectId;
+
 import com.uclm.equipo02.persistencia.DAOIncidencia;
 
 public class Incidencia {
-	private String nombreUsuario;
-	private String dniUsuario;
-	private String categoria;
-	private String fechaCreacion;
-	private String descripcion;
-	private String estado;
-	private String comentarioGestor;
+	@Override
+	public String toString() {
+		return "Incidencia [id= "+ _id.toString() +", nombreUsuario=" + nombreUsuario + ", dniUsuario=" + dniUsuario + ", categoria=" + categoria
+				+ ", fechaCreacion=" + fechaCreacion + ", descripcion=" + descripcion + ", estado=" + estado
+				+ ", comentarioGestor=" + comentarioGestor + ", dao=" + dao + "]";
+	}
+
+	private String nombreUsuario,dniUsuario,categoria,fechaCreacion,descripcion,estado,comentarioGestor;
+	private ObjectId _id;
+	
+
 	private DAOIncidencia dao = new DAOIncidencia();
+	
+	public Incidencia() {
+		
+	}
 
 	public Incidencia(String nombreUsuario, String dniUsuario, String categoria, String descripcion, String estado, 
 			String fechaCreacion, String comentarioGestor) {
-		super();
 		this.nombreUsuario = nombreUsuario;
 		this.dniUsuario = dniUsuario;
 		this.categoria = categoria;
@@ -23,7 +32,27 @@ public class Incidencia {
 		this.estado = estado;
 		this.comentarioGestor = comentarioGestor;
 	}
+	
+	public Incidencia(ObjectId _id,String nombreUsuario, String dniUsuario, String categoria, String descripcion, String estado, 
+			String fechaCreacion, String comentarioGestor) {
+		this._id=_id;
+		this.nombreUsuario = nombreUsuario;
+		this.dniUsuario = dniUsuario;
+		this.categoria = categoria;
+		this.fechaCreacion = fechaCreacion;
+		this.descripcion = descripcion;
+		this.estado = estado;
+		this.comentarioGestor = comentarioGestor;
+	}
+	
+	public ObjectId get_id() {
+		return _id;
+	}
 
+	public void set_id(ObjectId _id) {
+		this._id = _id;
+	}
+	
 	public String getDniUsuario() {
 		return dniUsuario;
 	}

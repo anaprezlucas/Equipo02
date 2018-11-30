@@ -5,10 +5,14 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.uclm.equipo02.modelo.Incidencia;
@@ -34,7 +38,7 @@ public class IncidenciaController {
 		String categoria = request.getParameter("listaTiposIncidencia");
 		String fechaCreacion =(java.time.LocalDate.now()).toString();
 		String descripcion = request.getParameter("textoIncidencia");
-		String estado = "Pendiente";
+		String estado = "En espera";
 		String comentarioGestor = "";
 		
 		Incidencia incidencia = new Incidencia(nombreUsuario, dniUsuario, categoria, descripcion, estado, 
@@ -48,6 +52,62 @@ public class IncidenciaController {
 		
 		return "interfazCrearIncidencia";
 	}
+	
+	@RequestMapping(value = "seleccionarIncidencia", method = RequestMethod.GET)
+	public String seleccionarIncidencia(HttpServletRequest request, Model model) {
+		
+		
+		String idIncidencia=request.getParameter("idI");
+		ObjectId id=new ObjectId(idIncidencia);
+		
+	
+		Usuario usuario;
+		usuario = (Usuario) request.getSession().getAttribute(usuario_conect);
+		
+		
+		Incidencia inci = incidenciaDao.buscarIncidenciaID(id);
+		model.addAttribute("seleccionadaInci", inci); 
+		//Creacion de lista de incidencias de nuevo
+		List<Document> listaIncidenciasGestor =incidenciaDao.getIncidenciasGestor();
+		model.addAttribute("listaIncidencias", listaIncidenciasGestor);
+		
+		
+		
+		
+		return "resolverIncidencia";
+
+	
+	}
+	
+	
+	@RequestMapping(value = "resolverIncidencia", method = RequestMethod.GET)
+	public String resolverIncidencia(HttpServletRequest request, Model model) {
+		Usuario usuario;
+		usuario = (Usuario) request.getSession().getAttribute(usuario_conect);
+		
+		String idIncidencia=request.getParameter("idSeleccionada");
+		ObjectId id=new ObjectId(idIncidencia);
+		
+		Incidencia resuelta=new Incidencia();
+	
+		
+		
+		
+		
+		//Creacion de lista de incidencias de nuevo
+		List<Document> listaIncidenciasGestor =incidenciaDao.getIncidenciasGestor();
+		model.addAttribute("listaIncidencias", listaIncidenciasGestor);
+		
+		
+		
+		
+		return "resolverIncidencia";
+
+	
+	}
+	
+	
+	
 	
 	
 	
@@ -66,7 +126,6 @@ public class IncidenciaController {
 		}else {
 			List<Document> listaIncidenciasGestor =incidenciaDao.getIncidenciasGestor();
 			model.addAttribute("listaIncidencias", listaIncidenciasGestor);
-			System.out.println("LISTA INCIDENCIAS"+listaIncidenciasGestor.toString());
 			return "resolverIncidencia";
 		}
 	}
