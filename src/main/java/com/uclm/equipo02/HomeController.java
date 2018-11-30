@@ -91,6 +91,12 @@ private final String welcome = "welcome";
 				request.setAttribute("mailUser", email);
 				request.setAttribute("dniUser", dni);
 				return "interfazAdministrador";
+			}else if (usuario.getRol().equalsIgnoreCase("Gestor de incidencias")){
+				request.getSession().setAttribute(usuario_conect, usuario);
+				request.setAttribute("nombreUser", usuario.getNombre());
+				request.setAttribute("mailUser", email);
+				request.setAttribute("dniUser", dni);
+				return "interfazGestor";
 			}
 
 		}else{
