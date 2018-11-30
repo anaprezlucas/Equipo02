@@ -110,7 +110,7 @@
 				<span class="glyphicon glyphicon-pencil"></span> Resoluci&oacute;n Incidencia
 			</h2>
 			<label>Email de usuario actual: ${EmailUsuario}</label>
-		<form id="resolverIncidencia" action="resolverIncidencia" method=get>
+		<form id="resolverIncidencia" method=get>
 			
 			<div class="form-group">
     				<h3>DNI del usuario</h3>
@@ -137,8 +137,10 @@
 			</div>
 			<input name="idSeleccionada" type="hidden" value="${seleccionadaInci.get_id()}"/>
 			<div class="botones-form text-right" style="margin: auto;">
-				<input type="submit" class="btnModUsuario input-lg" name="Resolver"
+				<input type="submit" class="btnModUsuario input-lg" name="Resolver" formaction="resolverIncidencia"
 					value="Resolver Incidencia" />
+					<input type="submit" class="btnModUsuario input-lg" name="Resolver" formaction="denegarIncidencia"
+					value="Denegar Incidencia" />
 	
 			</div>
 		</form>

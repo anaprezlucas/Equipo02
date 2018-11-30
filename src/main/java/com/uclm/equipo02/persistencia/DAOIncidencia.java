@@ -134,8 +134,75 @@ public class DAOIncidencia{
 				
 		}
 		
-		System.out.println("Inci fuera"+inci.toString());
 		return inci;
+	}
+	
+	public Incidencia resolverIncidencia(ObjectId id,String textoGestor) {
+		Incidencia inci=new Incidencia();
+		
+		Document documento = new Document();
+		MongoCursor<Document> elementos = getIncidencias().find().iterator();
+		while(elementos.hasNext()) {
+			documento = elementos.next();
+				
+					if(documento.get("_id").toString().equalsIgnoreCase(id.toString())) {
+						inci.set_id(id);
+						inci.setNombreUsuario(documento.get("nombreUsuario").toString());
+						inci.setDniUsuario(documento.get("dniUsuario").toString());
+						inci.setCategoria(documento.get("categoria").toString());
+						inci.setDescripcion(documento.get("descripcion").toString());
+						inci.setEstado("Resuelta");
+						inci.setFechaCreacion(documento.get("fechaCreacion").toString());
+						inci.setComentarioGestor(textoGestor);
+				}
+				
+		}
+		
+		return inci;
+	}
+	
+	public Incidencia denegarIncidencia(ObjectId id,String textoGestor) {
+		Incidencia inci=new Incidencia();
+		
+		Document documento = new Document();
+		MongoCursor<Document> elementos = getIncidencias().find().iterator();
+		while(elementos.hasNext()) {
+			documento = elementos.next();
+				
+					if(documento.get("_id").toString().equalsIgnoreCase(id.toString())) {
+						inci.set_id(id);
+						inci.setNombreUsuario(documento.get("nombreUsuario").toString());
+						inci.setDniUsuario(documento.get("dniUsuario").toString());
+						inci.setCategoria(documento.get("categoria").toString());
+						inci.setDescripcion(documento.get("descripcion").toString());
+						inci.setEstado("Denegada");
+						inci.setFechaCreacion(documento.get("fechaCreacion").toString());
+						inci.setComentarioGestor(textoGestor);
+				}
+				
+		}
+		
+		return inci;
+	}
+	
+	public void updateIncidencia(Incidencia incidencia) {
+		MongoCollection<Document> incidencias = getIncidencias();
+		MongoBroker broker = MongoBroker.get();
+
+		Document criteria=new Document();
+
+		criteria.put("_id", incidencia.get_id());
+
+		Document changes=new Document();
+
+		changes.put("estado", incidencia.getEstado());
+		changes.put("comentarioGestor", incidencia.getComentarioGestor());
+		Document doc = new Document();
+		doc.put("$set", changes);
+
+		broker.updateDoc(incidencias, criteria, doc);
+
+		
 	}
 
 }

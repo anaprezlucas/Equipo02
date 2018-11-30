@@ -84,23 +84,39 @@ public class IncidenciaController {
 	public String resolverIncidencia(HttpServletRequest request, Model model) {
 		Usuario usuario;
 		usuario = (Usuario) request.getSession().getAttribute(usuario_conect);
+		String texto=request.getParameter("textoGestor");
 		
 		String idIncidencia=request.getParameter("idSeleccionada");
 		ObjectId id=new ObjectId(idIncidencia);
 		
-		Incidencia resuelta=new Incidencia();
-	
+		Incidencia resuelta=incidenciaDao.resolverIncidencia(id,texto);
 		
-		
-		
+		incidenciaDao.updateIncidencia(resuelta);
 		
 		//Creacion de lista de incidencias de nuevo
 		List<Document> listaIncidenciasGestor =incidenciaDao.getIncidenciasGestor();
 		model.addAttribute("listaIncidencias", listaIncidenciasGestor);
+	
+		return "resolverIncidencia";
+
+	
+	}
+	
+	@RequestMapping(value = "denegarIncidencia", method = RequestMethod.GET)
+	public String denegarIncidencia(HttpServletRequest request, Model model) {
+		Usuario usuario;
+		usuario = (Usuario) request.getSession().getAttribute(usuario_conect);
+		String texto=request.getParameter("textoGestor");
+		String idIncidencia=request.getParameter("idSeleccionada");
+		ObjectId id=new ObjectId(idIncidencia);
 		
-		
-		
-		
+		Incidencia denegada=incidenciaDao.denegarIncidencia(id,texto);
+		incidenciaDao.updateIncidencia(denegada);
+
+		//Creacion de lista de incidencias de nuevo
+		List<Document> listaIncidenciasGestor =incidenciaDao.getIncidenciasGestor();
+		model.addAttribute("listaIncidencias", listaIncidenciasGestor);
+
 		return "resolverIncidencia";
 
 	
