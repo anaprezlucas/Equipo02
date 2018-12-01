@@ -31,10 +31,11 @@ public class UsuarioController {
 		String pwdNueva = request.getParameter("contrasenaNueva");
 		String pwdNueva2 = request.getParameter("contrasenaNueva2");
 		String nombre = userDao.devolverUser(usuarioLigero);
-		
+	
 		Usuario usuario = userDao.selectNombre(nombre);
 		usuario.setEmail(emailActual);
 		usuario.setPassword(pwdActual);
+		
 		
 		
 		if(!userDao.login(usuario)) {
@@ -43,12 +44,19 @@ public class UsuarioController {
 			model.addAttribute(alert, "Password actual incorrecta");
 			return gestionPwd;
 		}
+		if(Utilidades.comprobarPwd(usuario.getDni(), pwdActual, pwdNueva)==false){
+			request.setAttribute("nombreUser", usuario.getNombre());
+			request.setAttribute("mailUser", usuario.getEmail());
+			model.addAttribute("alertaPWDRepe","Password anteriormente utilizada");
+			return gestionPwd;
+		}
 		if (usuario == null || !(pwdNueva.equals(pwdNueva2))) {
 			request.setAttribute("nombreUser", usuario.getNombre());
 			request.setAttribute("mailUser", usuario.getEmail());
 			model.addAttribute(alert, "Datos incorrectos");
 			return gestionPwd;
 		}
+		
 		try {
 	
 		} catch (Exception e) {

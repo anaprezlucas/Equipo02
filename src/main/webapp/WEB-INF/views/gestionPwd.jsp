@@ -128,6 +128,8 @@
 							class="btnUsuario input-lg" name="Cancelar" value="Cancelar" />
 					 <span style="color: red"><em>${alerta}</em></span>
 					 <span style="color:red"><em>${alertaPWDinsegura}</em></span>
+					 <span style="color:red"><em>${alertaPWDRepe}</em></span>
+					 
 					 <span style="color:green"><em>${alertaCambio}</em></span>
 					</div>
 

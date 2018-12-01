@@ -183,13 +183,10 @@ public class AdminController {
 		
 		
 		String nombre = userDao.devolverUser(usuarioBusqueda);
-		
-		
-		
-		
+
 		Usuario usuario = userDao.selectNombre(nombre);
-		
-		
+		String actualPwd = usuario.getPassword();
+		String dni = usuario.getDni();
 		usuario.setEmail(usuarioBusqueda.getEmail());
 		usuario.setPassword(pwdNueva);
 		
@@ -209,7 +206,12 @@ public class AdminController {
 			return adminUpdatePwd;
 		}
 		
-		if(!Utilidades.seguridadPassword(pwdNueva)) {
+		if(Utilidades.comprobarPwd(dni, actualPwd, pwdNueva)==false){
+			request.setAttribute("nombreUser", usuario.getNombre());
+			request.setAttribute("mailUser", usuario.getEmail());
+			model.addAttribute("alertaPWDRepe","Password anteriormente utilizada");
+			return adminUpdatePwd;
+		}else if(!Utilidades.seguridadPassword(pwdNueva)) {
 			request.setAttribute("nombreUser", usuario.getNombre());
 			request.setAttribute("mailUser", usuario.getEmail());
 			model.addAttribute("alertaPWDinsegura","Password poco segura (minimo 8 caracteres, con numeros y letras)");
