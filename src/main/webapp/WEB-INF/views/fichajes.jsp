@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+  pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -19,10 +19,50 @@
 
 
 
-<title>Gesti&oacute;n y Validaci&oacute;n de Fichajes</title>
-</head>
-
 <style>
+
+
+.historial-container {
+	margin-top: 5%;
+}
+
+.gestion-div{
+	box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
+		rgba(0, 0, 0, 0.19);
+	padding-bottom: 5px;
+}
+
+
+.historial-div {
+	box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
+		rgba(0, 0, 0, 0.19);
+}
+
+.historial-div h2 {
+	color: #333;
+}
+
+
+.btnUsuario {
+	width: 50%;
+	border-radius: 2rem;
+	padding: 0%;
+	border: solid;
+	cursor: pointer;
+	margin-bottom: 5px;
+	font-weight: 600;
+	color: #fff;
+	background-color: #0062cc;
+}
+
+.btnFichajes {
+	border-radius: 2rem;
+	border: solid;
+	cursor: pointer;
+	font-weight: 600;
+	color: #fff;
+	background-color: #0062cc;
+}
 
 .btn-xl {
     padding: 10px 20px;
@@ -34,6 +74,7 @@
 .btn-space {
     margin-right: 5px;
 }
+
 .btn-verticalspace{
 	margin-bottom:30px;
 }
@@ -43,34 +84,12 @@
   justify-content: center;
 }
 
-.historial{
-box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0
-		rgba(0, 0, 0, 0.19);
-padding: 15px;
-}
 
 .inlinediv{
 float: left;
 }
 
-.h1div{
-display: flex;
-  justify-content: center;
-  margin-bottom:30px;
-
-}
-
-.btnUsuario {
-	border-radius: 2rem;
-	border: solid;
-	cursor: pointer;
-	font-weight: 600;
-	color: #fff;
-	background-color: #0062cc;
-}	
-		
 .btnAbrir{
- padding: 10px 20px;
     font-size: 20px;
     border-radius: 10px;
 margin-bottom:30px;
@@ -79,15 +98,14 @@ margin-right: 10px;
 }
 
 .btnCerrar{
-
- padding: 10px 20px;
     font-size: 20px;
     border-radius: 10px;
 margin-bottom:30px;
 }
 
 .btnListar{
- padding: 15px 15px;
+ width: 150px;
+ padding: 10px 10px;
     font-size: 15px;
     border-radius: 15px;
 margin-bottom:10px;	
@@ -99,30 +117,10 @@ width:180px;
 height:180px
 }
 
-
 </style>
 
 
-
-
-<script>
-	function switchState() {
-
-		if (document.getElementById('tdState').innerHTML = "true") {
-
-			return document.getElementById('tdState').innerHTML = "Abierto";
-
-		} else if (document.getElementById('tdState').innerHTML = "false") {
-
-			return document.getElementById('tdState').innerHTML = "Cerrado";
-		}
-	}
-
-	
-</script>
-
-
-
+</head>
 
 <body>
 
@@ -133,19 +131,19 @@ height:180px
 			</div>
 			<div class="nav-item pull-left fixed-top"
 				style="position: relative; top: 8px">
-				<form action="REfichajes" method="GET">
+				<form action="inicio" method="GET">
 					<button class="btn btn-space" type="submit">
 						<strong><span class="glyphicon glyphicon-sort"></span>
 							Fichajes</strong>
 					</button>
 				</form>
 			</div>
-			<div class="nav-item pull-left  fixed-top"
+			<div class="nav-item pull-left fixed-top"
 				style="position: relative; top: 8px">
-				<form action="RECrearIncidencia" method="GET">
-					<button class="btn btn-space " type="submit">
+				<form action="incidencias" method="GET">
+					<button class="btn btn-space" type="submit">
 						<strong><span class="glyphicon glyphicon-copy"></span>
-							Gestionar Incidencias</strong>
+							Incidencias</strong>
 					</button>
 				</form>
 			</div>
@@ -153,8 +151,8 @@ height:180px
 				style="position: relative; top: 8px">
 				<form action="gestionPwd" method="GET">
 					<button class="btn btn-space" type="submit">
-						<strong><span class="glyphicon glyphicon-cog"></span>
-							Gestionar Contrase&ntilde;a</strong>
+						<strong><span class="glyphicon glyphicon-copy"></span>
+							Gesti&oacuten Credenciales</strong>
 					</button>
 				</form>
 			</div>
@@ -168,87 +166,115 @@ height:180px
 			</div>
 		</div>
 	</nav>
-	
+
 	<center>
-	<img src="https://i.imgur.com/bwlSMSI.png" class="logo">
+		<br /> <img src="https://i.imgur.com/bwlSMSI.png" style="width: %;">
+		<br />
 	</center>
-	
-	<div class = "page-header h1div">
-	   <h1>
-	      Gesti&oacute;n y Validaci&oacute;n de Fichajes
-	   </h1>
-   </div>
 
 
-	<div class="container centerdiv">
-		
-			<div class="inlinediv">
-				<form action="abrirFichaje" method="post">
-					<button type="submit" id="btnAbrir" class="btn btn-primary btnAbrir btnUsuario" value="Abrir Fichaje" >Abrir Fichaje</button>
-				</form>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-5 col-md-offset-4">
+				<div class="inlinediv" >
+					<form action="abrirFichaje" method="post">
+						<button type="submit" id="btnAbrir" class="btn btn-primary btnAbrir btnFichajes" value="Abrir Fichaje">Abrir Fichaje</button>
+					</form>
+				</div>
+
+				<div >
+					<form action="cerrarFichaje" method="post">
+						<button type="submit" id="btnCerrar" class="btn btn-primary btnCerrar btnFichajes" value="Cerrar Fichaje">Cerrar Fichaje</button>
+					</form>
+				</div>
 			</div>
 			
-			<div class="inlinediv ">
-				<form action="cerrarFichaje" method="post">
-					<button type="submit" id="btnCerrar" class="btn btn-primary btnCerrar btnUsuario"value="Cerrar Fichaje" >Cerrar Fichaje</button>
-				</form>
+		</div>
+	</div>
+
+	<div class="container centerdiv col-md-6 col-md-offset-3">
+			<div class="row">
+				<span style="color:red"><em>${errorMessageCerrar}</em></span>
+				<span style="color:red"><em>${errorMessageAbrir}</em></span>
+				<span style="color: green"><em>${alertaFichaje}</em></span>
+			</div>
+	</div>
+	
+
+	
+	<div class="container col-md-12" style="margin-top: 5%;">
+			<div class="row">
+
+						<div class="historial-div collapse.in col-md-5 col-md-offset-1" id="panelFichajes">
+												<h2>
+															<span class="glyphicon glyphicon-edit"></span> Listar Fichajes
+												</h2>
+						
+									<form id="formListar" action="consultaFichajesFecha" method="get">
+												
+												<fieldset class="form-group">
+															
+															<label>Introduzca primera fecha del periodo de fichajes:<br></label> 
+															<input placeholder="yyyy-MM-dd" type="text" name="fecha1" id="fecha1">
+															<label>Introduzca segunda fecha del periodo de fichajes:<br></label> 
+															<input placeholder="yyyy-MM-dd" type="text" name="fecha2" id="fecha2">
+															<button id="btnListar" class="btn btn-primary btnListar btnUsuario" type="submit" data-toggle="collapse.in" data-target="#panelFichajes" aria-expanded="false" aria-controls="panelFichajes">Listar Fichajes</button>
+												</fieldset>
+														<span style="color: red"><em>${nullFecha}</em></span>
+									</form>
+											
+										<table class="table table-bordered">
+											<thead class="thead">
+												<tr>
+													<th scope="col">Fecha</th>
+													<th scope="col">Entrada</th>
+													<th scope="col">Salida</th>
+													<th scope="col">Estado</th>
+
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach items="${listafichajes}" var="fichaje">
+													<tr>
+														<td>${fichaje.fechaFichaje}</td>
+														<td>${fichaje.horaEntrada}</td>
+														<td>${fichaje.horaSalida}</td>
+														<td onload="switchState();" id="tdState">${fichaje.estado}</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+
+						</div>
+
+					
+
+						<div class="gestion-div col-md-4 col-md-offset-1">
+								<h2>
+									<span class=" glyphicon glyphicon-asterisk"></span> Gesti&oacuten de incidencias
+								</h2>
+									<form method = "get">
+										<div class="text-center">
+										
+												<input type="submit" class="btnUsuario input-lg"
+													name="crearIncidencia" value="Crear incidencia" formaction = "RECrearIncidencia" />
+													
+												<input type="submit" class="btnUsuario input-lg"
+													name="modificarIncidencia" value="Modificar incidencia" formaction = "listarIncidencias"/>
+											
+												<input type="submit" class="btnUsuario input-lg"
+													name="eliminarIncidencia" value="Eliminar incidencia" formaction = "listarIncidenciasEliminar"/>
+										</div>
+									</form>
+						</div>
+
+							
+
+						</div>
+			
 			</div>
 	
-	</div>
-
-	<div class="centerdiv">
-		<span style="color: red"><em>${errorMessageCerrar}</em></span> 
-		<span style="color: red"><em>${errorMessageAbrir}</em></span>
-		<span style="color: green"><em>${alertaFichaje}</em></span>
-	</div>
 	
-	
-
-
-	<div class="historial collapse.in col-md-8 col-md-offset-2" id="panelFichajes">
-	
-	<form id="formListar" action="consultaFichajesFecha" method="get">
-				<fieldset>
-							<h3>
-									<span class="glyphicon glyphicon-edit"></span> Listar Fichajes
-							</h3>
-							<label>Introduzca primera fecha del periodo de fichajes:<br></label> 
-							<input placeholder="yyyy-MM-dd" type="text" name="fecha1" id="fecha1"><br>
-							<label>Introduzca segunda fecha del periodo de fichajes:<br></label> 
-							<input placeholder="yyyy-MM-dd" type="text" name="fecha2" id="fecha2">
-							<button id="btnListar"  class="btn btn-primary btnListar btnUsuario" type="submit" data-toggle="collapse.in" data-target="#panelFichajes" aria-expanded="false" aria-controls="panelFichajes">ListarFichajes</button>
-				</fieldset>
-						<span style="color: red"><em>${nullFecha}</em></span>
-			</form>
-			
-		<table class="table table-bordered">
-			<thead class="thead">
-				<tr>
-					<th scope="col">Fecha</th>
-					<th scope="col">Entrada</th>
-					<th scope="col">Salida</th>
-					<th scope="col">Estado</th>
-
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${listafichajes}" var="fichaje">
-					<tr>
-						<td>${fichaje.fechaFichaje}</td>
-						<td>${fichaje.horaEntrada}</td>
-						<td>${fichaje.horaSalida}</td>
-						<td onload="switchState();" id="tdState">${fichaje.estado}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-
-	</div>
-	<!-- 
-	<form action="gestionPwd" method="get">
-					<button type="submit" id="btnCambioPwD" class="btn btn-primary btnCerrar btnUsuario"value="Cambio de contrasena" >Cambiar Contrase&ntilde;a</button>
-	</form>
-	-->
-
 </body>
 </html>

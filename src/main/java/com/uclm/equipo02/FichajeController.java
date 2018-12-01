@@ -223,7 +223,26 @@ public class FichajeController {
 	public ModelAndView REfichajes() {
 		return new ModelAndView("fichajes");
 	}
-
+	
+	@RequestMapping(value = "/modificarIncidencia", method = RequestMethod.GET)
+	public ModelAndView modificarIncidencia(HttpServletRequest request) {
+		Usuario usuario;
+		usuario = (Usuario) request.getSession().getAttribute(usuario_conect); 
+		request.setAttribute("nombreUser", usuario.getNombre());
+		request.setAttribute("dniUser", usuario.getDni());
+		return new ModelAndView("modificarIncidencia");
+	}
+	
+	/*
+	@RequestMapping(value = "/REeliminarIncidencia", method = RequestMethod.GET)
+	public ModelAndView interfazEliminarUsuario(HttpServletRequest request) {
+		Usuario usuario;
+		usuario = (Usuario) request.getSession().getAttribute(usuario_conect); 
+		request.setAttribute("nombreUser", usuario.getNombre());
+		request.setAttribute("dniUser", usuario.getDni());
+		return new ModelAndView("eliminarIncidencia");
+	}
+*/
 
 
 }

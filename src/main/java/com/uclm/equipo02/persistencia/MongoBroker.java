@@ -43,7 +43,9 @@ public class MongoBroker {
 	public void updateDoc(MongoCollection<Document> collection, Document filtro, Document documento) {
 		collection.updateOne(filtro, documento);
 	}
-
+	public void deleteDoc(MongoCollection<Document> collection, Document documento) {
+		collection.deleteOne(documento);
+	}
 
 
 
