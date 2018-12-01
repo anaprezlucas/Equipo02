@@ -162,11 +162,14 @@ public class IncidenciaController {
 		
 		if(!incidenciaDao.existeIncidencias(dni)) {
 			model.addAttribute("nullIncidencia","No existe ning&uacutena incidencia en estado de espera");
+			List<Document> listaIncidencias =incidenciaDao.getIncidencias(dni);
+			model.addAttribute("listaIncidencias", listaIncidencias);
 			return "eliminarIncidencia";
 		}else {
 			List<Document> listaIncidencias =incidenciaDao.getIncidencias(dni);
 			model.addAttribute("listaIncidencias", listaIncidencias);
 			System.out.println("LISTA INCIDENCIAS"+listaIncidencias.toString());
+			
 			return "eliminarIncidencia";
 		}
 	}
@@ -229,6 +232,8 @@ public class IncidenciaController {
 		}catch(Exception e) {
 			
 		}
+		List<Document> listaIncidencias =incidenciaDao.getIncidencias(usuario.getDni());
+		model.addAttribute("listaIncidencias", listaIncidencias);
 		
 		return "fichajes";	
 	}
