@@ -1,6 +1,9 @@
 package com.uclm.equipo02.Auxiliar;
 
 import java.security.MessageDigest;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
@@ -10,6 +13,13 @@ import javax.servlet.http.HttpSession;
 //import javax.xml.bind.DatatypeConverter;
 
 import org.apache.commons.codec.binary.Base64;
+import org.bson.BsonString;
+import org.bson.Document;
+
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.uclm.equipo02.modelo.Usuario;
+import com.uclm.equipo02.persistencia.MongoBroker;
 
 
 
@@ -100,6 +110,44 @@ public class Utilidades {
 		}
 			return bool;
 	
+	}
+	
+	public static boolean comprobarPwd(String dni, String pwd, String nuevaPwd) {
+		MongoCollection<Document> pwds = getContrasenas();
+		Document criterio = new Document();
+		criterio.append("pwd", new BsonString(encrypt(nuevaPwd)));
+		criterio.append("dni", dni);
+		FindIterable<Document> resultado=pwds.find(criterio);
+		Document usuarioBson = resultado.first();
+		//Document bso = new Document();
+		if (usuarioBson==null) {
+			return true;
+		}else {
+			return false;
+		}
+	
+	}
+	/*
+	 * public List<Usuario> list() {
+		MongoCollection<Document> usuarios = obtenerUsuarios();
+		FindIterable<Document> resultado=usuarios.find();
+		String nombre;
+		Document usuario;
+		Iterator<Document> lista=resultado.iterator();
+		List<Usuario> retorno=new ArrayList<Usuario>();
+		while(lista.hasNext()) {
+			usuario=lista.next();
+			nombre=usuario.getString(name);
+			//if(administradorDao.selectNombre(nombre)==null)retorno.add(new Usuario(nombre));
+		}
+		return retorno;
+	}
+	 */
+
+	public static MongoCollection<Document> getContrasenas() {
+		MongoBroker broker = MongoBroker.get();
+		MongoCollection<Document> incidencias = broker.getCollection("Contrasenas");
+		return incidencias;
 	}
 
 
