@@ -119,6 +119,10 @@ height:180px
 
 </style>
 
+<script>
+
+
+</script>
 
 </head>
 
@@ -169,13 +173,14 @@ height:180px
 		<div class="row">
 			<div class="col-md-5 col-md-offset-4">
 				<div class="inlinediv" >
-					<form action="abrirFichajeGestor" method="post">
+					<form action="abrirFichajeGeneral" method="post">
 						<button type="submit" id="btnAbrir" class="btn btn-primary btnAbrir btnFichajes" value="Abrir Fichaje">Abrir Fichaje</button>
 					</form>
 				</div>
 
 				<div >
-					<form action="cerrarFichajeGestor" method="post">
+					<form action="cerrarFichajeGeneral" method="post">
+						<input name="idFichajeAbierto" type="hidden" value="${seleccionadoFichaje.get_id()}"/>
 						<button type="submit" id="btnCerrar" class="btn btn-primary btnCerrar btnFichajes" value="Cerrar Fichaje">Cerrar Fichaje</button>
 					</form>
 				</div>
@@ -202,7 +207,7 @@ height:180px
 															<span class="glyphicon glyphicon-edit"></span> Listar Fichajes
 												</h2>
 						
-									<form id="formListar" action="consultaFichajesFechaGestor" method="get">
+									<form id="formListar" action="consultaFichajesFechaGeneral" method="get">
 												
 												<fieldset class="form-group">
 															
@@ -231,11 +236,12 @@ height:180px
 														<td>${fichaje.fechaFichaje}</td>
 														<td>${fichaje.horaEntrada}</td>
 														<td>${fichaje.horaSalida}</td>
-														<td onload="switchState();" id="tdState">${fichaje.estado}</td>
+														<td>${fichaje.estado}</td>
 													</tr>
 												</c:forEach>
 											</tbody>
 										</table>
+										<input name="idFichajeAbierto" type="hidden" value="${seleccionadoFichaje.get_id()}"/>
 
 						</div>
 
@@ -246,7 +252,7 @@ height:180px
 									<span class=" glyphicon glyphicon-asterisk"></span> Gesti&oacuten de usuarios
 								</h2>
 									<form method = "get">
-										<div class="text-center"">
+										<div class="text-center">
 										
 												<input type="submit" class="btnUsuario input-lg"
 													name="resolverIncidencia" value="Resolver Incidencias" formaction = "listarIncidenciasGestor" />

@@ -53,10 +53,6 @@ public class Incidencia {
 		
 	}
 
-	public Incidencia(ObjectId _id) {
-		this._id=_id;
-	}
-
 	public ObjectId get_id() {
 		return _id;
 	}
