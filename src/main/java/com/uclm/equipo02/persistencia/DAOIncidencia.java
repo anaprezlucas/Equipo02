@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -287,6 +288,36 @@ public class DAOIncidencia{
 		}
 
 		return inci;
+	}
+	public Incidencia devolverIncidencia(ObjectId id) {
+		Incidencia inci=new Incidencia();
+
+		Document documento = new Document();
+		MongoCursor<Document> elementos = getIncidencias().find().iterator();
+		while(elementos.hasNext()) {
+			documento = elementos.next();
+
+			if(documento.get("_id").toString().equalsIgnoreCase(id.toString())) {
+				inci.set_id(id);
+				inci.setNombreUsuario(documento.get("nombreUsuario").toString());
+				inci.setDniUsuario(documento.get("dniUsuario").toString());
+				inci.setCategoria(documento.get("categoria").toString());
+				inci.setDescripcion(documento.get("descripcion").toString());
+				inci.setEstado(documento.getString("estado").toString());
+				inci.setFechaCreacion(documento.get("fechaCreacion").toString());
+				inci.setComentarioGestor(documento.get("comentarioGestor").toString());
+			}
+
+		}
+
+		return inci;
+	}
+	
+	public void delete (Incidencia incidencia){
+		Document bso = new Document();
+		MongoCollection<Document> incidencias = getIncidencias();
+		
+		incidencias.deleteOne(new Document("_id", new ObjectId(incidencia.get_id().toString())));
 	}
 
 }

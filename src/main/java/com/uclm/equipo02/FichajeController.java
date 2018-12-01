@@ -233,15 +233,16 @@ public class FichajeController {
 		return new ModelAndView("modificarIncidencia");
 	}
 	
-	@RequestMapping(value = "/interfazEliminarIncidencia", method = RequestMethod.GET)
+	/*
+	@RequestMapping(value = "/REeliminarIncidencia", method = RequestMethod.GET)
 	public ModelAndView interfazEliminarUsuario(HttpServletRequest request) {
 		Usuario usuario;
 		usuario = (Usuario) request.getSession().getAttribute(usuario_conect); 
 		request.setAttribute("nombreUser", usuario.getNombre());
 		request.setAttribute("dniUser", usuario.getDni());
-		return new ModelAndView("interfazEliminarIncidencia");
+		return new ModelAndView("eliminarIncidencia");
 	}
-
+*/
 
 
 }

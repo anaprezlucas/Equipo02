@@ -11,7 +11,7 @@ pageEncoding="ISO-8859-1"%>
   content="text/html,width=device-width, initial-scale=1, shrink-to-fit=no ">
 
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -46,10 +46,6 @@ pageEncoding="ISO-8859-1"%>
 
 .gestion-form {
 	padding: 0% 5% 0% 5%;
-}
-
-textarea { 
-  resize: vertical;
 }
 
 .gestion-form h3 {
@@ -111,7 +107,7 @@ textarea {
 
 			<div class="list-group">
 				<c:forEach items="${listaIncidencias}" var="incidencia">
-					<form action="seleccionarIncidenciaUsuario" method="get">
+					<form action="seleccionarIncidenciaEliminar" method="get">
 						<input name="idI" type="hidden" value="${incidencia._id}" /> <a
 							id="incidenciaA" class="list-group-item list-group-item-action ">Nombre:
 							${incidencia.nombreUsuario} Dni: ${incidencia.dniUsuario}
@@ -133,10 +129,10 @@ textarea {
 	<div class="container modificacion-container col-md-6">
 
 		<h2>
-			<span class="glyphicon glyphicon-pencil"></span> Modificaci&oacute;n
+			<span class="glyphicon glyphicon-trash"></span> Eliminación
 			Incidencia
 		</h2>
-		<form id="modificarIncidenciaUser" method=get>
+		<form id="eliminarIncidenciaUser" method=get>
 
 			<div class="form-group">
 				<h3>DNI del usuario</h3>
@@ -153,32 +149,25 @@ textarea {
 
 			<div class="tipoIncidencia-form">
 				<h3>Tipo de incidencia:</h3>
-				<select class="listaDesplegable" name="listaTiposIncidencia">
-					<option value="Vacaciones">Vacaciones</option>
-					<option value="Baja">Baja médica</option>
-					<option value="Ausencia">Justificación de ausencia</option>
-					<option value="Error">Error de fichaje</option>
-				</select> <label>La categor&iacutea actual es:
-					${seleccionadaInci.getCategoria()}</label>
+				<input name="txtFecha" type="text" disabled class="form-control"
+					placeholder="yyyy-MM-dd" value="${seleccionadaInci.getCategoria()}" /> 
+					
 			</div>
 			<div class="form-group">
 				<h3>Fecha de Incidencia</h3>
-				<input name="txtFecha" type="text" class="form-control"
-					placeholder="yyyy-MM-dd" value="" /> <label>La fecha
-					actual de la incidencia es: ${seleccionadaInci.getFechaCreacion()}</label>
+				<input name="txtFecha" type="text" disabled class="form-control"
+					placeholder="yyyy-MM-dd" value="${seleccionadaInci.getFechaCreacion()}" /> 
 			</div>
 			<div class="form-group">
 				<h3>Descripción de la incidencia:</h3>
-				<textarea class=textoIncidencia name="textoIncidencia" rows="5"
+				<textarea class=textoIncidencia disabled name="textoIncidencia" rows="5"
 					cols="90"> ${seleccionadaInci.getDescripcion()}</textarea>
 			</div>
-      <span
-  				style="color: red"><em>${alerta}</em></span>
 			<input name="idSeleccionada" type="hidden"
 				value="${seleccionadaInci.get_id()}" />
 			<div class="botones-form text-right" style="margin: auto;">
 				<input type="submit" class="btnModUsuario input-lg" name="Resolver"
-					formaction="modificarIncidenciaUser" value="Aceptar" /> 
+					formaction="eliminarIncidenciaUser" value="Aceptar" /> 
 			</div>
 		</form>
 
@@ -188,6 +177,11 @@ textarea {
 <script type="text/javascript">
 	
 </script>
+
+
+
+
+</html>
 
 
 

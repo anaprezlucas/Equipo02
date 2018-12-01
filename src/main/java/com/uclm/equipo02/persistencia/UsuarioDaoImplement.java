@@ -164,7 +164,7 @@ public Usuario selectNombre(String nombreParam) {
 
 	//Borrar usuario
 	public void delete (Usuario usuario){
-		List<Usuario> todos=selectAll();
+		//List<Usuario> todos=selectAll();
 		Document bso = new Document();
 		bso.append(name, new BsonString(usuario.getNombre()));
 		MongoCollection<Document> usuarios = obtenerUsuarios();

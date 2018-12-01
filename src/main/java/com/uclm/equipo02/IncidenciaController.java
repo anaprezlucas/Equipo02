@@ -152,6 +152,24 @@ public class IncidenciaController {
 			return "modificarIncidencia";
 		}
 	}
+	@RequestMapping(value = "/listarIncidenciasEliminar", method = RequestMethod.GET)
+	public String listarIncidenciaEliminar(HttpServletRequest request, Model model) {
+		Usuario usuario;
+		usuario = (Usuario) request.getSession().getAttribute(usuario_conect);
+		request.setAttribute("nombreUser", usuario.getNombre());
+		request.setAttribute("dniUser", usuario.getDni());
+		String dni = usuario.getDni();
+		
+		if(!incidenciaDao.existeIncidencias(dni)) {
+			model.addAttribute("nullIncidencia","No existe ning&uacutena incidencia en estado de espera");
+			return "eliminarIncidencia";
+		}else {
+			List<Document> listaIncidencias =incidenciaDao.getIncidencias(dni);
+			model.addAttribute("listaIncidencias", listaIncidencias);
+			System.out.println("LISTA INCIDENCIAS"+listaIncidencias.toString());
+			return "eliminarIncidencia";
+		}
+	}
 	@RequestMapping(value = "seleccionarIncidenciaUsuario", method = RequestMethod.GET)
 	public String seleccionarIncidenciaUsuario(HttpServletRequest request, Model model) {
 		
@@ -169,6 +187,24 @@ public class IncidenciaController {
 		model.addAttribute("listaIncidencias", listaIncidenciasGestor);
 		
 		return "modificarIncidencia";	
+	}
+	@RequestMapping(value = "seleccionarIncidenciaEliminar", method = RequestMethod.GET)
+	public String seleccionarIncidenciaEliminar(HttpServletRequest request, Model model) {
+		
+		String idIncidencia=request.getParameter("idI");
+		ObjectId id=new ObjectId(idIncidencia);
+		
+		Usuario usuario;
+		usuario = (Usuario) request.getSession().getAttribute(usuario_conect);
+		
+		
+		Incidencia inci = incidenciaDao.buscarIncidenciaID(id);
+		model.addAttribute("seleccionadaInci", inci); 
+		//Creacion de lista de incidencias de nuevo
+		List<Document> listaIncidenciasGestor =incidenciaDao.getIncidencias(usuario.getDni());
+		model.addAttribute("listaIncidencias", listaIncidenciasGestor);
+		
+		return "eliminarIncidencia";	
 	}
 	@RequestMapping(value = "modificarIncidenciaUser", method = RequestMethod.GET)
 	public String modificarIncidencia(HttpServletRequest request, Model model) {
@@ -195,6 +231,23 @@ public class IncidenciaController {
 		}
 		
 		return "fichajes";	
+	}
+	@RequestMapping(value = "eliminarIncidenciaUser", method = RequestMethod.GET)
+	public String eliminarIncidencia(HttpServletRequest request, Model model) {
+		System.out.println("Estoy en eliminar incidencia user");
+		Usuario usuario;
+		usuario = (Usuario) request.getSession().getAttribute(usuario_conect);
+		String idIncidencia=request.getParameter("idSeleccionada");
+		ObjectId id=new ObjectId(idIncidencia);
+		
+		System.out.println("id object id " + id);
+		Incidencia incidencia= incidenciaDao.devolverIncidencia(id);
+		try {
+			incidenciaDao.delete(incidencia);
+		}catch(Exception e) {
+			
+		}
+		return "fichajes";
 	}
 	
 	

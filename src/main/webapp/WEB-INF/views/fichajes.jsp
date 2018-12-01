@@ -264,7 +264,7 @@ height:180px
 													name="modificarIncidencia" value="Modificar incidencia" formaction = "listarIncidencias"/>
 											
 												<input type="submit" class="btnUsuario input-lg"
-													name="eliminarIncidencia" value="Eliminar incidencia" formaction = "REeliminarIncidencia"/>
+													name="eliminarIncidencia" value="Eliminar incidencia" formaction = "listarIncidenciasEliminar"/>
 										</div>
 									</form>
 						</div>
