@@ -11,13 +11,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import org.bson.BsonString;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
 import com.uclm.equipo02.modelo.Fichaje;
 import com.uclm.equipo02.modelo.Incidencia;
 import com.uclm.equipo02.modelo.Usuario;
-
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 
@@ -63,21 +64,21 @@ public class DAOIncidencia{
 		MongoCollection<Document> incidencias = getIncidencias();
 		incidencias.insertOne(documento);
 	}
-	
+
 	public static Date parserFecha(String fecha) {
 		Date fechaparseada=new Date();
-		
+
 		try {
 			DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 			fechaparseada=format.parse(fecha);
 			return fechaparseada;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return fechaparseada;
-		
+
 	}
-	
+
 	public static List<Document> getIncidenciasGestor() {
 
 
@@ -88,128 +89,179 @@ public class DAOIncidencia{
 		while(elementos.hasNext()) {
 			documento = elementos.next();
 			if(documento.get("estado").toString().equalsIgnoreCase("En espera"))
-				
+
 				incidenciasGestor.add(documento);
 		}
-		
+
 		return incidenciasGestor;
 	}
-	
+
 	public boolean existeIncidenciasEspera() {
 		boolean bool=false;
 		Document documento = new Document();
 		MongoCursor<Document> elementos = getIncidencias().find().iterator();
 		while(elementos.hasNext()) {
 			documento = elementos.next();
-				
-					if(documento.get("estado").toString().equalsIgnoreCase("En espera")) {
-						bool=true;
-	
-				}
-				
+
+			if(documento.get("estado").toString().equalsIgnoreCase("En espera")) {
+				bool=true;
+
+			}
+
 		}
 		return bool;
-		
+
 	}
-	
-	
+
+
 	public Incidencia buscarIncidenciaID(ObjectId id) {
 		Incidencia inci=new Incidencia();
-		
+
 		Document documento = new Document();
 		MongoCursor<Document> elementos = getIncidencias().find().iterator();
 		while(elementos.hasNext()) {
 			documento = elementos.next();
-				
-					if(documento.get("_id").toString().equalsIgnoreCase(id.toString())) {
-						inci.set_id(id);
-						inci.setNombreUsuario(documento.get("nombreUsuario").toString());
-						inci.setDniUsuario(documento.get("dniUsuario").toString());
-						inci.setCategoria(documento.get("categoria").toString());
-						inci.setDescripcion(documento.get("descripcion").toString());
-						inci.setEstado(documento.get("estado").toString());
-						inci.setFechaCreacion(documento.get("fechaCreacion").toString());
-						inci.setComentarioGestor(documento.get("comentarioGestor").toString());
-				}
-				
+
+			if(documento.get("_id").toString().equalsIgnoreCase(id.toString())) {
+				inci.set_id(id);
+				inci.setNombreUsuario(documento.get("nombreUsuario").toString());
+				inci.setDniUsuario(documento.get("dniUsuario").toString());
+				inci.setCategoria(documento.get("categoria").toString());
+				inci.setDescripcion(documento.get("descripcion").toString());
+				inci.setEstado(documento.get("estado").toString());
+				inci.setFechaCreacion(documento.get("fechaCreacion").toString());
+				inci.setComentarioGestor(documento.get("comentarioGestor").toString());
+			}
+
 		}
-		
+
 		return inci;
 	}
-	
+
 	public Incidencia resolverIncidencia(ObjectId id,String textoGestor) {
 		Incidencia inci=new Incidencia();
-		
+
 		Document documento = new Document();
 		MongoCursor<Document> elementos = getIncidencias().find().iterator();
 		while(elementos.hasNext()) {
 			documento = elementos.next();
-				
-					if(documento.get("_id").toString().equalsIgnoreCase(id.toString())) {
-						inci.set_id(id);
-						inci.setNombreUsuario(documento.get("nombreUsuario").toString());
-						inci.setDniUsuario(documento.get("dniUsuario").toString());
-						inci.setCategoria(documento.get("categoria").toString());
-						inci.setDescripcion(documento.get("descripcion").toString());
-						inci.setEstado("Resuelta");
-						inci.setFechaCreacion(documento.get("fechaCreacion").toString());
-						inci.setComentarioGestor(textoGestor);
-				}
-				
+
+			if(documento.get("_id").toString().equalsIgnoreCase(id.toString())) {
+				inci.set_id(id);
+				inci.setNombreUsuario(documento.get("nombreUsuario").toString());
+				inci.setDniUsuario(documento.get("dniUsuario").toString());
+				inci.setCategoria(documento.get("categoria").toString());
+				inci.setDescripcion(documento.get("descripcion").toString());
+				inci.setEstado("Resuelta");
+				inci.setFechaCreacion(documento.get("fechaCreacion").toString());
+				inci.setComentarioGestor(textoGestor);
+			}
+
 		}
-		
+
 		return inci;
 	}
-	
+
 	public Incidencia denegarIncidencia(ObjectId id,String textoGestor) {
 		Incidencia inci=new Incidencia();
-		
+
 		Document documento = new Document();
 		MongoCursor<Document> elementos = getIncidencias().find().iterator();
 		while(elementos.hasNext()) {
 			documento = elementos.next();
-				
-					if(documento.get("_id").toString().equalsIgnoreCase(id.toString())) {
-						inci.set_id(id);
-						inci.setNombreUsuario(documento.get("nombreUsuario").toString());
-						inci.setDniUsuario(documento.get("dniUsuario").toString());
-						inci.setCategoria(documento.get("categoria").toString());
-						inci.setDescripcion(documento.get("descripcion").toString());
-						inci.setEstado("Denegada");
-						inci.setFechaCreacion(documento.get("fechaCreacion").toString());
-						inci.setComentarioGestor(textoGestor);
-				}
-				
+
+			if(documento.get("_id").toString().equalsIgnoreCase(id.toString())) {
+				inci.set_id(id);
+				inci.setNombreUsuario(documento.get("nombreUsuario").toString());
+				inci.setDniUsuario(documento.get("dniUsuario").toString());
+				inci.setCategoria(documento.get("categoria").toString());
+				inci.setDescripcion(documento.get("descripcion").toString());
+				inci.setEstado("Denegada");
+				inci.setFechaCreacion(documento.get("fechaCreacion").toString());
+				inci.setComentarioGestor(textoGestor);
+			}
+
 		}
-		
+
 		return inci;
 	}
-	
-	public void updateIncidencia(Incidencia incidencia,String modo) {
+
+	public void updateIncidencia(Incidencia incidencia,String modo) throws Exception {
 		MongoCollection<Document> incidencias = getIncidencias();
 		MongoBroker broker = MongoBroker.get();
-		
-		
+
+
 		if(modo.equalsIgnoreCase("denegar") || modo.equalsIgnoreCase("resolver")) {
-			
-		
-		Document criteria=new Document();
 
-		criteria.put("_id", incidencia.get_id());
 
-		Document changes=new Document();
+			Document criteria=new Document();
 
-		changes.put("estado", incidencia.getEstado());
-		changes.put("comentarioGestor", incidencia.getComentarioGestor());
-		Document doc = new Document();
-		doc.put("$set", changes);
+			criteria.put("_id", incidencia.get_id());
 
-		broker.updateDoc(incidencias, criteria, doc);
+			Document changes=new Document();
+
+			changes.put("estado", incidencia.getEstado());
+			changes.put("comentarioGestor", incidencia.getComentarioGestor());
+			Document doc = new Document();
+			doc.put("$set", changes);
+
+			broker.updateDoc(incidencias, criteria, doc);
 		}else if(modo.equalsIgnoreCase("modificar")){
-		
+			Document criteria=new Document();
+			//Document changes=new Document();
+			//Document doc = new Document();
+			criteria.append("dniUsuario", new BsonString(incidencia.getDniUsuario()));
+			FindIterable<Document> resultado=incidencias.find(criteria);
+			Document incidenciaBso = resultado.first();
+			
+			if(incidenciaBso == null)
+				throw new Exception("Fallo la actualizacion de los datos del usuario.");
+			
+			
 		}
 
-		
+
+	}
+	public static List<Document> devolverIncidencias(String dniEmpleado){
+		List<Document> incidencias = new ArrayList<Document>();
+		Document documento = new Document();
+		MongoCursor<Document> elementos = getIncidencias().find().iterator();
+		while(elementos.hasNext()) {
+			documento = elementos.next();
+			if(documento.get("dniUsuario").toString().equalsIgnoreCase(dniEmpleado))
+				incidencias.add(documento);
+		}
+		return incidencias;
+	}
+
+	public boolean existeIncidencias(String dni) {
+		boolean bool=false;
+		Document documento = new Document();
+		MongoCursor<Document> elementos = getIncidencias().find().iterator();
+		while(elementos.hasNext()) {
+			documento = elementos.next();
+
+			if(documento.get("dniUsuario").toString().equalsIgnoreCase(dni)) {
+				bool=true;
+
+			}
+
+		}
+		return bool;
+
+	}
+	public static List<Document> getIncidencias(String dni) {
+		List<Document> incidenciasGestor = new ArrayList<Document>();
+		Document documento = new Document();
+		MongoCursor<Document> elementos = getIncidencias().find().iterator();
+		while(elementos.hasNext()) {
+			documento = elementos.next();
+			if(documento.get("dniUsuario").toString().equalsIgnoreCase(dni))
+
+				incidenciasGestor.add(documento);
+		}
+
+		return incidenciasGestor;
 	}
 
 }

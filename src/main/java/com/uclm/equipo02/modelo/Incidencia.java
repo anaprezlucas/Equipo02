@@ -45,6 +45,14 @@ public class Incidencia {
 		this.comentarioGestor = comentarioGestor;
 	}
 	
+	public Incidencia(String dniUsuario, String categoria, String fechaCreacion, String descripcion) {
+		this.dniUsuario=dniUsuario;
+		this.categoria=categoria;
+		this.fechaCreacion=fechaCreacion;
+		this.descripcion=descripcion;
+		
+	}
+
 	public ObjectId get_id() {
 		return _id;
 	}
