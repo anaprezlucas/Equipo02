@@ -13,6 +13,7 @@ import java.util.TimeZone;
 
 
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import com.uclm.equipo02.modelo.Fichaje;
 import com.uclm.equipo02.modelo.Usuario;
@@ -48,9 +49,32 @@ public class DAOFichaje {
 
 	}
 
-
-	public void abrirFichaje(Fichaje fichaje) {
+	
+	public ObjectId getIDFichaje(Fichaje fichaje) {
+		String idfichajebd="";
 		Document documento = new Document();
+		MongoCursor<Document> elementos = getFichajes().find().iterator();
+		while(elementos.hasNext()) {
+			documento = elementos.next();
+			if(documento.get("dniEmpleado").toString().equalsIgnoreCase(fichaje.getDNIFichaje()))
+				if(documento.get("fechaFichaje").toString().equalsIgnoreCase(fichaje.getFechaFichaje()))
+					if(documento.get("horaEntrada").toString().equalsIgnoreCase(fichaje.getHoraEntrada()))
+						if(documento.get("estado").toString().equals(Boolean.toString(true)))
+							idfichajebd=documento.get("_id").toString();
+							
+					
+
+		}
+		
+		
+		ObjectId id=new ObjectId(idfichajebd);
+		return id;
+		
+	}
+
+	public ObjectId abrirFichaje(Fichaje fichaje) {
+		Document documento = new Document();
+		
 
 		documento.append("dniEmpleado", fichaje.getDNIFichaje());
 		documento.append("fechaFichaje", fichaje.getFechaFichaje());
@@ -59,7 +83,13 @@ public class DAOFichaje {
 		documento.append("estado", fichaje.getEstado());
 
 		MongoCollection<Document> fichajes = getFichajes();
-		fichajes.insertOne(documento);//se podria cambiar a broker.insertDoc(fichajes, documento) para concordar con cerrarFichaje
+		fichajes.insertOne(documento);
+		
+		ObjectId id=getIDFichaje(fichaje);
+		
+		return id;
+		
+		
 	}
 
 
@@ -74,7 +104,7 @@ public class DAOFichaje {
 		MongoBroker broker = MongoBroker.get();
 
 		Document criteria=new Document();
-
+		criteria.put("_id", fichaje.get_id());
 		criteria.put("dniEmpleado", usuario.getDni());
 		criteria.put("fechaFichaje", fichaje.getFechaFichaje());
 

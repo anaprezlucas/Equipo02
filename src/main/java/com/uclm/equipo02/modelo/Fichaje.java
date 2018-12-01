@@ -1,9 +1,12 @@
 package com.uclm.equipo02.modelo;
 
+import org.bson.types.ObjectId;
+
 import com.uclm.equipo02.persistencia.DAOFichaje;
 public class Fichaje {
 	
 	private String fechaFichaje, horaEntrada, horaSalida, dniEmpleado;
+	private ObjectId _id;
 
 	private boolean estado; //true=abierto false=cerrado
 
@@ -22,11 +25,25 @@ public class Fichaje {
 		this.horaSalida=horaSalida;
 		this.estado = estado;	//Tru--> Fichaje Abierto False--> Fichaje Cerrado
 	}
-
-
-
 	
+	public Fichaje(ObjectId _id,String dniEmpleado, String fechaFichaje, String horaEntrada,String horaSalida,boolean estado ) {
+		this._id=_id;
+		this.dniEmpleado=dniEmpleado;
+		this.fechaFichaje = fechaFichaje;
+		this.horaEntrada = horaEntrada;
+		this.horaSalida=horaSalida;
+		this.estado = estado;	//Tru--> Fichaje Abierto False--> Fichaje Cerrado
+	}
 
+
+
+	public void set_id(ObjectId _id) {
+		this._id = _id;
+	}
+
+	public ObjectId get_id() {
+		return _id;
+	}
 	public String getDNIFichaje() {
 		return dniEmpleado;
 	}
@@ -65,7 +82,7 @@ public class Fichaje {
 
 	@Override
 	public String toString() {
-		return "Fichaje [fechaFichaje=" + fechaFichaje + ", horaEntrada=" + horaEntrada + ", horaSalida=" + horaSalida
+		return "Fichaje [id= "+ _id.toString() +", fechaFichaje=" + fechaFichaje + ", horaEntrada=" + horaEntrada + ", horaSalida=" + horaSalida
 				+ ", dniEmpleado=" + dniEmpleado + ", estado=" + estado + "]";
 	}
 

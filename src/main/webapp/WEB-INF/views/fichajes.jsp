@@ -178,18 +178,18 @@ height:180px
 		<div class="row">
 			<div class="col-md-5 col-md-offset-4">
 				<div class="inlinediv" >
-					<form action="abrirFichaje" method="post">
+					<form action="abrirFichajeGeneral" method="post">
 						<button type="submit" id="btnAbrir" class="btn btn-primary btnAbrir btnFichajes" value="Abrir Fichaje">Abrir Fichaje</button>
 					</form>
 				</div>
 
 				<div >
-					<form action="cerrarFichaje" method="post">
+					<form action="cerrarFichajeGeneral" method="post">
+					<input name="idFichajeAbierto" type="hidden" value="${seleccionadoFichaje.get_id()}"/>
 						<button type="submit" id="btnCerrar" class="btn btn-primary btnCerrar btnFichajes" value="Cerrar Fichaje">Cerrar Fichaje</button>
 					</form>
 				</div>
 			</div>
-			
 		</div>
 	</div>
 
@@ -211,7 +211,7 @@ height:180px
 															<span class="glyphicon glyphicon-edit"></span> Listar Fichajes
 												</h2>
 						
-									<form id="formListar" action="consultaFichajesFecha" method="get">
+									<form id="formListar" action="consultaFichajesFechaGeneral" method="get">
 												
 												<fieldset class="form-group">
 															
@@ -245,6 +245,7 @@ height:180px
 												</c:forEach>
 											</tbody>
 										</table>
+										
 
 						</div>
 
