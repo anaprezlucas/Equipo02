@@ -210,13 +210,8 @@ public class DAOIncidencia{
 			Document criteria=new Document();
 			Document changes=new Document();
 			Document doc = new Document();
-			criteria.append("dniUsuario", new BsonString(incidencia.getDniUsuario()));
-			FindIterable<Document> resultado=incidencias.find(criteria);
-			Document incidenciaBso = resultado.first();
 			
-			if(incidenciaBso == null)
-				throw new Exception("Fallo la actualizacion de los datos del usuario.");
-			
+			criteria.put("_id", incidencia.get_id());
 			
 			changes.put("categoria", incidencia.getCategoria());
 			changes.put("fechaCreacion", incidencia.getFechaCreacion());
@@ -225,21 +220,6 @@ public class DAOIncidencia{
 			doc.put("$set", changes);
 			
 			broker.updateDoc(incidencias, criteria, doc);
-			
-			/*
-			
-			Document actualizacion= new Document("$set", new Document(email, new BsonString(emailNuevo)));
-		usuarios.findOneAndUpdate(usuarioBso, actualizacion);
-			
-
-			Document actualizacion1 = new Document ("$set", new Document("categaoria", new BsonString(incidencia.getCategoria())));
-			Document actualizacion2 = new Document ("$set", new Document("fechaCreacion", new BsonString(incidencia.getFechaCreacion())));
-			Document actualizacion3 = new Document ("$set", new Document("descripcion", new BsonString(incidencia.getDescripcion())));
-			
-			incidencias.findOneAndReplace(incidenciaBso, actualizacion1);
-			incidencias.findOneAndReplace(incidenciaBso, actualizacion2);
-			incidencias.findOneAndReplace(incidenciaBso, actualizacion3);
-			*/
 		}
 
 
@@ -284,6 +264,29 @@ public class DAOIncidencia{
 		}
 
 		return incidenciasGestor;
+	}
+	
+	public Incidencia devolverIncidencia(ObjectId id, String categoria, String fecha, String descripcion) {
+		Incidencia inci=new Incidencia();
+
+		Document documento = new Document();
+		MongoCursor<Document> elementos = getIncidencias().find().iterator();
+		while(elementos.hasNext()) {
+			documento = elementos.next();
+
+			if(documento.get("_id").toString().equalsIgnoreCase(id.toString())) {
+				inci.set_id(id);
+				inci.setNombreUsuario(documento.get("nombreUsuario").toString());
+				inci.setDniUsuario(documento.get("dniUsuario").toString());
+				inci.setCategoria(categoria);
+				inci.setDescripcion(descripcion);
+				inci.setEstado("En espera");
+				inci.setFechaCreacion(fecha);
+			}
+
+		}
+
+		return inci;
 	}
 
 }

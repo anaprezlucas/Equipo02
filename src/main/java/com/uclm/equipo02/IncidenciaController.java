@@ -179,12 +179,19 @@ public class IncidenciaController {
 		String fecha = request.getParameter("txtFecha");
 		String descripcion = request.getParameter("textoIncidencia");
 		
-		Incidencia incidenciaNueva = new Incidencia(usuario.getDni(),categoria,fecha,descripcion);
+		if(categoria.equalsIgnoreCase("")||fecha.equalsIgnoreCase("")||descripcion.equalsIgnoreCase("")) {
+			model.addAttribute("alerta", "Por favor rellene los campos");
+			return "modificarIncidencia";
+		}
 		
+		String idIncidencia=request.getParameter("idSeleccionada");
+		ObjectId id=new ObjectId(idIncidencia);
+		
+		Incidencia incidencia= incidenciaDao.devolverIncidencia(id, categoria,fecha,descripcion);
 		try {
-			incidenciaDao.updateIncidencia(incidenciaNueva,modo);
+			incidenciaDao.updateIncidencia(incidencia,modo);
 		}catch(Exception e) {
-			System.out.println("Exception1\n"+ e.toString());
+			
 		}
 		
 		return "fichajes";	

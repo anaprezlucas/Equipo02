@@ -8,7 +8,7 @@ pageEncoding="ISO-8859-1"%>
 
 <meta charset="utf-8">
 <meta name="viewport" http-equiv="Content-Type"
-	content="text/html,width=device-width, initial-scale=1, shrink-to-fit=no ">
+  content="text/html,width=device-width, initial-scale=1, shrink-to-fit=no ">
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -168,12 +168,13 @@ pageEncoding="ISO-8859-1"%>
 				<textarea class=textoIncidencia name="textoIncidencia" rows="5"
 					cols="90"> ${seleccionadaInci.getDescripcion()}</textarea>
 			</div>
+      <span
+  				style="color: red"><em>${alerta}</em></span>
 			<input name="idSeleccionada" type="hidden"
 				value="${seleccionadaInci.get_id()}" />
 			<div class="botones-form text-right" style="margin: auto;">
 				<input type="submit" class="btnModUsuario input-lg" name="Resolver"
-					formaction="modificarIncidenciaUser" value="Aceptar" />
-
+					formaction="modificarIncidenciaUser" value="Aceptar" /> 
 			</div>
 		</form>
 
@@ -181,7 +182,7 @@ pageEncoding="ISO-8859-1"%>
 
 </body>
 <script type="text/javascript">
-
+	
 </script>
 
 
