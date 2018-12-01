@@ -208,8 +208,8 @@ public class DAOIncidencia{
 			broker.updateDoc(incidencias, criteria, doc);
 		}else if(modo.equalsIgnoreCase("modificar")){
 			Document criteria=new Document();
-			//Document changes=new Document();
-			//Document doc = new Document();
+			Document changes=new Document();
+			Document doc = new Document();
 			criteria.append("dniUsuario", new BsonString(incidencia.getDniUsuario()));
 			FindIterable<Document> resultado=incidencias.find(criteria);
 			Document incidenciaBso = resultado.first();
@@ -218,6 +218,28 @@ public class DAOIncidencia{
 				throw new Exception("Fallo la actualizacion de los datos del usuario.");
 			
 			
+			changes.put("categoria", incidencia.getCategoria());
+			changes.put("fechaCreacion", incidencia.getFechaCreacion());
+			changes.put("descripcion", incidencia.getDescripcion());
+			
+			doc.put("$set", changes);
+			
+			broker.updateDoc(incidencias, criteria, doc);
+			
+			/*
+			
+			Document actualizacion= new Document("$set", new Document(email, new BsonString(emailNuevo)));
+		usuarios.findOneAndUpdate(usuarioBso, actualizacion);
+			
+
+			Document actualizacion1 = new Document ("$set", new Document("categaoria", new BsonString(incidencia.getCategoria())));
+			Document actualizacion2 = new Document ("$set", new Document("fechaCreacion", new BsonString(incidencia.getFechaCreacion())));
+			Document actualizacion3 = new Document ("$set", new Document("descripcion", new BsonString(incidencia.getDescripcion())));
+			
+			incidencias.findOneAndReplace(incidenciaBso, actualizacion1);
+			incidencias.findOneAndReplace(incidenciaBso, actualizacion2);
+			incidencias.findOneAndReplace(incidenciaBso, actualizacion3);
+			*/
 		}
 
 
