@@ -129,7 +129,7 @@ pageEncoding="ISO-8859-1"%>
 	<div class="container modificacion-container col-md-6">
 
 		<h2>
-			<span class="glyphicon glyphicon-pencil"></span> Resoluci&oacute;n
+			<span class="glyphicon glyphicon-pencil"></span> Modificaci&oacute;n
 			Incidencia
 		</h2>
 		<form id="modificarIncidenciaUser" method=get>
