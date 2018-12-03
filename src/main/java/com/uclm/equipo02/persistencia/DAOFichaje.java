@@ -13,6 +13,7 @@ import java.util.TimeZone;
 
 
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import com.uclm.equipo02.modelo.Fichaje;
@@ -222,12 +223,9 @@ public class DAOFichaje {
 	
 	
 	public static boolean existeFichajesPeriodo(String dni, String fecha1,String fecha2) {
-			
 			List<Date> periodo=calculoPeriodoFechas(fecha1,fecha2);
 			
 			boolean bool=false;
-	
-			
 			Document documento = new Document();
 			MongoCursor<Document> elementos = getFichajes().find().iterator();
 	
@@ -240,6 +238,27 @@ public class DAOFichaje {
 			
 			return bool;
 		}
+	
+	public static List<Document> cambioEstado(List<Document> listaFichajes) {
+		List<Document> fichajesEstadoEmpleado = new ArrayList<Document>();
+		
+		
+		Document documento = new Document();
+		MongoCursor<Document> elementos = getFichajes().find().iterator();
+
+		while(elementos.hasNext()) {
+			documento = elementos.next();
+			if((documento.get("estado").toString()).equalsIgnoreCase("true")) {
+				Bson newValue = new Document("estado", "Abierto");
+				Document documentoa = new Document("$set", newValue);
+				fichajesEstadoEmpleado.add(documentoa);
+				
+			}
+				
+		}
+		
+		return fichajesEstadoEmpleado;
+	}
 	
 	
 	

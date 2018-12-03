@@ -133,19 +133,10 @@ height:180px
 			</div>
 			<div class="nav-item pull-left fixed-top"
 				style="position: relative; top: 8px">
-				<form action="REfichajesAdminNav" method="GET">
-					<button class="btn btn-space" type="submit">
-						<strong><span class="glyphicon glyphicon-sort"></span>
-							Fichajes</strong>
-					</button>
-				</form>
-			</div>
-			<div class="nav-item pull-left fixed-top"
-				style="position: relative; top: 8px">
-				<form action="RECrearIncidencia" method="GET">
+				<form action="adminUpdatePwd" method="GET">
 					<button class="btn btn-space" type="submit">
 						<strong><span class="glyphicon glyphicon-copy"></span>
-							Incidencias</strong>
+							Modificar Contrase&ntilde;a</strong>
 					</button>
 				</form>
 			</div>
@@ -262,9 +253,6 @@ height:180px
 												<input type="submit" class="btnUsuario input-lg"
 													name="eliminarUsuario" value="Eliminar usuario" formaction = "interfazEliminarUsuario"/>
 													
-												<input type="submit" class="btnUsuario input-lg"
-													name="modificarPwd" value="Modificar contrase&ntilde;a usuario" formaction = "adminUpdatePwd"/>
-												
 												<input type="submit" class="btnUsuario input-lg"
 													name="crearIncidencia" value="Crear incidencia" formaction = "RECrearIncidencia" />
 													

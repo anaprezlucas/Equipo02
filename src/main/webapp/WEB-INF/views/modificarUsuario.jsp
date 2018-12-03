@@ -110,13 +110,13 @@
         		 	<div class="form-group">
     				<h3>DNI del usuario</h3>
 						<input id="DNIUsuario" type="text" disabled class="form-control"
-						       placeholder="DNI Usuario" value=<%=request.getAttribute("dniUser")%> />
+						       placeholder="DNI Usuario" value="${dniUser}" />
 					</div>
       
         		<div class="form-group">
   					<h3>Nombre del Usuario</h3>
 						<input id="NombreUsuario" type="text" disabled class="form-control" placeholder="Nombre Usuario"
-						 value=<%=request.getAttribute("nombreUser")%> />
+						 value="${nombreUser}" />
 					</div>
 	
 				 	<div class="form-group">

@@ -84,6 +84,23 @@ public class UsuarioController {
 	
 	
 	
+	@RequestMapping(value = "/REfichajesUser", method = RequestMethod.GET)
+	public ModelAndView REfichajesUser(HttpServletRequest request,Model model) {
+		String returned="";
+		Usuario usuario = (Usuario) request.getSession().getAttribute(usuario_conect);
+		if(usuario.getRol().equalsIgnoreCase("Empleado")) {
+			returned="fichajes";
+		}else if(usuario.getRol().equalsIgnoreCase("administrador")){
+			returned="interfazAdministrador";
+
+		}else if(usuario.getRol().equalsIgnoreCase("Gestor de incidencias")){
+			returned="interfazGestor";
+		}
+		
+		return new ModelAndView(returned);
+	}
+	
+	
 	
 
 }
