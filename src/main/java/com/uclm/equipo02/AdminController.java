@@ -41,7 +41,7 @@ public class AdminController {
 		if (mail.equals("") || nombre.equals("") || rol.equals("")||dni.equals("")) {
 			model.addAttribute("alerta", "Por favor rellene los campos");
 			return "interfazCrearUsuario";
-
+		}
 		//UsuarioDaoImplement userDao = new UsuarioDaoImplement();
 		Usuario user = new Usuario();
 		user.setNombre(nombre);
