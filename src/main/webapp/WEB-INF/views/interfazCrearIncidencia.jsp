@@ -102,9 +102,6 @@
 						    <div class="botones-form text-right" style="margin: auto;">
 						    	<input type="submit" class="btnUsuario input-lg"
 									name="Aceptar" value="Aceptar" />
-								
-						    	<input type="submit" class="btnUsuario input-lg"
-									name="Cancelar" value="Cancelar"/>
 							</div>
 					
 				</form>
