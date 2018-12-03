@@ -22,10 +22,6 @@ public class UsuarioDaoImplement{
 	private final String email = "email";
 	private final String rol = "rol";
 	private final String dni = "dni";
-	
-	public UsuarioDaoImplement() {
-		super();
-	}
 
 
 	public boolean login(Usuario usuario) {
