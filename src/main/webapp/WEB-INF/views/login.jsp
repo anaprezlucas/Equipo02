@@ -60,11 +60,6 @@
 							<span style="color:red"><em>${alerta}</em></span>
 						</div>
 					</div>
-					<!-- 
-					<div class="form-group">
-						<a href="#" class="ForgetPwd">Recuperar Contrase&ntilde;a</a>
-					</div>
-					 -->
 				</form>
 			</div>
 			
