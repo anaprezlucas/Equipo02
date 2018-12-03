@@ -105,6 +105,8 @@
 						    	<input type="submit" class="btnUsuario input-lg"
 									name="Aceptar" value="Aceptar" />
 							</div>
+					<span style="color:red"><em>${alerta}</em></span>
+					<span style="color:green"><em>${alerta1}</em></span>
 					
 				</form>
 			</div>
