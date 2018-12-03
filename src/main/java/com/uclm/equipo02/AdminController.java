@@ -42,11 +42,6 @@ public class AdminController {
 			model.addAttribute("alerta", "Por favor rellene los campos");
 			return "interfazCrearUsuario";
 
-		}else if(Utilidades.validar(dni)==false) {
-			model.addAttribute("alerta", "El formato del dni no es correcto");
-			return "interfazCrearUsuario";
-		}
-		
 		//UsuarioDaoImplement userDao = new UsuarioDaoImplement();
 		Usuario user = new Usuario();
 		user.setNombre(nombre);
