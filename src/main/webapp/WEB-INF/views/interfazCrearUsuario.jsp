@@ -50,7 +50,7 @@
 
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Crear Usuario</title>
 </head>
 
 <body>
@@ -104,9 +104,6 @@
 						    <div class="botones-form text-right" style="margin: auto;">
 						    	<input type="submit" class="btnUsuario input-lg"
 									name="Aceptar" value="Aceptar" />
-								
-						    	<input type="submit" class="btnUsuario input-lg"
-									name="Cancelar" value="Cancelar" />
 							</div>
 					
 				</form>
