@@ -16,6 +16,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script 
+	src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>	
 	
 	<c:set var="incidencia" value="${incidencia}" scope="request" />
 	
@@ -110,7 +112,7 @@
 				<span class="glyphicon glyphicon-pencil"></span> Resoluci&oacute;n Incidencia
 			</h2>
 			<label>Email de usuario actual: ${EmailUsuario}</label>
-		<form id="resolverIncidencia" method=get>
+		<form id="resolverIncidencia" method=get data-toggle="validator">
 			
 			<div class="form-group">
     				<h3>DNI del usuario</h3>
@@ -133,7 +135,8 @@
 			
 			<div class="form-group">
 						   <h3>Comentario de la incidencia: </h3>
-                           <textarea class=textoIncidencia name=textoGestor rows="5" cols="90"></textarea>
+                           <textarea class=textoIncidencia name=textoGestor data-error="Campo necesario" rows="5" cols="90" required></textarea>
+                           <div class="help-block with-errors"></div>
 			</div>
 			<input name="idSeleccionada" type="hidden" value="${seleccionadaInci.get_id()}"/>
 			<div class="botones-form text-right" style="margin: auto;">
