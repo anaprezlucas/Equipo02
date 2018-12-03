@@ -11,7 +11,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<script 
+  src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
 <title>Login | InTime</title>
 
 <style>
@@ -47,9 +48,10 @@
 
 
 				
-				<form action="login" method="post" id="formlogin">
+				<form action="login" method="post" id="formlogin" data-toggle="validator">
 					<div class="form-group">
-						<input name="txtUsuarioEmail" type="text" class="form-control" placeholder="E-mail *" value="" />
+						<input name="txtUsuarioEmail" type="email" class="form-control" placeholder="E-mail *" data-error="Direcci&oacute;n de correo inv&aacute;lida" value="" required/>
+						<div class="help-block with-errors"></div>
 					</div>
 					<div class="form-group">
 						<input name="txtUsuarioPassword" type="password" class="form-control" placeholder="Contrase&ntilde;a *" value="" />
