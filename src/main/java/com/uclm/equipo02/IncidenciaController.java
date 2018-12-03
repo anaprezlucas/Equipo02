@@ -27,14 +27,17 @@ import com.uclm.equipo02.persistencia.UsuarioDaoImplement;
 @Controller
 public class IncidenciaController {
 	
+	private final String fichajes = "fichajes";
+	private final String interfazAdministrador="interfazAdministrador";
+	private final String interfazGestor="interfazGestor";
 	private final String usuario_conect = "usuarioConectado";
 	DAOIncidencia incidenciaDao = new DAOIncidencia();
 	UsuarioDaoImplement userDao = new UsuarioDaoImplement();
 	
 	
-	@RequestMapping(value = "/crearIncidencia", method = RequestMethod.POST)
-	public String crearIncidencia(HttpServletRequest request, Model model) throws Exception {
-		
+	@RequestMapping(value = "/crearIncidenciaGeneral", method = RequestMethod.POST)
+	public String crearIncidenciaGeneral(HttpServletRequest request, Model model) throws Exception {
+		String returned="";
 		Usuario usuario;
 	    usuario = (Usuario) request.getSession().getAttribute(usuario_conect);
 	   
@@ -46,7 +49,6 @@ public class IncidenciaController {
 		String estado = "En espera";
 		String comentarioGestor = "";
 		
-		
 		Incidencia incidencia = new Incidencia(nombreUsuario, dniUsuario, categoria, descripcion, estado, 
 				fechaCreacion, comentarioGestor);
 		
@@ -55,7 +57,6 @@ public class IncidenciaController {
 		} catch (Exception e) {
 
 		}
-			
 		
 		String  asunto = "Nueva incidencia";
 		String cuerpo = "Tiene una nueva incidencia por resolver\n"
@@ -65,15 +66,19 @@ public class IncidenciaController {
 				+ "                 InTime Corporation";
 		MailSender mailSender = new MailSender();
 
-		
 		List<String> gestores = userDao.obtenerGestores();
-		
 		for (String email : gestores) {
 			mailSender.enviarConGMail(email, asunto, cuerpo);
 		}
-		
-		
-		return "interfazCrearIncidencia";
+		if(usuario.getRol().equalsIgnoreCase("Empleado")) {
+			returned=fichajes;
+		}else if(usuario.getRol().equalsIgnoreCase("administrador")){
+			returned=interfazAdministrador;
+
+		}else if(usuario.getRol().equalsIgnoreCase("Gestor de incidencias")){
+			returned=interfazGestor;
+		}
+		return returned;
 	}
 
 
@@ -97,7 +102,6 @@ public class IncidenciaController {
 
 	
 	}
-	
 	
 	@RequestMapping(value = "resolverIncidencia", method = RequestMethod.GET)
 	public String resolverIncidencia(HttpServletRequest request, Model model) throws Exception {
@@ -236,6 +240,7 @@ public class IncidenciaController {
 	@RequestMapping(value = "modificarIncidenciaUser", method = RequestMethod.GET)
 	public String modificarIncidencia(HttpServletRequest request, Model model) {
 		String modo="modificar";
+		String returned="";
 		Usuario usuario;
 		usuario = (Usuario) request.getSession().getAttribute(usuario_conect);
 		String categoria = request.getParameter("listaTiposIncidencia");
@@ -259,11 +264,20 @@ public class IncidenciaController {
 		List<Document> listaIncidencias =incidenciaDao.getIncidencias(usuario.getDni());
 		model.addAttribute("listaIncidencias", listaIncidencias);
 		
-		return "fichajes";	
+		if(usuario.getRol().equalsIgnoreCase("Empleado")) {
+			returned=fichajes;
+		}else if(usuario.getRol().equalsIgnoreCase("administrador")){
+			returned=interfazAdministrador;
+
+		}else if(usuario.getRol().equalsIgnoreCase("Gestor de incidencias")){
+			returned=interfazGestor;
+		}
+		
+		return returned;	
 	}
 	@RequestMapping(value = "eliminarIncidenciaUser", method = RequestMethod.GET)
 	public String eliminarIncidencia(HttpServletRequest request, Model model) {
-		System.out.println("Estoy en eliminar incidencia user");
+		String returned="";
 		Usuario usuario;
 		usuario = (Usuario) request.getSession().getAttribute(usuario_conect);
 		String idIncidencia=request.getParameter("idSeleccionada");
@@ -276,14 +290,26 @@ public class IncidenciaController {
 		}catch(Exception e) {
 			
 		}
-		return "fichajes";
+		if(usuario.getRol().equalsIgnoreCase("Empleado")) {
+			returned=fichajes;
+		}else if(usuario.getRol().equalsIgnoreCase("administrador")){
+			returned=interfazAdministrador;
+
+		}else if(usuario.getRol().equalsIgnoreCase("Gestor de incidencias")){
+			returned=interfazGestor;
+		}
+		return returned;
 	}
 	
 	
 	@RequestMapping(value = "/REEliminarIncidencia", method = RequestMethod.GET)
-	public ModelAndView irEliminarIncidencias() {
-		return new ModelAndView("interfazEliminarIncidencia");
-}
+	public ModelAndView REEliminarIncidencia() {
+		return new ModelAndView("eliminarIncidencia");
+	}
+	@RequestMapping(value = "/REModificarIncidencia", method = RequestMethod.GET)
+	public ModelAndView REModificarIncidencia() {
+		return new ModelAndView("modificarIncidencia");
+	}
 	
 	@RequestMapping(value = "/RECrearIncidencia", method = RequestMethod.GET)
 	public ModelAndView irIncidencias() {

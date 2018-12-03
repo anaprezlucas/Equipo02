@@ -260,6 +260,15 @@ height:180px
 													
 												<input type="submit" class="btnUsuario input-lg"
 													name="modificarPwd" value="Modificar contrase&ntilde;a usuario" formaction = "adminUpdatePwd"/>
+												
+												<input type="submit" class="btnUsuario input-lg"
+													name="crearIncidencia" value="Crear incidencia" formaction = "RECrearIncidencia" />
+													
+												<input type="submit" class="btnUsuario input-lg"
+													name="modificarIncidencia" value="Modificar incidencia" formaction = "listarIncidencias"/>
+											
+												<input type="submit" class="btnUsuario input-lg"
+													name="eliminarIncidencia" value="Eliminar incidencia" formaction = "listarIncidenciasEliminar"/>
 										
 										</div>
 									</form>

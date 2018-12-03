@@ -256,14 +256,15 @@ height:180px
 										
 												<input type="submit" class="btnUsuario input-lg"
 													name="resolverIncidencia" value="Resolver Incidencias" formaction = "listarIncidenciasGestor" />
-													<input type="submit" class="btnUsuario input-lg"
-													name="crearIncidencia" value="Crear incidencia" formaction = "RECrearIncidencia" />
-												
+													
 												<input type="submit" class="btnUsuario input-lg"
-													name="modificarIncidencia" value="Modificar incidencia" formaction = "REModificarIncidencia"/>
+													name="crearIncidencia" value="Crear incidencia" formaction = "RECrearIncidencia" />
+													
+												<input type="submit" class="btnUsuario input-lg"
+													name="modificarIncidencia" value="Modificar incidencia" formaction = "listarIncidencias"/>
 											
 												<input type="submit" class="btnUsuario input-lg"
-													name="eliminarIncidencia" value="Eliminar incidencia" formaction = "REeliminarIncidencia"/>
+													name="eliminarIncidencia" value="Eliminar incidencia" formaction = "listarIncidenciasEliminar"/>
 												
 											
 										
