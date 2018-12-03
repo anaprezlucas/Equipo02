@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mongodb.client.*;
+import com.uclm.equipo02.mail.MailSender;
 import com.uclm.equipo02.modelo.Incidencia;
 import com.uclm.equipo02.modelo.Usuario;
 import com.uclm.equipo02.persistencia.DAOFichaje;
 import com.uclm.equipo02.persistencia.DAOIncidencia;
+import com.uclm.equipo02.persistencia.UsuarioDaoImplement;
 
 
 @Controller
@@ -26,6 +29,8 @@ public class IncidenciaController {
 	
 	private final String usuario_conect = "usuarioConectado";
 	DAOIncidencia incidenciaDao = new DAOIncidencia();
+	UsuarioDaoImplement userDao = new UsuarioDaoImplement();
+	
 	
 	@RequestMapping(value = "/crearIncidencia", method = RequestMethod.POST)
 	public String crearIncidencia(HttpServletRequest request, Model model) throws Exception {
@@ -41,6 +46,7 @@ public class IncidenciaController {
 		String estado = "En espera";
 		String comentarioGestor = "";
 		
+		
 		Incidencia incidencia = new Incidencia(nombreUsuario, dniUsuario, categoria, descripcion, estado, 
 				fechaCreacion, comentarioGestor);
 		
@@ -49,10 +55,28 @@ public class IncidenciaController {
 		} catch (Exception e) {
 
 		}
+			
+		
+		String  asunto = "Nueva incidencia";
+		String cuerpo = "Tiene una nueva incidencia por resolver\n"
+				+ "	   Usuario: "+ nombreUsuario+"\n"
+				+ "    Tipo: " + categoria+"\n"
+				+ "    Fecha: " + fechaCreacion+"\n\n\n"
+				+ "                 InTime Corporation";
+		MailSender mailSender = new MailSender();
+
+		
+		List<String> gestores = userDao.obtenerGestores();
+		
+		for (String email : gestores) {
+			mailSender.enviarConGMail(email, asunto, cuerpo);
+		}
+		
 		
 		return "interfazCrearIncidencia";
 	}
-	
+
+
 	@RequestMapping(value = "seleccionarIncidencia", method = RequestMethod.GET)
 	public String seleccionarIncidencia(HttpServletRequest request, Model model) {
 		

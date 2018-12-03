@@ -12,6 +12,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.uclm.equipo02.Auxiliar.Utilidades;
 import com.uclm.equipo02.modelo.Usuario;
 
@@ -171,6 +172,22 @@ public Usuario selectNombre(String nombreParam) {
 		}
 		return retorno;
 	}
+
+	//Devuelve los usuarios que son gestores
+public List<String> obtenerGestores() {
+	Document documento = new Document();
+	MongoCursor<Document> elementos = obtenerUsuarios().find().iterator();
+	List<String> retorno=new ArrayList<String>();
+	while(elementos.hasNext()) {
+		documento = elementos.next();
+		if(documento.get("rol").toString().equalsIgnoreCase("Gestor de incidencias")) {
+			String mailGestor = documento.getString("email");
+			retorno.add(mailGestor);
+			
+		}
+	}
+	return retorno;
+}
 
 	//Borrar usuario
 	public void delete (Usuario usuario){
