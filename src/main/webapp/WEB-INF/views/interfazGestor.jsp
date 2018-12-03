@@ -16,7 +16,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<script 
+	src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
 
 
 <style>
@@ -216,14 +217,16 @@ height:180px
 															<span class="glyphicon glyphicon-edit"></span> Listar Fichajes
 												</h2>
 						
-									<form id="formListar" action="consultaFichajesFechaGeneral" method="get">
+									<form id="formListar" action="consultaFichajesFechaGeneral" method="get" data-toggle="validator">
 												
 												<fieldset class="form-group">
 															
 															<label>Introduzca primera fecha del periodo de fichajes:<br></label> 
-															<input placeholder="yyyy-MM-dd" type="text" name="fecha1" id="fecha1">
+															<input placeholder="yyyy-MM-dd" type="text" name="fecha1" id="fecha1" data-error="Formato de fecha err&oacute;neo"  pattern="([0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" required/>
+															<div class="help-block with-errors"></div>
 															<label>Introduzca segunda fecha del periodo de fichajes:<br></label> 
-															<input placeholder="yyyy-MM-dd" type="text" name="fecha2" id="fecha2">
+															<input placeholder="yyyy-MM-dd" type="text" name="fecha2" id="fecha2" data-error="Formato de fecha err&oacute;neo" pattern="([0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" required/>
+															<div class="help-block with-errors"></div>
 															<button id="btnListar" class="btn btn-primary btnListar btnUsuario" type="submit" data-toggle="collapse.in" data-target="#panelFichajes" aria-expanded="false" aria-controls="panelFichajes">Listar Fichajes</button>
 												</fieldset>
 														<span style="color: red"><em>${nullFecha}</em></span>

@@ -111,13 +111,15 @@
 					<div class="form-group">
 					<h3>DNI del usuario</h3>
 						<input name="dniUsuario" type="text" class="form-control"
-							placeholder="00000000A*" value="" />
+							placeholder="00000000A*" maxlength="9" data-error="Formato del Dni inv&aacute;lido"pattern="(([X-Z]{1})([-]?)(\d{7})([-]?)([A-Z]{1}))|((\d{8})([-]?)([A-Z]{1}))" value="" required/>
+							<div class="help-block with-errors"></div>
 
 					</div>
 					<div class="form-group">
 						<h3>Contrase&ntilde;a Nueva</h3>
 						<input id="contrasenaNueva" name="contrasenaNueva" type="password" class="form-control"
-							placeholder="Contrase&ntilde;a Nueva*" data-match-error="Las contrase&ntilde;as no coinciden" required/>
+							placeholder="Contrase&ntilde;a Nueva*" data-match-error="Las contrase&ntilde;as no coinciden" data-error="Campo necesario" required/>
+							<div class="help-block with-errors"></div>
 					</div>
 					
 					<div class="form-group">

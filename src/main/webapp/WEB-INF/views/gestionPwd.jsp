@@ -100,19 +100,21 @@
           			<div class="form-group">
 	  					<h3>E-mail</h3>
 							<input id="mailUser" type="text" disabled class="form-control"
-							 value=<%=request.getAttribute("mailUser")%> />
+							 value=<%=request.getAttribute("mailUser")%>/>
 					</div>
 					
 					<div class="form-group">
 						<h3>Contrase&ntilde;a Actual</h3>
 						<input name="contrasenaActual" type="password" class="form-control"
-							placeholder="Contrase&ntilde;a Actual*" value="" />
+							placeholder="Contrase&ntilde;a Actual*" value=""  data-match-error="Las contrase&ntilde;as no coinciden" data-error="Campo necesario" required/>
+							<div class="help-block with-errors"></div>
 					</div>
 					
 					<div class="form-group">
 						<h3>Contrase&ntilde;a Nueva</h3>
 						<input id="contrasenaNueva" name="contrasenaNueva" type="password" class="form-control"
-							placeholder="Contrase&ntilde;a Nueva*" data-match-error="Las contrase&ntilde;as no coinciden" required/>
+							placeholder="Contrase&ntilde;a Nueva*" data-match-error="Las contrase&ntilde;as no coinciden" data-error="Campo necesario" required/>
+							<div class="help-block with-errors"></div>
 					</div>
 					
 					<div class="form-group">
