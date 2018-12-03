@@ -8,6 +8,8 @@ import org.bson.Document;
 import org.bson.BsonString;
 import org.bson.BsonValue;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -21,7 +23,7 @@ public class UsuarioDaoImplement{
 	private final String email = "email";
 	private final String rol = "rol";
 	private final String dni = "dni";
-	
+
 
 	public boolean login(Usuario usuario) {
 
@@ -42,17 +44,29 @@ public class UsuarioDaoImplement{
 	public void insert(Usuario usuario) throws Exception {
 		if(!selectNombre(usuario)) {
 			Document bso = new Document();
+			Document bso2 = new Document();
 			bso.append(name, new BsonString(usuario.getNombre()));
 			bso.append(password, new BsonString(usuario.getPassword()));
 			bso.append(email, new BsonString(usuario.getEmail()));
 			bso.append(rol, new BsonString(usuario.getRol()));
 			bso.append(dni, new BsonString(usuario.getDni()));
+			
+			bso2.append(dni, new BsonString(usuario.getDni()));
+			bso2.append(password, new BsonString(usuario.getPassword()));
 			MongoCollection<Document> usuarios = obtenerUsuarios();
 			usuarios.insertOne(bso);
+			MongoCollection<Document> contrasenas = getContrasenas();
+			contrasenas.insertOne(bso2);
+			
 		}else
 			throw new Exception("Cuenta existente");
 	}
 	
+	public static MongoCollection<Document> getContrasenas() {
+		MongoBroker broker = MongoBroker.get();
+		MongoCollection<Document> incidencias = broker.getCollection("Contrasenas");
+		return incidencias;
+	}
 	//Devuelve un true si existe y false si no existe
 	private boolean selectNombre(Usuario usuario) {
 		MongoCollection<Document> usuarios = obtenerUsuarios();
@@ -159,31 +173,34 @@ public Usuario selectNombre(String nombreParam) {
 		return retorno;
 	}
 
-	
-	
-
-		//Devuelve los usuarios que son gestores
-	public List<String> obtenerGestores() {
-		Document documento = new Document();
-		MongoCursor<Document> elementos = obtenerUsuarios().find().iterator();
-		List<String> retorno=new ArrayList<String>();
-		while(elementos.hasNext()) {
-			documento = elementos.next();
-			if(documento.get("rol").toString().equalsIgnoreCase("Gestor de incidencias")) {
-				String mailGestor = documento.getString("email");
-				retorno.add(mailGestor);
-				
-			}
+	//Devuelve los usuarios que son gestores
+public List<String> obtenerGestores() {
+	Document documento = new Document();
+	MongoCursor<Document> elementos = obtenerUsuarios().find().iterator();
+	List<String> retorno=new ArrayList<String>();
+	while(elementos.hasNext()) {
+		documento = elementos.next();
+		if(documento.get("rol").toString().equalsIgnoreCase("Gestor de incidencias")) {
+			String mailGestor = documento.getString("email");
+			retorno.add(mailGestor);
+			
 		}
-		return retorno;
 	}
+	return retorno;
+}
+
 	//Borrar usuario
 	public void delete (Usuario usuario){
 		//List<Usuario> todos=selectAll();
 		Document bso = new Document();
+		Document bso2 = new Document();
 		bso.append(name, new BsonString(usuario.getNombre()));
 		MongoCollection<Document> usuarios = obtenerUsuarios();
 		usuarios.deleteOne(bso);
+		
+		bso2.append(dni, new BsonString(usuario.getDni()));
+		MongoCollection<Document> contrasenas = getContrasenas();
+		contrasenas.deleteMany(bso2);
 	}
 
 	//Devuelve una lista de todos los usuarios
@@ -225,14 +242,18 @@ public Usuario selectNombre(String nombreParam) {
 
 public void updatePwd(Usuario usuario) throws Exception{
 	MongoCollection<Document> usuarios = obtenerUsuarios();
+	MongoCollection<Document> contrasenas = getContrasenas();
 	Document criterio = new Document();
 	criterio.append(name, new BsonString(usuario.getNombre()));
 	FindIterable<Document> resultado=usuarios.find(criterio);
 	Document usuarioBso = resultado.first();
+	Document bso2 = new Document();
 	if (usuarioBso==null)
 		throw new Exception("Fallo la actualizacion de los datos del usuario.");
 
-/**usuario.getPassword() hay que desencriptar**/
+	bso2.append(dni, new BsonString(usuario.getDni()));
+	bso2.append(password, Utilidades.encrypt(usuario.getPassword()));
+	contrasenas.insertOne(bso2);
 	
 	Document actualizacion= new Document("$set", new Document(password, new BsonString(Utilidades.encrypt(usuario.getPassword()))));
 	usuarios.findOneAndUpdate(usuarioBso, actualizacion);
