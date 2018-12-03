@@ -156,7 +156,9 @@ public class FichajeController {
 			}
 		}else {
 			List<Document> listaFichajesFecha =DAOFichaje.listarFichajesPeriodo(dni, fecha1,fecha2);
-			model.addAttribute("listafichajes", listaFichajesFecha);
+			
+			List<Document> listaFichajesFechaEstado = DAOFichaje.cambioEstado(listaFichajesFecha);
+			model.addAttribute("listafichajes", listaFichajesFechaEstado);
 
 			if(usuario.getRol().equalsIgnoreCase("Empleado")) {
 				returned=fichajes;

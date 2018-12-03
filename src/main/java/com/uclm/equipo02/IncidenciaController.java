@@ -320,8 +320,4 @@ public class IncidenciaController {
 	public ModelAndView REResolverIncidencia() {
 		return new ModelAndView("resolverIncidencia");
 	}
-	@RequestMapping(value = "/REfichajesUser", method = RequestMethod.GET)
-	public ModelAndView REfichajes() {
-		return new ModelAndView("fichajes");
-	}
 }

@@ -65,7 +65,7 @@
 
 			<div class="nav-item pull-left col-md-1 fixed-top"
 				style="position: relative; top: 8px">
-				<form action="REfichajes" method="GET">
+				<form action="REfichajesUser" method="GET">
 					<button class="btn" type="submit">
 						<strong><span class="glyphicon glyphicon-sort"></span>
 							Fichajes</strong>
