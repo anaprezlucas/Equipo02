@@ -17,6 +17,8 @@ pageEncoding="ISO-8859-1"%>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<script 
+  src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
 <c:set var="incidencia" value="${incidencia}" scope="request" />
 
 
@@ -49,7 +51,7 @@ pageEncoding="ISO-8859-1"%>
 }
 
 textarea { 
-  resize: vertical;
+	resize: none;
 }
 
 .gestion-form h3 {
@@ -136,7 +138,7 @@ textarea {
 			<span class="glyphicon glyphicon-pencil"></span> Modificaci&oacute;n
 			Incidencia
 		</h2>
-		<form id="modificarIncidenciaUser" method=get>
+		<form id="modificarIncidenciaUser"  data-toggle="validator" method=get>
 
 			<div class="form-group">
 				<h3>DNI del usuario</h3>
@@ -164,13 +166,15 @@ textarea {
 			<div class="form-group">
 				<h3>Fecha de Incidencia</h3>
 				<input name="txtFecha" type="text" class="form-control"
-					placeholder="yyyy-MM-dd" value="" /> <label>La fecha
-					actual de la incidencia es: ${seleccionadaInci.getFechaCreacion()}</label>
+					placeholder="yyyy-MM-dd" data-error="Formato de fecha err&oacute;neo" pattern="([0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" required/ /> 
+					<div class="help-block with-errors"></div>
+					<label>La fecha actual de la incidencia es: ${seleccionadaInci.getFechaCreacion()}</label>
 			</div>
 			<div class="form-group">
 				<h3>Descripción de la incidencia:</h3>
-				<textarea class=textoIncidencia name="textoIncidencia" rows="5"
-					cols="90"> ${seleccionadaInci.getDescripcion()}</textarea>
+				<textarea class=textoIncidencia data-error="Campo necesario"  name="textoIncidencia" rows="5"
+					cols="90" > ${seleccionadaInci.getDescripcion()}</textarea>
+					<div class="help-block with-errors"></div>
 			</div>
       <span
   				style="color: red"><em>${alerta}</em></span>

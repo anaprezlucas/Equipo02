@@ -13,7 +13,8 @@
   src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<script 
+  src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
 
 <style>
 .creacion-container {
@@ -74,20 +75,16 @@
 			</h2>
 
 			<div class="gestion-form left-div">
-				<form action="eliminarUsuario" method="post" id="formCrearUsuario">
+				<form action="eliminarUsuario" method="post" id="formCrearUsuario" data-toggle="validator">
 					<div class="form-group">
 							<h3>Introduzca el DNl del usuario</h3>
 							<input name="txtDni" type="text" class="form-control" 
-							placeholder="00000000A *" value="" />	
+							placeholder="00000000A *" maxlength="9" data-error="Formato del DNI inv&aacute;lido"pattern="(([X-Z]{1})([-]?)(\d{7})([-]?)([A-Z]{1}))|((\d{8})([-]?)([A-Z]{1}))" value="" required/>
+					<div class="help-block with-errors"></div>	
 					</div>		
-					<span style="color:red"><em>${alerta}</em></span>		
 						    <div class="botones-form text-right" style="margin: auto;">
 						    	<input type="submit" class="btnUsuario input-lg"
 									name="Aceptar" value="Aceptar" />
-								
-						    	<input type="submit" class="btnUsuario input-lg"
-									name="Cancelar" value="Cancelar" />
-									
 							</div>
 					
 				</form>

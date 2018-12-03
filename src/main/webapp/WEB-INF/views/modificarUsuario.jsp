@@ -14,8 +14,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
+<script 
+  src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
 <style>
 .modificacion-container {
     margin-left: 5%;
@@ -82,21 +82,18 @@
 			</h2>
 
 			<div class="gestion-form left-div">
-				<form id="busquedaUsuario" action="buscarUsuarioPorDni"  method=get >
+				<form id="busquedaUsuario" action="buscarUsuarioPorDni"  data-toggle="validator" method=get >
 					<div class="form-group">
 							<h3>DNI del usuario</h3>
 							<input name="txtDniBusqueda" type="text" class="form-control" 
-							placeholder="00000000A" value="" />
-							
+							placeholder="00000000A" maxlength="9" data-error="Formato del DNI inv&aacute;lido"pattern="(([X-Z]{1})([-]?)(\d{7})([-]?)([A-Z]{1}))|((\d{8})([-]?)([A-Z]{1}))" value="" required/>
+							<div class="help-block with-errors"></div>
 					</div>				
 					
 					<div class="botones-form text-right" style="margin: auto;">
 						    	<input type="submit" class="btnBusquedaUsuario input-lg"
-									name="Buscar" value="B&uacute;squeda"/>
-									
-									
-					</div> 
-					<span style="color:red"><em>${alertaUsuarioNull}</em></span>
+									name="Buscar" value="B&uacute;squeda"/>			
+					</div>
 					
 				</form>
 			</div>
@@ -108,8 +105,7 @@
 			<h2>
 				<span class="glyphicon glyphicon-pencil"></span> Modificaci&oacuten Usuario
 			</h2>
-			<label>Email de usuario actual: ${EmailUsuario}</label>
-			<form id="ModificacionUsuario" action="modificarUser"  method=get >
+			<form id="ModificacionUsuario" action="modificarUser"  data-toggle="validator" method=get >
 			
         		 	<div class="form-group">
     				<h3>DNI del usuario</h3>
@@ -126,8 +122,9 @@
 				 	<div class="form-group">
 							
 							<h3>E-mail del usuario</h3>
-							<input name="txtEmail" type="text" class="form-control" 
-							placeholder="usuario@ejemplo.com" value="" />
+							<input name="txtUsuarioEmail" type="email" class="form-control" 
+							placeholder="usuario@ejemplo.com" data-error="Direcci&oacute;n de correo inv&aacute;lida" value="" required/>
+							<div class="help-block with-errors"></div>
 							<label>E-mail actual: ${EmailUsuario} </label>
 				 	</div>
 				 	<div class="form-group">

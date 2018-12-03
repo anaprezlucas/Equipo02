@@ -95,7 +95,7 @@
 				 	<div class="form-group">
 							<h3>DNI del usuario</h3>
 							<input name="txtDni" type="text" class="form-control" 
-							placeholder="00000000A" maxlength="9" data-error="Formato del Dni inv&aacute;lido"pattern="(([X-Z]{1})([-]?)(\d{7})([-]?)([A-Z]{1}))|((\d{8})([-]?)([A-Z]{1}))" value="" required/>
+							placeholder="00000000A" maxlength="9" data-error="Formato del DNI inv&aacute;lido"pattern="(([X-Z]{1})([-]?)(\d{7})([-]?)([A-Z]{1}))|((\d{8})([-]?)([A-Z]{1}))" value="" required/>
 							<div class="help-block with-errors"></div>
 							
 				 	</div>

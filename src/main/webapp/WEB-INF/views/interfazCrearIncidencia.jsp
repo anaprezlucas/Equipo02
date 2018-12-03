@@ -13,7 +13,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<script 
+  src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
 
 <style>
 .creacion-container {
@@ -84,7 +85,7 @@
 			</h2>
 
 			<div class="gestion-form left-div">
-				<form action="crearIncidenciaGeneral" method="post" id="formCrearIncidencia">
+				<form action="crearIncidenciaGeneral" method="post" id="formCrearIncidencia" data-toggle="validator">
 		
 					<div class="tipoIncidencia-form">
                             <h3>Tipo de incidencia:</h3>
@@ -97,7 +98,8 @@
 				 	</div>
 				 	<div class="form-group">
 						    <h3>Descripción de la incidencia: </h3>
-                           <textarea class=textoIncidencia name=textoIncidencia rows="10" cols="100" ></textarea>
+                           <textarea class=textoIncidencia data-error="Campo necesario" required name=textoIncidencia rows="10" cols="100" ></textarea>
+					<div class="help-block with-errors"></div>
 					</div>
 						    <div class="botones-form text-right" style="margin: auto;">
 						    	<input type="submit" class="btnUsuario input-lg"
