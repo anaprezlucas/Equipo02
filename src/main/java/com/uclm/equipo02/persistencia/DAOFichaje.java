@@ -239,28 +239,6 @@ public class DAOFichaje {
 			return bool;
 		}
 	
-	public static List<Document> cambioEstado(List<Document> listaFichajes) {
-		List<Document> fichajesEstadoEmpleado = new ArrayList<Document>();
-		
-		
-		Document documento = new Document();
-		MongoCursor<Document> elementos = getFichajes().find().iterator();
-
-		while(elementos.hasNext()) {
-			documento = elementos.next();
-			if((documento.get("estado").toString()).equalsIgnoreCase("true")) {
-				Bson newValue = new Document("estado", "Abierto");
-				Document documentoa = new Document("$set", newValue);
-				fichajesEstadoEmpleado.add(documentoa);
-				
-			}
-				
-		}
-		
-		return fichajesEstadoEmpleado;
-	}
-	
-	
 	
 	public static boolean comparacionFichajePeriodo(List<Date> periodo, String fechaFichaje) {
 		boolean bool=false;
