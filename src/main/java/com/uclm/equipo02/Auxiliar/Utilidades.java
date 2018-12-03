@@ -67,24 +67,6 @@ public class Utilidades {
 
 		return null;
 	}
-/*
-	public static String encrypt_md5(String password) {
-		String pass_md5;
-		byte[] thedigest = null;
-
-		try {
-			byte[] bytesOfMessage = password.getBytes("UTF-8");
-
-			MessageDigest md = MessageDigest.getInstance("SHA-384");
-			thedigest = md.digest(bytesOfMessage);
-			pass_md5 = DatatypeConverter.printHexBinary(thedigest).toLowerCase();
-		}catch(Exception e)
-		{
-			return "error";
-		}
-		return pass_md5;
-	}
-*/
 
 	/******Cambiar a return string y poner ese string  en una alerta en el updatePWD del controller y en el jsp de updatePWD******/
 	public static boolean seguridadPassword(String pwd){
@@ -127,22 +109,6 @@ public class Utilidades {
 		}
 	
 	}
-	/*
-	 * public List<Usuario> list() {
-		MongoCollection<Document> usuarios = obtenerUsuarios();
-		FindIterable<Document> resultado=usuarios.find();
-		String nombre;
-		Document usuario;
-		Iterator<Document> lista=resultado.iterator();
-		List<Usuario> retorno=new ArrayList<Usuario>();
-		while(lista.hasNext()) {
-			usuario=lista.next();
-			nombre=usuario.getString(name);
-			//if(administradorDao.selectNombre(nombre)==null)retorno.add(new Usuario(nombre));
-		}
-		return retorno;
-	}
-	 */
 
 	public static MongoCollection<Document> getContrasenas() {
 		MongoBroker broker = MongoBroker.get();
@@ -150,8 +116,72 @@ public class Utilidades {
 		return incidencias;
 	}
 
+	public static String passRandom() {
+		char[] elementos={'0','1','2','3','4','5','6','7','8','9' ,
+				'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+				'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
 
+		char[] conjunto = new char[10];
+		String pass;
 
+		for(int i=0;i<10;i++){
+			int el = (int)(Math.random()*62);
+			conjunto[i] = (char)elementos[el];
+		}
+		return pass = new String(conjunto);
+	}
+	
+	public static boolean validar(String dni) {
+		String letraMayuscula = "";
+             
+        if(dni.length() != 9 || Character.isLetter(dni.charAt(8)) == false ) {
+            return false;
+        }
+        letraMayuscula = (dni.substring(8)).toUpperCase();
+        if(soloNumeros(dni) == true && letraDNI(dni).equals(letraMayuscula)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    private static boolean soloNumeros(String dni) {
+    	 
+        int i, j = 0;
+        String numero = ""; 
+        String miDNI = ""; 
+        String[] unoNueve = {"0","1","2","3","4","5","6","7","8","9"};
+
+        for(i = 0; i < dni.length() - 1; i++) {
+            numero = dni.substring(i, i+1);
+
+            for(j = 0; j < unoNueve.length; j++) {
+                if(numero.equals(unoNueve[j])) {
+                    miDNI += unoNueve[j];
+                }
+            }
+        }
+
+        if(miDNI.length() != 8) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private static String letraDNI(String dni) {
+    int miDNI = Integer.parseInt(dni.substring(0,8));
+    int resto = 0;
+    String miLetra = "";
+    String[] asignacionLetra = {"T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"};
+
+    resto = miDNI % 23;
+
+    miLetra = asignacionLetra[resto];
+
+    return miLetra;
+    }
 
 
 

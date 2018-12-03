@@ -37,11 +37,16 @@ public class AdminController {
 		String nombre = request.getParameter("txtUsuarioNombre");
 		String rol = request.getParameter("listaRoles");
 		String dni = request.getParameter("txtDni");
-		String pass = passRandom();
+		String pass = Utilidades.passRandom();
 		if (mail.equals("") || nombre.equals("") || rol.equals("")||dni.equals("")) {
-			//model.addAttribute(alert, "Por favor rellene los campos");
+			model.addAttribute("alerta", "Por favor rellene los campos");
+			return "interfazCrearUsuario";
 
+		}else if(Utilidades.validar(dni)==false) {
+			model.addAttribute("alerta", "El formato del dni no es correcto");
+			return "interfazCrearUsuario";
 		}
+		
 		//UsuarioDaoImplement userDao = new UsuarioDaoImplement();
 		Usuario user = new Usuario();
 		user.setNombre(nombre);
@@ -57,33 +62,16 @@ public class AdminController {
 			
 		}
 
-		String destinatario =  "alguien@servidor.com"; //A quien le quieres escribir.
 		String asunto = "Password por defecto";
 		String cuerpo = "Hola " + nombre + "! \nLa password por defecto es la siguiente:\n" + pass
 				+"\n\nUn Saludo\nInTime Corporation";
 
 		MailSender mailSender = new MailSender();
 		mailSender.enviarConGMail(mail, asunto, cuerpo);
-
+		
+		model.addAttribute("alerta1", "Se ha creado un usuario satisfactoriamente");
 		return "interfazCrearUsuario";
 	}
-
-	public String passRandom() {
-		char[] elementos={'0','1','2','3','4','5','6','7','8','9' ,
-				'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
-				'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
-
-		char[] conjunto = new char[10];
-		String pass;
-
-		for(int i=0;i<10;i++){
-			int el = (int)(Math.random()*62);
-			conjunto[i] = (char)elementos[el];
-		}
-		return pass = new String(conjunto);
-	}
-	
-	
 
 	@RequestMapping(value = "/eliminarUsuario", method = RequestMethod.POST)
 	public String eliminarUsuario(HttpServletRequest request, Model model) throws Exception {

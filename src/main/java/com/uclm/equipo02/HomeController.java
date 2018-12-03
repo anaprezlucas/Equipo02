@@ -71,11 +71,14 @@ private final String welcome = "welcome";
 		Usuario usuario = new Usuario();
 		usuario.setEmail(email);
 		usuario.setPassword(password);
+		try {
 		String nombre =  userDao.devolverUser(usuario);
 		usuario.setNombre(nombre);
 		String dni = userDao.devolverDni(usuario);
 		usuario.setDni(dni);
-		
+		}catch(Exception e) {
+			
+		}
 		if (userDao.login(usuario) && request.getSession().getAttribute(usuario_conect) == null){
 			usuario.setRol(userDao.devolverRol(usuario));
 
