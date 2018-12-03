@@ -151,6 +151,15 @@ height:180px
 					</button>
 				</form>
 			</div>
+			<div class="nav-item pull-left fixed-top"
+				style="position: relative; top: 8px">
+				<form action="gestionPwd" method="GET">
+					<button class="btn btn-space" type="submit">
+						<strong><span class="glyphicon glyphicon-copy"></span>
+							Gesti&oacuten Credenciales</strong>
+					</button>
+				</form>
+			</div>
 			<div class="nav-item pull-right fixed-top"
 				style="position: relative; top: 8px">
 				<form action="logout" method="GET">
@@ -256,14 +265,15 @@ height:180px
 										
 												<input type="submit" class="btnUsuario input-lg"
 													name="resolverIncidencia" value="Resolver Incidencias" formaction = "listarIncidenciasGestor" />
-													<input type="submit" class="btnUsuario input-lg"
-													name="crearIncidencia" value="Crear incidencia" formaction = "RECrearIncidencia" />
-												
+													
 												<input type="submit" class="btnUsuario input-lg"
-													name="modificarIncidencia" value="Modificar incidencia" formaction = "REModificarIncidencia"/>
+													name="crearIncidencia" value="Crear incidencia" formaction = "RECrearIncidencia" />
+													
+												<input type="submit" class="btnUsuario input-lg"
+													name="modificarIncidencia" value="Modificar incidencia" formaction = "listarIncidencias"/>
 											
 												<input type="submit" class="btnUsuario input-lg"
-													name="eliminarIncidencia" value="Eliminar incidencia" formaction = "REeliminarIncidencia"/>
+													name="eliminarIncidencia" value="Eliminar incidencia" formaction = "listarIncidenciasEliminar"/>
 												
 											
 										
